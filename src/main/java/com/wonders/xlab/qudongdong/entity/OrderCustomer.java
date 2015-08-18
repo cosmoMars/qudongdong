@@ -1,5 +1,7 @@
 package com.wonders.xlab.qudongdong.entity;
 
+import com.wonders.xlab.qudongdong.AbstractBaseEntity;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -10,7 +12,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "QDD_ORDER_CUSTOMER")
-public class OrderCustomer {
+public class OrderCustomer extends AbstractBaseEntity<Long> {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Order order;
