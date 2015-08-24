@@ -40,115 +40,6 @@
 <body>
 <div id="tl-title"></div>
 <div id="tl-main"></div>
-<!--<div class="tl-title">-->
-<!--<div class="tl-header">-->
-<!--<div class="tl-background">-->
-<!--<img src="assets/i/user-background/background-girl.jpg" class="tl-background-img">-->
-
-<!--<div class="tl-masking"></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="tl-info">-->
-<!--<div class="tl-avatar">-->
-<!--<img src="assets/i/avatar-offical.jpg" class="tl-avatar-img am-img-thumbnail am-radius">-->
-<!--</div>-->
-<!--<div class="tl-user">-->
-<!--<span>Emily Blaning</span>-->
-
-<!--<p class="am-icon-venus"></p>-->
-
-<!--<div class="tl-age">-->
-<!--<span>20岁</span>-->
-<!--<span>上海市黄浦区</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--<div class="tl-main">-->
-<!--<ul class="cbp_tmtimeline">-->
-<!--<li>-->
-<!--<div class="cbp_tmtime"><span>今天</span></div>-->
-<!--<div class="cbp_tmicon">-->
-<!--<img src="assets/i/sports/run.png">-->
-<!--</div>-->
-<!--<div class="cbp_tmlabel">-->
-<!--<div><span>大宁灵石公园偏门</span>-->
-
-<!--<div class="tl-people">-->
-<!--<img src="assets/i/people.png" class="tl-icon-people"><span class="tl-green">1/1</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div><span class="tl-item">约跑</span> <span class="tl-start-time">17:00-19:00</span></div>-->
-<!--</div>-->
-<!--</li>-->
-<!--<li>-->
-<!--<div class="cbp_tmtime"><span>昨天</span></div>-->
-<!--<div class="cbp_tmicon">-->
-<!--<img src="assets/i/sports/run.png">-->
-<!--</div>-->
-<!--<div class="cbp_tmlabel">-->
-<!--<div><span>大宁灵石公园偏门</span>-->
-
-<!--<div class="tl-people">-->
-<!--<img src="assets/i/people_gray.png" class="tl-icon-people"><span>1/5</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div><span class="tl-item tl-gray">约跑</span> <span class="tl-start-time tl-gray">17:00-19:00</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</li>-->
-<!--<li>-->
-<!--<div class="cbp_tmtime"><span>12/</span>12</div>-->
-<!--<div class="cbp_tmicon">-->
-<!--<img src="assets/i/sports/run.png">-->
-<!--</div>-->
-<!--<div class="cbp_tmlabel">-->
-<!--<div><span>大宁灵石公园偏门</span>-->
-
-<!--<div class="tl-people">-->
-<!--<img src="assets/i/people_gray.png" class="tl-icon-people"><span>1/5</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div><span class="tl-item tl-gray">约跑</span> <span class="tl-start-time tl-gray">17:00-19:00</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</li>-->
-<!--<li>-->
-<!--<div class="cbp_tmtime"><span>12/</span>12</div>-->
-<!--<div class="cbp_tmicon">-->
-<!--<img src="assets/i/sports/run.png">-->
-<!--</div>-->
-<!--<div class="cbp_tmlabel">-->
-<!--<div><span>大宁灵石公园偏门</span>-->
-
-<!--<div class="tl-people">-->
-<!--<img src="assets/i/people_gray.png" class="tl-icon-people"><span>1/5</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div><span class="tl-item tl-gray">约跑</span> <span class="tl-start-time tl-gray">17:00-19:00</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</li>-->
-<!--<li>-->
-<!--<div class="cbp_tmtime"><span>12/</span>12</div>-->
-<!--<div class="cbp_tmicon">-->
-<!--<img src="assets/i/sports/run.png">-->
-<!--</div>-->
-<!--<div class="cbp_tmlabel">-->
-<!--<div><span>大宁灵石公园偏门</span>-->
-
-<!--<div class="tl-people">-->
-<!--<img src="assets/i/people_gray.png" class="tl-icon-people"><span>1/5</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div><span class="tl-item tl-gray">约跑</span> <span class="tl-start-time tl-gray">17:00-19:00</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</div>-->
-
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
 <!--<![endif]-->
@@ -177,10 +68,10 @@
             <div class="tl-user">
                 <span>{{nickName}}</span>
 
-                <p class="am-icon-venus"></p>
+                <p class="am-icon-mars"></p>
 
                 <div class="tl-age">
-                    <span>20岁</span>
+                    <span>{{age}}</span>
                     <span>{{city}}</span>
                 </div>
             </div>
@@ -188,7 +79,6 @@
     </div>
 </script>
 <script type="text/x-handlebars-template" id="timeLine">
-
     {{#each this}}
     <div class="tl-main">
         <ul class="cbp_tmtimeline">
@@ -204,15 +94,13 @@
                             <img src="assets/i/people.png" class="tl-icon-people"><span class="tl-green">1/1</span>
                         </div>
                     </div>
-                    <div><span class="tl-item">约跑</span> <span class="tl-start-time">{{startTime}}-{{endTime}}</span>
+                    <div><span class="tl-item">{{sportName}}</span> <span class="tl-start-time">{{startTime}}-{{endTime}}</span>
                     </div>
                 </div>
             </li>
-
         </ul>
     </div>
     {{/each}}
 </script>
-
 </body>
 </html>

@@ -36,53 +36,7 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body class="dr-body">
-<ul class="am-list am-list-static am-list-border dr-require-li">
-    <li>
-        <div class="am-container dr-require-list">
-            <div class="dr-background">
-                <img src="assets/i/user-background/background-boy.jpg" class="dr-background-img">
-            </div>
-            <div class="dr-avatar-info">
-                <div class="dr-avatar">
-                    <img src="assets/i/avatar-offical.jpg" class="am-img-thumbnail">
-                </div>
-                <div class="dr-name">Emily Blaning</div>
-                <div class="dr-info"><span>20岁</span> 上海市黄浦区 <span class="am-icon-mars dr-boy"></span></div>
-                <div class="am-g dr-conform-button">
-                    <div class="am-u-sm-6">
-                        <button class="am-btn am-btn-success am-round am-btn-xs">残忍拒绝</button>
-                    </div>
-                    <div class="am-u-sm-6">
-                        <button class="am-btn am-btn-danger am-round am-btn-xs">同意约炼</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="am-container dr-require-list">
-            <div class="dr-background">
-                <img src="assets/i/user-background/background-girl.jpg" class="dr-background-img">
-            </div>
-            <div class="dr-avatar-info">
-                <div class="dr-avatar">
-                    <img src="assets/i/avatar-offical.jpg" class="am-img-thumbnail">
-                </div>
-                <div class="dr-name">Emily Blaning</div>
-                <div class="dr-info"><span>20岁</span> 上海市黄浦区 <span class="am-icon-venus dr-girl"></span></div>
-                <div class="am-g dr-conform-button">
-                    <div class="am-u-sm-6">
-                        <button class="am-btn am-btn-success am-round am-btn-xs">残忍拒绝</button>
-                    </div>
-                    <div class="am-u-sm-6">
-                        <button class="am-btn am-btn-danger am-round am-btn-xs">同意约炼</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-</ul>
+<body class="dr-body" id="dr-main">
 
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
@@ -93,5 +47,36 @@
 <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/handlebars.min.js"></script>
+<script src="assets/js/datingRequest.js"></script>
+<script type="text/x-handlebars-template" id="request">
+    {{#each this}}
+    <ul class="am-list am-list-static am-list-border dr-require-li">
+        <li>
+            <div class="am-container dr-require-list">
+                <div class="dr-background">
+                    <img src="assets/i/user-background/background-boy.jpg" class="dr-background-img">
+                </div>
+                <div class="dr-avatar-info">
+                    <div class="dr-avatar">
+                        <img src="{{avatar}}" class="am-img-thumbnail">
+                    </div>
+                    <div class="dr-name">{{nickName}}</div>
+                    <div class="dr-info"><span>{{age}}岁</span> {{city}} <span class="am-icon-mars dr-boy"></span></div>
+                    <div class="am-g dr-conform-button">
+                        <div class="am-u-sm-6">
+                            <button class="am-btn am-btn-success am-round am-btn-xs">残忍拒绝</button>
+                        </div>
+                        <div class="am-u-sm-6">
+                            <button class="am-btn am-btn-danger am-round am-btn-xs">同意约炼</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    {{/each}}
+</script>
 </body>
 </html>

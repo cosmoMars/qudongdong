@@ -57,11 +57,11 @@
                 微信号
             </li>
             <li>
-                <span class="am-badge ii-badge"><a class="am-icon-chevron-right"></a></span>
+                <span class="am-badge ii-badge"><a class="am-icon-chevron-right" href="timeLine.html"></a></span>
                 时光轴
             </li>
             <li>
-                <span class="am-badge ii-badge"><a class="am-icon-chevron-right"></a></span>
+                <span class="am-badge ii-badge"><a class="am-icon-chevron-right" href="datingRequest.html"></a></span>
                 我的约伴
             </li>
         </ul>
@@ -69,25 +69,27 @@
     <div class="ii-info">
         <ul class="am-list am-list-static am-list-border">
             <li>
-                <span class="am-badge ii-badge"><a class="am-icon-chevron-right"></a></span>
-                <span class="am-badge ii-badge am-badge-danger">女</span>
+                <span class="am-badge ii-badge"><a class="am-icon-chevron-right" id="gender-btn"></a></span>
+                <span class="am-badge ii-badge am-badge-danger" id="text-gender">女</span>
                 性别
             </li>
             <li>
-                <span class="am-badge ii-badge"><a class="am-icon-chevron-right"></a></span>
-                <span class="am-badge ii-badge am-badge-danger">20岁</span>
+                <span class="am-badge ii-badge"><a class="am-icon-chevron-right" id="age-btn"></a></span>
+                <span class="am-badge ii-badge am-badge-danger" id="text-age">20岁</span>
                 年龄
             </li>
             <li>
-                <span class="am-badge ii-badge"><a class="am-icon-chevron-right"></a></span>
+                <span class="am-badge ii-badge"><a class="am-icon-chevron-right" id="height-btn"></a></span>
+                <span class="am-badge ii-badge am-badge-danger" id="text-height">165cm</span>
                 身高
             </li>
             <li>
-                <span class="am-badge ii-badge"><a class="am-icon-chevron-right"></a></span>
+                <span class="am-badge ii-badge"><a class="am-icon-chevron-right" id="weight-btn"></a></span>
+                <span class="am-badge ii-badge am-badge-danger" id="text-weight">45kg</span>
                 体重
             </li>
             <li style="height: 56px">
-                <span class="am-badge ii-badge"><img src="assets/i/add.png" class="ii-sports"/></span>
+                <span class="am-badge ii-badge"><img src="assets/i/add.png" class="ii-sports" id="sports-btn"/></span>
                 <span class="am-badge ii-badge"><img src="assets/i/sports/run.png" class="ii-sports"/></span>
                 <span class="am-badge ii-badge"><img src="assets/i/sports/swiming.png" class="ii-sports"/></span>
                 <span class="am-badge ii-badge"><img src="assets/i/sports/yoga.png" class="ii-sports"/></span>
@@ -95,6 +97,55 @@
                 喜欢的运动
             </li>
         </ul>
+    </div>
+</div>
+
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ii-gender">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            请选择性别
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ii-age">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            请输入对方年龄
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ii-height">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            请输入身高（单位：厘米）
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ii-weight">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            请输入体重（单位：公斤）
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
     </div>
 </div>
 
@@ -107,5 +158,6 @@
 <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/individualInfo.js"></script>
 </body>
 </html>

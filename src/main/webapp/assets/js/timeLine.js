@@ -6,5 +6,4 @@ $.get(commonUrl + 'order/listUserOrder/1', function (data) {
     $('#tl-main').html(listTemple(data.ret_values.orders));
     var listTemple = Handlebars.compile($('#title').html());
     $('#tl-title').html(listTemple(data.ret_values));
-    console.log(data.ret_values);
 })

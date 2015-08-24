@@ -80,16 +80,18 @@
     <div class="ad-info">
         <ul class="am-list am-list-static am-list-border">
             <li>
-                <span class="am-badge ad-badge"><a class="am-icon-angle-right"></a></span>
-                <span class="am-badge ad-badge">跑步</span>
+                <span class="am-badge ad-badge"><a class="am-icon-chevron-right" id="title-btn"></a></span>
+                <span class="am-badge ad-badge" id="title-text">跑步</span>
                 主题
             </li>
             <li>
-                <span class="am-badge ad-badge"><a class="am-icon-angle-right"></a></span>
+                <span class="am-badge ad-badge"><a class="am-icon-chevron-right" id="location-btn"></a></span>
+                <span class="am-badge ad-badge" id="location-text"></span>
                 地点
             </li>
             <li>
-                <span class="am-badge ad-badge"><a class="am-icon-angle-right"></a></span>
+                <span class="am-badge ad-badge"><a class="am-icon-chevron-right" id="time-btn"></a></span>
+                <span class="am-badge ad-badge" id="time-text"></span>
                 时间
             </li>
         </ul>
@@ -97,13 +99,13 @@
     <div class="ad-info">
         <ul class="am-list am-list-static am-list-border">
             <li>
-                <span class="am-badge ad-badge"><a class="am-icon-angle-right"></a></span>
-                <span class="am-badge ad-badge am-badge-danger">男 | 女 | 不限</span>
+                <span class="am-badge ad-badge"><a class="am-icon-chevron-right" id="partner-btn"></a></span>
+                <span class="am-badge ad-badge am-badge-danger" id="partner-text">男 | 女 | 不限</span>
                 对象
             </li>
             <li>
-                <span class="am-badge ad-badge"><a class="am-icon-angle-right"></a></span>
-                <span class="am-badge ad-badge am-badge-danger">18-24岁 | 25-30岁 | 不限</span>
+                <span class="am-badge ad-badge"><a class="am-icon-chevron-right" id="age-btn"></a></span>
+                <span class="am-badge ad-badge am-badge-danger" id="age-text">18-24岁 | 25-30岁 | 不限</span>
                 年龄
             </li>
         </ul>
@@ -122,6 +124,68 @@
     </div>
 </div>
 
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-title">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            请选择运动主题
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-location">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            请输入运动地点
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-time">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            请输入运动时间
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-partner">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            请输入运动对象
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-age">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            请输入对方年龄
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
 
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
@@ -145,5 +209,6 @@
 <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/addDating.js"></script>
 </body>
 </html>
