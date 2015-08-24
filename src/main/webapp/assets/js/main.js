@@ -3,5 +3,5 @@
  */
 $.get(commonUrl + 'order/listSportOrder', function (data) {
     var listTemple = Handlebars.compile($('#listBox').html());
-    //$('#main-list').html(listTemple(data.ret_values));
+    $('#main-list').html(listTemple(data.ret_values));
 })
