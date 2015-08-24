@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body class="main-body">
+<body class="main-body" id="main-list">
 <ul class="am-list am-list-static am-list-border main-list main-margin">
     <li>
         <div class="main-container">
@@ -132,5 +132,52 @@
 <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/handlebars.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script type="text/x-handlebars-template" id="listBox">
+    {{#each this}}
+    <ul class="am-list am-list-static am-list-border main-list main-margin">
+        <li>
+            <div class="main-container">
+                <div class="am-g main-g">
+                    <div class="am-u-sm-4 main-left">
+                        <div class="main-center">
+                            <img src="{{avatarUrl}}" class="am-radius main-radius"/>
+
+                            <div class="main-gray">
+                                <div class="main-name">{{nickName}}<p class=""></p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-8 main-right">
+                        <div class="main-location">地点：{{location}}</div>
+                        <div class="main-time">{{diffTime}} 发布<img src="assets/i/zaodong.jpg" class="main-logo"/></div>
+                        <div class="main-people"><img src="assets/i/people.png" class="main-icon-people">{{currentPeople}}人｜{{peopleCount}}人</div>
+                        <div><span class="main-item">{{sportName}}</span> <span class="main-start-time">{{startTime}}-{{endTime}}</span></div>
+                        <div>
+                            <img src="assets/i/sports/run.png" class="main-sports"/>
+                            <img src="assets/i/sports/yoga.png" class="main-sports"/>
+                            <img src="assets/i/sports/swiming.png" class="main-sports"/>
+                            <img src="assets/i/sports/badminton.png" class="main-sports"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-container main-text-bottom">
+                <div class="am-g main-g">
+                    <div class="am-u-sm-9 main-9">{{content}}</div>
+                    <div class="am-u-sm-3 main-3">
+                        <div class="main-button">
+                            <button type="button" class="am-btn am-btn-success am-round am-btn-xs main-danger">来晚了</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    {{/each}}
+</script>
+
 </body>
 </html>
