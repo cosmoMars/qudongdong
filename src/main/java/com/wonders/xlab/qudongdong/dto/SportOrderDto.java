@@ -72,6 +72,8 @@ public class SportOrderDto {
     @NotNull(message = "运动结束时间不能为空")
     private String endTime;
 
+    private Boolean official;
+
     public SportOrder toNewOrder() {
         SportOrder order = new SportOrder();
         order.setLocation(location);
@@ -80,7 +82,6 @@ public class SportOrderDto {
         order.setPayMethod(SportOrder.PayMethod.values()[payMethod]);
         order.setTransfer(transfer);
         order.setCarryOne(carryOne);
-        order.setPeopleCount(peopleCount);
         order.setContent(content);
         order.setStatus(SportOrder.Status.Todo);
         try {
@@ -170,5 +171,13 @@ public class SportOrderDto {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public Boolean getOfficial() {
+        return official;
+    }
+
+    public void setOfficial(Boolean official) {
+        this.official = official;
     }
 }

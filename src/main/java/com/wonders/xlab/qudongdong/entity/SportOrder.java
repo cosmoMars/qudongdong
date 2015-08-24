@@ -91,7 +91,7 @@ public class SportOrder extends AbstractBaseEntity<Long> {
     /**
      * 简介
      */
-    @Pattern(regexp = "^.{0,20}$", message = "简介不能超过20个字")
+    @Pattern(regexp = "^.{0,12}$", message = "简介不能超过12个字")
     private String content;
 
     /**
@@ -105,6 +105,11 @@ public class SportOrder extends AbstractBaseEntity<Long> {
      */
     @Temporal(TemporalType.TIMESTAMP)
     private Date endTime;
+
+    /**
+     * 是否官方
+     */
+    private boolean official;
 
 
     public User getUser() {
@@ -217,5 +222,13 @@ public class SportOrder extends AbstractBaseEntity<Long> {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public boolean isOfficial() {
+        return official;
+    }
+
+    public void setOfficial(boolean official) {
+        this.official = official;
     }
 }
