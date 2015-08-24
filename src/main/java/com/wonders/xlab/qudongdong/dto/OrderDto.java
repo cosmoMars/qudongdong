@@ -1,7 +1,6 @@
 package com.wonders.xlab.qudongdong.dto;
 
 import com.wonders.xlab.qudongdong.entity.Sport;
-import com.wonders.xlab.qudongdong.entity.User;
 
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class OrderDto {
     /**
      * 性别
      */
-    private User.Sex sex;
+    private int sex;
 
     /**
      * 昵称
@@ -89,6 +88,11 @@ public class OrderDto {
      * 过去时间
      */
     private String diffTime;
+
+    /**
+     * 官方
+     */
+    private boolean official;
 
 
     public long getOrderId() {
@@ -139,11 +143,11 @@ public class OrderDto {
         this.avatarUrl = avatarUrl;
     }
 
-    public User.Sex getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(User.Sex sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 
@@ -217,5 +221,13 @@ public class OrderDto {
 
     public void setDiffTime(String diffTime) {
         this.diffTime = diffTime;
+    }
+
+    public boolean isOfficial() {
+        return official;
+    }
+
+    public void setOfficial(boolean official) {
+        this.official = official;
     }
 }

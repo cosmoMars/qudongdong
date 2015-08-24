@@ -60,8 +60,6 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
 
         List<OrderCustomer> orderCustomers = orderCustomerRepository.findBySportOrderId(sportOrder.getId());
 
-//        JsonNodeFactory jsonNodeFactory = objectMapper.getNodeFactory();
-//        ObjectNode jsonNode = jsonNodeFactory.objectNode();
 
         List<Map<String, Object>> list = new ArrayList<>();
         for (OrderCustomer customer : orderCustomers) {

@@ -44,7 +44,6 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
     @Autowired
     private ObjectMapper objectMapper;
 
-
     @Override
     protected MyRepository<SportOrder, Long> getRepository() {
         return sportOrderRepository;
@@ -70,7 +69,14 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
         sportOrder.setUser(user);
         sportOrder.setSport(sport);
+        if (sportOrderDto.getOfficial()) {
+            sportOrder.setOfficial(true);
+            sportOrder.setPeopleCount(sportOrderDto.getPeopleCount());
+        } else {
+            sportOrder.setOfficial(false);
+            sportOrder.setPeopleCount(1);
 
+        }
         sportOrderRepository.save(sportOrder);
 
         return new ControllerResult<>()
@@ -111,13 +117,14 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             dto.setCurrentPeople(order.getOrderCustomers().size());
 
             dto.setAvatarUrl(order.getUser().getAvatarUrl());
-            dto.setSex(order.getSex());
+            dto.setSex(order.getSex().ordinal());
             dto.setNickName(order.getUser().getNickName());
             dto.setSportName(order.getSport().getName());
             dto.setSports(new ArrayList<>(order.getUser().getSports()));
             dto.setContent(order.getContent());
+            dto.setOfficial(order.isOfficial());
 
-            int diffTime = DateUtils.calculatePeiorMiniutesOfTwoDate(now, order.getCreatedDate());
+            int diffTime = DateUtils.calculatePeiorMiniutesOfTwoDate(order.getCreatedDate(), now);
             if (diffTime < 60) {
                 dto.setDiffTime(diffTime + "分钟");
             } else {
