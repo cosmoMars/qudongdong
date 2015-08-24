@@ -273,6 +273,7 @@ datingRequest
 .dr-avatar {
     margin: 0 auto;
     width: 110px;
+    height: 110px;
 }
 
 .dr-name {
@@ -494,3 +495,114 @@ datingRequest
     color: #4EC296;
 }
 
+/*
+indivadualInfo
+*/
+.ii-body {
+    background-color: #EBEBEB;
+}
+
+.ii-container {
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.ii-info {
+    background-color: white;
+    color: #66727d;
+    font-size: 14px;
+}
+
+.ii-avatar {
+    width: 100%;
+    height: 80px;
+
+}
+
+.ii-avatar img {
+    margin: auto 0;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    right: 15px;
+}
+
+.ii-title {
+    height: 80px;
+    width: 100%;
+    line-height: 80px;
+    overflow: hidden;
+
+}
+
+.ii-badge {
+    color: #66727d;
+    background-color: white;
+    font-weight: normal;
+    padding-left: 0px;
+    padding-right: 2px;
+}
+
+.ii-sports {
+    width: 25px;
+    height: 25px;
+}
+
+.am-icon-chevron-right {
+    color: gray;
+}
+
+/*
+addDating
+*/
+.ad-body {
+    background-color: #EBEBEB;
+}
+
+.ad-container {
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.ad-info {
+    background-color: white;
+    color: #66727d;
+    font-size: 14px;
+}
+
+.ad-title {
+    height: 80px;
+    width: 100%;
+    line-height: 80px;
+    overflow: hidden;
+
+}
+
+.ad-badge {
+    color: #66727d;
+    background-color: white;
+    font-weight: normal;
+}
+
+.ad-sports {
+    width: 25px;
+    height: 25px;
+}
+.ad-context{
+    height: 60px;
+    width: 100%;
+    resize: none;
+}
+.ad-sub{
+    margin: 0 auto;
+    width: 250px;
+}
+.ad-button{
+    width: 100%;
+    height: 50px;
+}
+.ad-btn{
+    width: 100%;
+}
