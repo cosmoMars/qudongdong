@@ -13,6 +13,11 @@ import java.util.Set;
 public class User extends AbstractBaseEntity<Long> {
 
     /**
+     * 微信openId
+     */
+    private String openId;
+
+    /**
      * 手机
      */
     private String tel;
@@ -42,6 +47,18 @@ public class User extends AbstractBaseEntity<Long> {
      */
     private int age;
 
+    /**
+     * 城市
+     */
+    private String city;
+
+    @Enumerated
+    private Sex sex;
+
+    public enum Sex {
+        All, Male, Female
+    }
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     @JoinTable(name = "qdd_user_sport_relation",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -49,6 +66,14 @@ public class User extends AbstractBaseEntity<Long> {
     )
     @OrderBy("id asc")
     private Set<Sport> sports;
+
+    public String getOpenId() {
+        return openId;
+    }
+
+    public void setOpenId(String openId) {
+        this.openId = openId;
+    }
 
     public String getTel() {
         return tel;
@@ -104,5 +129,21 @@ public class User extends AbstractBaseEntity<Long> {
 
     public void setSports(Set<Sport> sports) {
         this.sports = sports;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 }

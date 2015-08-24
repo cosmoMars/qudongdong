@@ -3,14 +3,16 @@ package com.wonders.xlab.qudongdong.entity;
 import com.wonders.xlab.qudongdong.AbstractBaseEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import java.util.Date;
 import java.util.Set;
 
 /**
  * Created by mars on 15/8/18.
  */
 @Entity
-@Table(name = "QDD_ORDER")
-public class Order extends AbstractBaseEntity<Long> {
+@Table(name = "QDD_SPORT_ORDER")
+public class SportOrder extends AbstractBaseEntity<Long> {
 
     /**
      * 用户
@@ -21,7 +23,7 @@ public class Order extends AbstractBaseEntity<Long> {
     /**
      * 订单用户
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sportOrder", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private Set<OrderCustomer> orderCustomers;
 
     /**
@@ -39,11 +41,7 @@ public class Order extends AbstractBaseEntity<Long> {
      * 性别
      */
     @Enumerated
-    private Sex sex;
-
-    public enum Sex {
-        Male, Female, All
-    }
+    private User.Sex sex;
 
     /**
      * 年龄范围
@@ -80,6 +78,35 @@ public class Order extends AbstractBaseEntity<Long> {
      */
     private int peopleCount;
 
+    /**
+     * 订单状态
+     */
+    @Enumerated
+    private Status status;
+
+    public enum Status {
+        Todo, Doing, End
+    }
+
+    /**
+     * 简介
+     */
+    @Pattern(regexp = "^.{0,20}$", message = "简介不能超过20个字")
+    private String content;
+
+    /**
+     * 运动开始时间
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startTime;
+
+    /**
+     * 运动结束时间
+     */
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endTime;
+
+
     public User getUser() {
         return user;
     }
@@ -112,11 +139,11 @@ public class Order extends AbstractBaseEntity<Long> {
         this.location = location;
     }
 
-    public Sex getSex() {
+    public User.Sex getSex() {
         return sex;
     }
 
-    public void setSex(Sex sex) {
+    public void setSex(User.Sex sex) {
         this.sex = sex;
     }
 
@@ -158,5 +185,37 @@ public class Order extends AbstractBaseEntity<Long> {
 
     public void setPeopleCount(int peopleCount) {
         this.peopleCount = peopleCount;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 }

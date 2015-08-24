@@ -23,4 +23,5 @@ public class UserController extends AbstractBaseController<User, Long> {
         return userRepository;
     }
 
+
 }

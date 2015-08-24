@@ -15,19 +15,19 @@ import javax.persistence.Table;
 public class OrderCustomer extends AbstractBaseEntity<Long> {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Order order;
+    private SportOrder sportOrder;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private User customer;
 
-    private boolean userAgree;
+    private Boolean userAgree;
 
-    public Order getOrder() {
-        return order;
+    public SportOrder getSportOrder() {
+        return sportOrder;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setSportOrder(SportOrder sportOrder) {
+        this.sportOrder = sportOrder;
     }
 
     public User getCustomer() {
@@ -38,11 +38,11 @@ public class OrderCustomer extends AbstractBaseEntity<Long> {
         this.customer = customer;
     }
 
-    public boolean isUserAgree() {
+    public Boolean getUserAgree() {
         return userAgree;
     }
 
-    public void setUserAgree(boolean userAgree) {
+    public void setUserAgree(Boolean userAgree) {
         this.userAgree = userAgree;
     }
 }
