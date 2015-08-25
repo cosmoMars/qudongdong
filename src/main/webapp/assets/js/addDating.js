@@ -69,6 +69,19 @@ $(function() {
         });
     });
 });
+var openid;
+
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return (r[2]);
+    return null;
+}
+
+openid = GetQueryString("openId");
+if (openid != null) {
+    openid_ = decodeURIComponent(openid);
+}
 
 function generateOrder(){
     var location=$('#location-text').html();

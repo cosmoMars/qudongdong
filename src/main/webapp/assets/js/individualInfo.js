@@ -10,7 +10,7 @@ function GetQueryString(name) {
     return null;
 }
 
-openid = GetQueryString("open_id");
+openid = GetQueryString("openId");
 if (openid != null) {
     openid_ = decodeURIComponent(openid);
 }
