@@ -81,7 +81,7 @@
         <ul class="am-list am-list-static am-list-border">
             <li>
                 <span class="am-badge ad-badge"><a class="am-icon-chevron-right" id="title-btn"></a></span>
-                <span class="am-badge ad-badge" id="title-text">跑步</span>
+                <span class="am-badge ad-badge" id="title-text" >跑步</span>
                 主题
             </li>
             <li>
@@ -90,9 +90,14 @@
                 地点
             </li>
             <li>
-                <span class="am-badge ad-badge"><a class="am-icon-chevron-right" id="time-btn"></a></span>
-                <span class="am-badge ad-badge" id="time-text"></span>
-                时间
+                <span class="am-badge ad-badge"><a class="am-icon-chevron-right" id="startTime-btn"></a></span>
+                <span class="am-badge ad-badge" id="startTime-text"></span>
+                开始时间
+            </li>
+            <li>
+                <span class="am-badge ad-badge"><a class="am-icon-chevron-right" id="endTime-btn"></a></span>
+                <span class="am-badge ad-badge" id="endTime-text"></span>
+                结束时间
             </li>
         </ul>
     </div>
@@ -100,12 +105,12 @@
         <ul class="am-list am-list-static am-list-border">
             <li>
                 <span class="am-badge ad-badge"><a class="am-icon-chevron-right" id="partner-btn"></a></span>
-                <span class="am-badge ad-badge am-badge-danger" id="partner-text">男 | 女 | 不限</span>
+                <span class="am-badge ad-badge am-badge-danger" id="partner-text"></span>
                 对象
             </li>
             <li>
                 <span class="am-badge ad-badge"><a class="am-icon-chevron-right" id="age-btn"></a></span>
-                <span class="am-badge ad-badge am-badge-danger" id="age-text">18-24岁 | 25-30岁 | 不限</span>
+                <span class="am-badge ad-badge am-badge-danger" id="age-text"></span>
                 年龄
             </li>
         </ul>
@@ -113,13 +118,13 @@
     <div class="ad-info">
         <ul class="am-list am-list-static am-list-border">
             <li>
-                <textarea class="ad-context" value="空乏的说明是没有人会报名的">空乏的说明是没有人会报名的</textarea>
+                <textarea class="ad-context" placeholder="空乏的说明是没有人会报名的" id="context-text"></textarea>
             </li>
         </ul>
     </div>
     <div class="ad-button">
         <div class="ad-sub">
-            <button class="am-btn am-btn-danger am-round ad-btn">确定发布</button>
+            <button onclick="generateOrder()" class="am-btn am-btn-danger am-round ad-btn">确定发布</button>
         </div>
     </div>
 </div>
@@ -149,10 +154,22 @@
     </div>
 </div>
 
-<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-time">
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-startTime">
     <div class="am-modal-dialog">
         <div class="am-modal-bd">
-            请输入运动时间
+            请选择运动开始时间
+            <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-endTime">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            请选择运动结束时间
             <input type="text" class="am-modal-prompt-input">
         </div>
         <div class="am-modal-footer">
@@ -187,6 +204,17 @@
     </div>
 </div>
 
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd" id="status">
+            发布成功！
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
+        </div>
+    </div>
+</div>
+
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
 <!--<![endif]-->
@@ -209,6 +237,7 @@
 <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/common.js"></script>
 <script src="assets/js/addDating.js"></script>
 </body>
 </html>

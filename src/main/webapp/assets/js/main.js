@@ -4,4 +4,8 @@
 $.get(commonUrl + 'order/listSportOrder', function (data) {
     var listTemple = Handlebars.compile($('#listBox').html());
     $('#main-list').html(listTemple(data.ret_values));
+    if(data.ret_values.sex=="Female"){
+
+
+    }
 })

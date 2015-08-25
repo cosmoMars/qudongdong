@@ -22,6 +22,12 @@ public class User extends AbstractBaseEntity<Long> {
      */
     private String tel;
 
+
+    /**
+     * 微信号
+     */
+    private String weChat;
+
     /**
      * 昵称
      */
@@ -146,4 +152,8 @@ public class User extends AbstractBaseEntity<Long> {
     public void setSex(Sex sex) {
         this.sex = sex;
     }
+
+    public String getWeChat() { return weChat; }
+
+    public void setWeChat(String weChat) { this.weChat = weChat; }
 }

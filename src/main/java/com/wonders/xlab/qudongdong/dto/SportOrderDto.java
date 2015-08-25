@@ -57,7 +57,7 @@ public class SportOrderDto {
     /**
      * 简介
      */
-    @Pattern(regexp = "^.{0,20}$", message = "简介不能超过20个字")
+    @Pattern(regexp = "^.{0,12}$", message = "简介不能超过12个字")
     private String content;
 
     /**

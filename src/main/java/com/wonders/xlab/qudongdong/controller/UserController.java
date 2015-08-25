@@ -37,5 +37,61 @@ public class UserController extends AbstractBaseController<User, Long> {
                 .setMessage("成功");
     }
 
-
+    /**
+     * @param openId
+     * @param info
+     * @param type   0(tel):1(sex):2(age):3(height):4():5(weChat)
+     * @return
+     */
+    @RequestMapping(value = "editInfo/{openId}/{info}/{type}", method = RequestMethod.POST)
+    public Object editInfo(@PathVariable String openId, @PathVariable String info, @PathVariable int type) {
+        User user = userRepository.findByOpenId(openId);
+        if (user != null) {
+            ControllerResult result = new ControllerResult<>()
+                    .setRet_code(0)
+                    .setRet_values("修改成功！")
+                    .setMessage("成功");
+            switch (type) {
+                case 0:
+                    user.setTel(info);
+                    userRepository.save(user);
+                    return result;
+                case 1:
+                    if (info.equals("Female")) {
+                        user.setSex(User.Sex.Female);
+                        userRepository.save(user);
+                        return result;
+                    } else if (info.equals("Male")) {
+                        user.setSex(User.Sex.Male);
+                        userRepository.save(user);
+                        return result;
+                    }
+                case 2:
+                    user.setAge(Integer.parseInt(info));
+                    userRepository.save(user);
+                    return result;
+                case 3:
+                    user.setHeight(Double.parseDouble(info));
+                    userRepository.save(user);
+                    return result;
+                case 4:
+                    user.setWeight(Double.parseDouble(info));
+                    userRepository.save(user);
+                    return result;
+                case 5:
+                    user.setWeChat(info);
+                    userRepository.save(user);
+                    return result;
+                default:
+                    return new ControllerResult<>()
+                            .setRet_code(-1)
+                            .setRet_values("请求失误！")
+                            .setMessage("失败");
+            }
+        }
+        return new ControllerResult<>()
+                .setRet_code(-1)
+                .setRet_values("该用户不存在！")
+                .setMessage("失败");
+    }
 }
