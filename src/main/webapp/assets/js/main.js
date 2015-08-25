@@ -17,6 +17,24 @@ if (userId != null) {
 
 $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
     var listTemple = Handlebars.compile($('#listBox').html());
+    Handlebars.registerHelper("compare", function (v1, options) {
+        if (v1 == 0) {
+            //满足添加继续执行
+            return options.fn(this);
+        }
+        else{
+            return options.inverse(this);
+        }
+    });
+    Handlebars.registerHelper("judge", function (v1, options) {
+        if (v1 == 1) {
+            //满足添加继续执行
+            return options.fn(this);
+        }
+        else{
+            return options.inverse(this);
+        }
+    });
     $('#main-list').html(listTemple(data.ret_values));
 })
 
