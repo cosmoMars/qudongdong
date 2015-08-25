@@ -1,6 +1,5 @@
 package com.wonders.xlab.qudongdong.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wonders.xlab.framework.controller.AbstractBaseController;
 import com.wonders.xlab.framework.repository.MyRepository;
 import com.wonders.xlab.qudongdong.dto.result.ControllerResult;
@@ -12,7 +11,10 @@ import com.wonders.xlab.qudongdong.repository.SportOrderRepository;
 import com.wonders.xlab.qudongdong.repository.UserRepository;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
@@ -31,9 +33,6 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
 
     @Autowired
     private OrderCustomerRepository orderCustomerRepository;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Override
     protected MyRepository<OrderCustomer, Long> getRepository() {

@@ -26,10 +26,10 @@ public class UserController extends AbstractBaseController<User, Long> {
         return userRepository;
     }
 
-    @RequestMapping(value = "retrieveInfo/{openId}", method = RequestMethod.GET)
-    public Object retrieveInfo(@PathVariable String openId) {
+    @RequestMapping(value = "retrieveInfo/{userId}", method = RequestMethod.GET)
+    public Object retrieveInfo(@PathVariable long userId) {
 
-        User user = userRepository.findByOpenId(openId);
+        User user = userRepository.findOne(userId);
 
         return new ControllerResult<>()
                 .setRet_code(0)

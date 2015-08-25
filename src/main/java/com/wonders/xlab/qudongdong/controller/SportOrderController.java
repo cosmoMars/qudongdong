@@ -90,7 +90,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
      * @param pageable
      * @return
      */
-    @RequestMapping(value = "listSportOrder", method = RequestMethod.GET)
+    @RequestMapping(value = "listSportOrder/{userId}", method = RequestMethod.GET)
     private Object listSportOrder(
             @PageableDefault(sort = "createdDate", direction = Sort.Direction.DESC)
             Pageable pageable) {
