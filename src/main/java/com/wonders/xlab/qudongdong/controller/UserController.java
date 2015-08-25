@@ -38,14 +38,14 @@ public class UserController extends AbstractBaseController<User, Long> {
     }
 
     /**
-     * @param openId
+     * @param userId
      * @param info
      * @param type   0(tel):1(sex):2(age):3(height):4():5(weChat)
      * @return
      */
-    @RequestMapping(value = "editInfo/{openId}/{info}/{type}", method = RequestMethod.POST)
-    public Object editInfo(@PathVariable String openId, @PathVariable String info, @PathVariable int type) {
-        User user = userRepository.findByOpenId(openId);
+    @RequestMapping(value = "editInfo/{userId}/{info}/{type}", method = RequestMethod.POST)
+    public Object editInfo(@PathVariable long userId, @PathVariable String info, @PathVariable int type) {
+        User user = userRepository.findOne(userId);
         if (user != null) {
             ControllerResult result = new ControllerResult<>()
                     .setRet_code(0)

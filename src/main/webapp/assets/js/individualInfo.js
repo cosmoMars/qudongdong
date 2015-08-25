@@ -14,7 +14,7 @@ if (userId != null) {
     var userId_ = decodeURIComponent(userId);
 }
 
-$.get(commonUrl + 'user/retrieveInfo/'+ userId_ , function (data) {
+$.get(commonUrl + 'user/retrieveInfo/' + userId_, function (data) {
     var listTemple = Handlebars.compile($('#individualInfo').html());
     $('#ii-main').html(listTemple(data.ret_values));
     $('#text-gender').html(getSex(data.ret_values.sex));
@@ -24,7 +24,7 @@ $.get(commonUrl + 'user/retrieveInfo/'+ userId_ , function (data) {
                 relatedTarget: this,
                 onConfirm: function (e) {
                     $.ajax({
-                        url: commonUrl + 'user/editInfo/owGMxuEWgckp7yHJFbDv4cmhDmjA/' + e.data + '/0',
+                        url: commonUrl + 'user/editInfo/' + userId_ + '/' + e.data + '/0',
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
@@ -48,7 +48,7 @@ $.get(commonUrl + 'user/retrieveInfo/'+ userId_ , function (data) {
                 relatedTarget: this,
                 onConfirm: function (e) {
                     $.ajax({
-                        url: commonUrl + 'user/editInfo/owGMxuEWgckp7yHJFbDv4cmhDmjA/' + e.data + '/5',
+                        url: commonUrl + 'user/editInfo/' + userId_ + '/' + e.data + +'/5',
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
@@ -68,8 +68,9 @@ $.get(commonUrl + 'user/retrieveInfo/'+ userId_ , function (data) {
         });
 
         $('#gender-btn').on('click', function () {
-            $("input[name='gender'][value="+data.ret_values.sex+"]").attr("checked",true);
+            $("input[name='gender'][value=" + data.ret_values.sex + "]").attr("checked", true);
             var gender;
+
             function getGender(type) {
                 if (type == "Male") {
                     return "男";
@@ -87,7 +88,7 @@ $.get(commonUrl + 'user/retrieveInfo/'+ userId_ , function (data) {
                             gender = temp[i].value;
                     }
                     $.ajax({
-                        url: commonUrl + 'user/editInfo/owGMxuEWgckp7yHJFbDv4cmhDmjA/' + gender + '/1',
+                        url: commonUrl + 'user/editInfo/' + userId_ + '/' + gender + '/1',
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
@@ -111,7 +112,7 @@ $.get(commonUrl + 'user/retrieveInfo/'+ userId_ , function (data) {
                 relatedTarget: this,
                 onConfirm: function (e) {
                     $.ajax({
-                        url: commonUrl + 'user/editInfo/owGMxuEWgckp7yHJFbDv4cmhDmjA/' + e.data + '/2',
+                        url: commonUrl + 'user/editInfo/' + userId_ + '/' + e.data + '/2',
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
@@ -135,7 +136,7 @@ $.get(commonUrl + 'user/retrieveInfo/'+ userId_ , function (data) {
                 relatedTarget: this,
                 onConfirm: function (e) {
                     $.ajax({
-                        url: commonUrl + 'user/editInfo/owGMxuEWgckp7yHJFbDv4cmhDmjA/' + e.data + '/3',
+                        url: commonUrl + 'user/editInfo/' + userId_ + '/' + e.data + '/3',
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
@@ -159,7 +160,7 @@ $.get(commonUrl + 'user/retrieveInfo/'+ userId_ , function (data) {
                 relatedTarget: this,
                 onConfirm: function (e) {
                     $.ajax({
-                        url: commonUrl + 'user/editInfo/owGMxuEWgckp7yHJFbDv4cmhDmjA/' + e.data + '/4',
+                        url: commonUrl + 'user/editInfo/' + userId_ + '/' + e.data + '/4',
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
