@@ -62,8 +62,17 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
                                 @PathVariable long sportId,
                                 @RequestBody SportOrderDto sportOrderDto) {
 
+
         User user = userRepository.findOne(userId);
         Sport sport = sportRepository.findOne(sportId);
+
+        SportOrder existOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
+        if (org.apache.commons.lang3.time.DateUtils.isSameDay(new Date(), existOrder.getCreatedDate())) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("亲，你今天已经躁动过咯～")
+                    .setMessage("失败");
+        }
 
         SportOrder sportOrder = sportOrderDto.toNewOrder();
 

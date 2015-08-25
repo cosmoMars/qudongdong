@@ -74,6 +74,12 @@
       <version>1.4.8</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>1.2.6</version>
+    </dependency>
+
     <!-- test begin -->
     <dependency>
       <groupId>org.springframework.boot</groupId>

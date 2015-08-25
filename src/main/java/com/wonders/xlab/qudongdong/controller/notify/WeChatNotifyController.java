@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wonders.xlab.qudongdong.entity.User;
 import com.wonders.xlab.qudongdong.repository.UserRepository;
 import com.wonders.xlab.qudongdong.service.cache.HCCache;
-import com.wonders.xlab.qudongdong.utils.MessageUtil;
 import com.wonders.xlab.qudongdong.utils.SignUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Document;
@@ -136,7 +135,7 @@ public class WeChatNotifyController {
                     }
                 } else if (StringUtils.equals(event, "VIEW")) {
 
-                } else if (StringUtils.equals(event, "CLICK")) {
+                } /*else if (StringUtils.equals(event, "CLICK")) {
                     String EventKey = root.elementTextTrim("EventKey");
                     if (StringUtils.equals(EventKey, "Self_Info")) {
 
@@ -155,7 +154,7 @@ public class WeChatNotifyController {
                             }
                         }
                     }
-                }
+                }*/
             }
 
         } catch (Exception e) {
@@ -186,7 +185,7 @@ public class WeChatNotifyController {
         System.out.println("openId = " + openId);
         String state = request.getParameter("state");
         try {
-            if (StringUtils.equals(state, "menu")) {
+            if (StringUtils.equals(state, "list")) {
                 String url = "http://101.231.124.8:45698/qdd/main.html?userId=" + user.getId();
                 response.sendRedirect(url);
             } else if (StringUtils.equals(state, "user")) {

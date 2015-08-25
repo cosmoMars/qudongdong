@@ -57,8 +57,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
                     .setMessage("失败");
         }
 
-        List<OrderCustomer> orderCustomers = orderCustomerRepository.findBySportOrderId(sportOrder.getId());
-
+        List<OrderCustomer> orderCustomers = orderCustomerRepository.findBySportOrderIdAndUserAgreeIsNull(sportOrder.getId());
 
         List<Map<String, Object>> list = new ArrayList<>();
         for (OrderCustomer customer : orderCustomers) {
@@ -114,7 +113,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
      * @param agree
      * @return
      */
-    @RequestMapping(value = "responseCustomer/{ocId}/{agree}", method = RequestMethod.POST)
+    @RequestMapping(value = "responseCustomer/{ocId}/{agree}", method = RequestMethod.GET)
     public Object responseCustomer(@PathVariable long ocId,
                                    @PathVariable boolean agree) {
 
