@@ -1,7 +1,6 @@
 /**
  * Created by wade on 15/8/24.
  */
-var openid;
 
 function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -10,9 +9,10 @@ function GetQueryString(name) {
     return null;
 }
 
-openid = GetQueryString("openId");
-if (openid != null) {
-    openid_ = decodeURIComponent(openid);
+var userId = GetQueryString("userId");
+if (userId != null) {
+    var userId_ = decodeURIComponent(userId);
+    $('#imgUrl').attr('href','addDatings.html?userId='+userId_);
 }
 
 $.get(commonUrl + 'order/listSportOrder', function (data) {

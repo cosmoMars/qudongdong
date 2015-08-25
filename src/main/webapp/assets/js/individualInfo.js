@@ -1,7 +1,6 @@
 /**
  * Created by 倩钰 on 2015/8/24.
  */
-var openid;
 
 function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
@@ -10,12 +9,12 @@ function GetQueryString(name) {
     return null;
 }
 
-openid = GetQueryString("openId");
-if (openid != null) {
-    openid_ = decodeURIComponent(openid);
+var userId = GetQueryString("userId");
+if (userId != null) {
+    var userId_ = decodeURIComponent(userId);
 }
 
-$.get(commonUrl + 'user/retrieveInfo/'+ openid , function (data) {
+$.get(commonUrl + 'user/retrieveInfo/'+ userId_ , function (data) {
     var listTemple = Handlebars.compile($('#individualInfo').html());
     $('#ii-main').html(listTemple(data.ret_values));
     $('#text-gender').html(getSex(data.ret_values.sex));
