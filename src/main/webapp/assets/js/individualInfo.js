@@ -1,8 +1,21 @@
 /**
  * Created by 倩钰 on 2015/8/24.
  */
+var openid;
 
-$.get(commonUrl + 'user/retrieveInfo/owGMxuEWgckp7yHJFbDv4cmhDmjA', function (data) {
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return (r[2]);
+    return null;
+}
+
+openid = GetQueryString("open_id");
+if (openid != null) {
+    openid_ = decodeURIComponent(openid);
+}
+
+$.get(commonUrl + 'user/retrieveInfo/'+ openid , function (data) {
     var listTemple = Handlebars.compile($('#individualInfo').html());
     $('#ii-main').html(listTemple(data.ret_values));
     $('#text-gender').html(getSex(data.ret_values.sex));
