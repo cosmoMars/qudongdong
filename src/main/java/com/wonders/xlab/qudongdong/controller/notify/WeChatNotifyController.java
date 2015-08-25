@@ -69,7 +69,9 @@ public class WeChatNotifyController {
     }
 
     @RequestMapping(value = "notify", method = RequestMethod.POST)
-    public void handleMessage(HttpServletRequest request, HttpServletResponse response) {
+    public void handleMessage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        PrintWriter out = response.getWriter();
 //验证用户权限
         //用户消息
 //        HashMap<String, String> requestMap = (HashMap<String, String>) request.getAttribute("requestMap");
@@ -119,6 +121,22 @@ public class WeChatNotifyController {
                         u.setCity(userInfo.get("city").asText());
                         u.setSex(User.Sex.values()[userInfo.get("sex").asInt()]);
                         userRepository.save(u);
+                    }
+                }
+                System.out.println("event = " + event);
+
+                if (StringUtils.equals(event, "CLICK")) {
+                    String key = root.elementTextTrim("EventKey");
+                    System.out.println("key = " + key);
+                    out.write("<xml>\n" +
+                            "<ToUserName><![CDATA[owGMxuEWgckp7yHJFbDv4cmhDmjA]]></ToUserName>\n" +
+                            "<FromUserName><![CDATA[gh_83a962f09ab8]]></FromUserName>\n" +
+                            "<CreateTime>1440431164</CreateTime>\n" +
+                            "<MsgType><![CDATA[text]]></MsgType>\n" +
+                            "<Content><![CDATA[你好]]></Content>\n" +
+                            "</xml>");
+                    if (StringUtils.equals(key, "Self_Info")) {
+                        response.sendRedirect("http://101.231.124.8:45698/qdd/user/retrieveInfo/" + openId);
                     }
                 }
             }
