@@ -65,11 +65,14 @@
                     <div class="dr-name">{{nickName}}</div>
                     <div class="dr-info"><span>{{age}}岁</span> {{city}} <span class="am-icon-mars dr-boy"></span></div>
                     <div class="am-g dr-conform-button">
+                        <input value="{{customerId}}" type="hidden" id="customerId">
+
                         <div class="am-u-sm-6">
                             <button class="am-btn am-btn-success am-round am-btn-xs">残忍拒绝</button>
                         </div>
                         <div class="am-u-sm-6">
-                            <button class="am-btn am-btn-danger am-round am-btn-xs">同意约炼</button>
+                            <button onclick="responseCustomer()" class="am-btn am-btn-danger am-round am-btn-xs">同意约炼
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -77,6 +80,16 @@
         </li>
     </ul>
     {{/each}}
+    <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-bd" id="status">
+                请求成功！
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn">确定</span>
+            </div>
+        </div>
+    </div>
 </script>
 </body>
 </html>

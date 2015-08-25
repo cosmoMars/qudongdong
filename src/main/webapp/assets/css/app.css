@@ -107,10 +107,11 @@ main
     border-radius: 3px;
 }
 
-.main-girl{
+.main-girl {
     background: #E96979;
 }
-.main-boy{
+
+.main-boy {
     background: #4EC296;
 }
 
@@ -179,7 +180,8 @@ main
     background-color: #4EC296;
     border-color: #4EC296;
 }
-.main-danger{
+
+.main-danger {
     background-color: darkgrey;
     border-color: darkgrey;
 }
@@ -293,11 +295,11 @@ datingRequest
     padding-left: 15%;
 }
 
-.dr-girl{
+.dr-girl {
     color: palevioletred;
 }
 
-.dr-boy{
+.dr-boy {
     color: deepskyblue;
 }
 
@@ -554,10 +556,10 @@ indivadualInfo
     color: gray;
 }
 
-.ii-href{
+.ii-href {
     position: absolute;
-    top:0;
-    left:0px;
+    top: 0;
+    left: 0px;
     width: 100%;
     height: 48px;
 }
@@ -599,24 +601,28 @@ addDating
     width: 25px;
     height: 25px;
 }
-.ad-context{
+
+.ad-context {
     height: 60px;
     width: 100%;
     resize: none;
 }
-.ad-sub{
+
+.ad-sub {
     margin: 0 auto;
     width: 250px;
 }
-.ad-button{
+
+.ad-button {
     width: 100%;
     height: 50px;
 }
-.ad-btn{
+
+.ad-btn {
     width: 100%;
 }
 
-.am-modal-dialog{
+.am-modal-dialog {
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
