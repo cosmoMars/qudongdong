@@ -15,7 +15,7 @@ if (userId != null) {
     $('#imgUrl').attr('href','addDatings.html?userId='+userId_);
 }
 
-$.get(commonUrl + 'order/listSportOrder', function (data) {
+$.get(commonUrl + 'order/listSportOrder/'+userId_, function (data) {
     var listTemple = Handlebars.compile($('#listBox').html());
     $('#main-list').html(listTemple(data.ret_values));
     if(data.ret_values.sex=="Female"){
