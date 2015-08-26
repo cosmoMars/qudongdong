@@ -18,5 +18,23 @@ $.get(commonUrl + 'order/listUserOrder/' + userId_, function (data) {
     var listTemple = Handlebars.compile($('#timeLine').html());
     $('#tl-main').html(listTemple(data.ret_values.orders));
     var listTemple = Handlebars.compile($('#title').html());
+    Handlebars.registerHelper("compare", function (v1, options) {
+        if (v1 == 0) {
+            //满足添加继续执行
+            return options.fn(this);
+        }
+        else{
+            return options.inverse(this);
+        }
+    });
+    Handlebars.registerHelper("judge", function (v1, options) {
+        if (v1 == 1) {
+            //满足添加继续执行
+            return options.fn(this);
+        }
+        else{
+            return options.inverse(this);
+        }
+    });
     $('#tl-title').html(listTemple(data.ret_values));
 })

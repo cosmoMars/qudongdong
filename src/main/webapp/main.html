@@ -38,85 +38,6 @@
 </head>
 <body class="main-body">
 <ul class="am-list am-list-static am-list-border main-list main-margin" id="main-list">
-    <!--<li>-->
-    <!--<div class="main-container">-->
-    <!--<div class="am-g main-g">-->
-    <!--<div class="am-u-sm-4 main-left">-->
-    <!--<div class="main-center ">-->
-    <!--<img src="assets/i/avatar-offical.jpg" class="am-radius main-radius"/>-->
-
-    <!--<div class="main-gray">-->
-    <!--<div class="main-name">Emily Blaning<span>20岁</span>-->
-
-    <!--<p class="am-icon-venus main-boy"></p></div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="am-u-sm-8 main-right">-->
-    <!--<div class="main-location">地点：大宁灵石公园偏门大宁</div>-->
-    <!--<div class="main-time">3分钟前 发布</div>-->
-    <!--<div class="main-people"><img src="assets/i/people.png" class="main-icon-people"><span>单独约</span>-->
-    <!--</div>-->
-    <!--<div><span class="main-item">约跑</span> <span class="main-start-time">17:00-19:00</span></div>-->
-    <!--<div>-->
-    <!--<img src="assets/i/sports/run.png" class="main-sports"/>-->
-    <!--<img src="assets/i/sports/yoga.png" class="main-sports"/>-->
-    <!--<img src="assets/i/sports/swiming.png" class="main-sports"/>-->
-    <!--<img src="assets/i/sports/badminton.png" class="main-sports"/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="main-container main-text-bottom">-->
-    <!--<div class="am-g main-g">-->
-    <!--<div class="am-u-sm-9 main-9">一起来夜跑跑跑练瑜伽锻炼</div>-->
-    <!--<div class="am-u-sm-3 main-3">-->
-    <!--<div class="main-button">-->
-    <!--<button type="button" class="am-btn am-btn-success am-round am-btn-xs main-green">一起燥</button>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--</ul>-->
-    <!--<ul class="am-list am-list-static am-list-border main-list main-margin">-->
-    <!--<li>-->
-    <!--<div class="main-container">-->
-    <!--<div class="am-g main-g">-->
-    <!--<div class="am-u-sm-4 main-left">-->
-    <!--<div class="main-center">-->
-    <!--<img src="assets/i/avatar-offical.jpg" class="am-radius main-radius"/>-->
-
-    <!--<div class="main-gray">-->
-    <!--<div class="main-name">躁动官方 Offical<p class=""></p></div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="am-u-sm-8 main-right">-->
-    <!--<div class="main-location">地点：大宁灵石公园偏门大宁</div>-->
-    <!--<div class="main-time">3分钟前 发布<img src="assets/i/zaodong.jpg" class="main-logo"/></div>-->
-    <!--<div class="main-people"><img src="assets/i/people.png" class="main-icon-people">11人｜15人</div>-->
-    <!--<div><span class="main-item">约跑</span> <span class="main-start-time">17:00-19:00</span></div>-->
-    <!--<div>-->
-    <!--<img src="assets/i/sports/run.png" class="main-sports"/>-->
-    <!--<img src="assets/i/sports/yoga.png" class="main-sports"/>-->
-    <!--<img src="assets/i/sports/swiming.png" class="main-sports"/>-->
-    <!--<img src="assets/i/sports/badminton.png" class="main-sports"/>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--<div class="main-container main-text-bottom">-->
-    <!--<div class="am-g main-g">-->
-    <!--<div class="am-u-sm-9 main-9">一起来夜跑跑跑练瑜伽锻炼</div>-->
-    <!--<div class="am-u-sm-3 main-3">-->
-    <!--<div class="main-button">-->
-    <!--<button type="button" class="am-btn am-btn-success am-round am-btn-xs main-danger">来晚了</button>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</li>-->
 </ul>
 <div class="main-side-bar">
     <a href="#" id="imgUrl"><img src="assets/i/add.png" class="main-add"></a>
@@ -156,7 +77,7 @@
                                     {{#judge sex}}
                                     <p class="am-icon-mars main-boy"></p>
                                     {{else}}
-                                    <p class="am-icon-mars main-girl"></p>
+                                    <p class="am-icon-venus main-girl"></p>
                                     {{/judge}}
                                     {{/compare}}
                                     {{/if}}
@@ -196,13 +117,13 @@
                     <div class="am-u-sm-9 main-9">{{content}}</div>
                     <div class="am-u-sm-3 main-3">
                         <div class="main-button">
-                            <!--<input type="hidden" value="{{orderId}}" id="orderIds">-->
                             {{#if enabled}}
                             <button onclick="generateOrderCustomer('{{orderId}}')" type="button"
                                     class="am-btn am-btn-success am-round am-btn-xs main-green" id="main-confirm">一起躁
                             </button>
                             {{else}}
-                            <button type="button" class="am-btn am-btn-success am-round am-btn-xs main-danger">来晚了</button>
+                            <button type="button" class="am-btn am-btn-success am-round am-btn-xs main-danger">来晚了
+                            </button>
                             {{/if}}
                         </div>
                     </div>
@@ -222,6 +143,5 @@
         </div>
     </div>
 </script>
-
 </body>
 </html>

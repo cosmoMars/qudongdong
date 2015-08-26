@@ -73,6 +73,7 @@
     <meta name="msapplication-TileColor" content="#0e90d2">
 
     <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/spinningwheel.css"/>
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
 <body class="ad-body">
@@ -151,7 +152,7 @@
 <div class="am-modal am-modal-prompt" tabindex="-1" id="ad-location">
     <div class="am-modal-dialog">
         <div class="am-modal-bd">
-            请输入运动地点
+            运动地点（仅限10个字符）
             <input type="text" class="am-modal-prompt-input">
         </div>
         <div class="am-modal-footer">
@@ -160,32 +161,6 @@
         </div>
     </div>
 </div>
-
-<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-startTime">
-    <div class="am-modal-dialog">
-        <div class="am-modal-bd">
-            请选择运动开始时间
-            <input type="text" class="am-modal-prompt-input">
-        </div>
-        <div class="am-modal-footer">
-            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
-            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
-        </div>
-    </div>
-</div>
-<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-endTime">
-    <div class="am-modal-dialog">
-        <div class="am-modal-bd">
-            请选择运动结束时间
-            <input type="text" class="am-modal-prompt-input">
-        </div>
-        <div class="am-modal-footer">
-            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
-            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
-        </div>
-    </div>
-</div>
-
 <div class="am-modal am-modal-prompt" tabindex="-1" id="ad-partner">
     <div class="am-modal-dialog">
         <div class="am-modal-bd">
@@ -241,6 +216,16 @@
         </div>
     </div>
 </div>
+<div class="am-modal am-modal-alert" tabindex="-1" id="success-alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            发布成功！
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" onclick="toMain();">确定</span>
+        </div>
+    </div>
+</div>
 
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
@@ -264,6 +249,7 @@
 <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/spinningwheel.js"></script>
 <script src="assets/js/common.js"></script>
 <script src="assets/js/addDating.js"></script>
 </body>
