@@ -627,3 +627,9 @@ addDating
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
+.ad-limit{
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    font-size: 11px;
+}

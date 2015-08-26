@@ -48,7 +48,7 @@ $.get(commonUrl + 'user/retrieveInfo/' + userId_, function (data) {
                 relatedTarget: this,
                 onConfirm: function (e) {
                     $.ajax({
-                        url: commonUrl + 'user/editInfo/' + userId_ + '/' + e.data + +'/5',
+                        url: commonUrl + 'user/editInfo/' + userId_ + '/' + e.data +'/5',
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
