@@ -56,7 +56,6 @@
         <li>
             <div class="am-container dr-require-list">
                 <div class="dr-background">
-
                     {{#compare sex}}
                     <img src="assets/i/user-background/background-boy.jpg" class="dr-background-img">
                     {{else}}
@@ -66,12 +65,15 @@
                     <img src="assets/i/user-background/background-girl.jpg" class="dr-background-img">
                     {{/judge}}
                     {{/compare}}
+                    <img src="assets/i/request-03.png" class="dr-request">
+                    <!--<img src="assets/i/request-02.png">-->
+                    <!--<img src="assets/i/request-03.png">-->
                 </div>
                 <div class="dr-avatar-info">
                     <div class="dr-avatar">
                         <img src="{{avatar}}" class="am-img-thumbnail">
                     </div>
-                    <div class="dr-name">{{nickName}}</div>
+                    <div class="dr-name am-text-truncate">{{nickName}}</div>
                     <div class="dr-info"><span>{{age}}岁</span> {{city}} <span class="am-icon-mars dr-boy"></span></div>
                     <div class="am-g dr-conform-button">
                         <div class="am-u-sm-6">

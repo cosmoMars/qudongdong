@@ -44,10 +44,11 @@ function generateOrderCustomer(orderId) {
     var generateOrderCustomerUrl = commonUrl + 'orderCustomer/generateOrderCustomer/ ' + orderId + '/' + userId_;
     $.get(generateOrderCustomerUrl, function (data) {
         if (data.ret_code == 0) {
+            $('#status').html(data.ret_values);
             $('#my-alert').modal({relatedTarget: this,})
         }
         else {
-            $('#status').html("加入失败！");
+            $('#status').html(data.ret_values);
             $('#my-alert').modal({relatedTarget: this,})
         }
     });
