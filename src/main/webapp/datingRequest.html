@@ -37,7 +37,6 @@
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
 <body class="dr-body" id="dr-main">
-
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
 <!--<![endif]-->
@@ -56,16 +55,9 @@
         <li>
             <div class="am-container dr-require-list">
                 <div class="dr-background">
-                    {{#compare sex}}
                     <img src="assets/i/user-background/background-boy.jpg" class="dr-background-img">
-                    {{else}}
-                    {{#judge sex}}
-                    <img src="assets/i/user-background/background-boy.jpg" class="dr-background-img">
-                    {{else}}
-                    <img src="assets/i/user-background/background-girl.jpg" class="dr-background-img">
-                    {{/judge}}
-                    {{/compare}}
-                    <img src="assets/i/request-03.png" class="dr-request">
+                    <!--<img src="assets/i/user-background/background-boy.jpg" class="dr-background-img">-->
+                    <!--<img src="assets/i/user-background/background-girl.jpg" class="dr-background-img">-->
                     <!--<img src="assets/i/request-02.png">-->
                     <!--<img src="assets/i/request-03.png">-->
                 </div>
@@ -84,6 +76,7 @@
                             </button>
                         </div>
                     </div>
+                    <img src="assets/i/request-03.png" class="dr-request">
                 </div>
             </div>
         </li>

@@ -13,32 +13,23 @@ if (userId != null) {
     var userId_ = decodeURIComponent(userId);
 }
 $.get(commonUrl + 'orderCustomer/listOrderCustomer/' + userId_, function (data) {
-    var listTemple = Handlebars.compile($('#request').html());
-    Handlebars.registerHelper("compare", function (v1, options) {
-        if (v1 == 0) {
-            //满足添加继续执行
-            return options.fn(this);
-        }
-        else{
-            return options.inverse(this);
-        }
-    });
-    Handlebars.registerHelper("judge", function (v1, options) {
-        if (v1 == 1) {
-            //满足添加继续执行
-            return options.fn(this);
-        }
-        else{
-            return options.inverse(this);
-        }
-    });
-    $('#dr-main').html(listTemple(data.ret_values));
+    if(data.ret_code==0&&data.ret_value!=null){
+        var listTemple = Handlebars.compile($('#request').html());
+        $('#dr-main').html(listTemple(data.ret_values));
+    }
+    else if(data.ret_value==null){
+        $('#dr-main').html("还没有小伙伴请求哦～");
+    }
+    else{
+        $('#dr-main').html(data.ret_values);
+    }
+
 });
 
-function responseCustomer(result,orderCId) {
-    //var customerId = document.getElementById("customerId").value;
-    console.log(orderCId);
-    var responseCustomerUrl = commonUrl + 'orderCustomer/responseCustomer/' + orderCId + '/' + result;
+function responseCustomer(result) {
+    var customerId = document.getElementById("customerId").value;
+    console.log(customerId);
+    var responseCustomerUrl = commonUrl + 'orderCustomer/responseCustomer/' + customerId + '/' + result;
     $.get(responseCustomerUrl, function (data) {
         if (data.ret_code == 0) {
             if(result){
