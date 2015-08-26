@@ -17,10 +17,10 @@ $.get(commonUrl + 'orderCustomer/listOrderCustomer/' + userId_, function (data) 
     $('#dr-main').html(listTemple(data.ret_values));
 });
 
-function responseCustomer(result) {
-    var customerId = document.getElementById("customerId").value;
-    console.log(customerId);
-    var responseCustomerUrl = commonUrl + 'orderCustomer/responseCustomer/' + customerId + '/' + result;
+function responseCustomer(result,orderCId) {
+    //var customerId = document.getElementById("customerId").value;
+    console.log(orderCId);
+    var responseCustomerUrl = commonUrl + 'orderCustomer/responseCustomer/' + orderCId + '/' + result;
     $.get(responseCustomerUrl, function (data) {
         if (data.ret_code == 0) {
             if(result){
