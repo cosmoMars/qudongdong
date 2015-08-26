@@ -38,8 +38,9 @@ $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
     $('#main-list').html(listTemple(data.ret_values));
 })
 
-function generateOrderCustomer() {
-    var orderId = document.getElementById("orderId").value;
+
+function generateOrderCustomer(orderId) {
+    console.log(orderId);
     var generateOrderCustomerUrl = commonUrl + 'orderCustomer/generateOrderCustomer/ ' + orderId + '/' + userId_;
     $.get(generateOrderCustomerUrl, function (data) {
         if (data.ret_code == 0) {

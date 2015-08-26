@@ -196,9 +196,9 @@
                     <div class="am-u-sm-9 main-9">{{content}}</div>
                     <div class="am-u-sm-3 main-3">
                         <div class="main-button">
-                            <input type="hidden" value="{{orderId}}" id="orderId">
+                            <!--<input type="hidden" value="{{orderId}}" id="orderIds">-->
                             {{#if enabled}}
-                            <button onclick="generateOrderCustomer()" type="button"
+                            <button onclick="generateOrderCustomer('{{orderId}}')" type="button"
                                     class="am-btn am-btn-success am-round am-btn-xs main-green" id="main-confirm">一起躁
                             </button>
                             {{else}}

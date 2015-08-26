@@ -3,7 +3,7 @@
  */
 
 $(function () {
-    $('#title-btn').on('click', function () {
+    /*$('#title-btn').on('click', function () {
         $('#ad-title').modal({
             relatedTarget: this,
             onConfirm: function (e) {
@@ -12,7 +12,7 @@ $(function () {
             onCancel: function (e) {
             }
         });
-    });
+    });*/
 
     $('#location-btn').on('click', function () {
         $('#ad-location').modal({
