@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+</head>
+<body>
+
+
+<!--
+<div id="sw-wrapper"
+     style="position:absolute;width:100%;top: 667px; -webkit-transition-property: -webkit-transform; transition-property: -webkit-transform; -webkit-transition-timing-function: ease-out; transition-timing-function: ease-out; -webkit-transition-duration: 400ms; transition-duration: 400ms; -webkit-transform: translate3d(0px, -260px, 0px);">
+    <div id="sw-header">
+        <div id="sw-cancel">取消</div>
+        <div id="sw-done">确认</div>
+    </div>
+    <div id="sw-slots-wrapper">
+        <div id="sw-slots">
+            <div class="sw-center">
+                <ul style="-webkit-transition-timing-function: cubic-bezier(0, 0, 0.2, 1); transition-timing-function: cubic-bezier(0, 0, 0.2, 1); -webkit-transform: translate3d(0px, -484px, 0px); -webkit-transition-duration: 100ms; transition-duration: 100ms;">
+                    <li>00点</li>
+                    <li>01点</li>
+                    <li>02点</li>
+                    <li>03点</li>
+                    <li>04点</li>
+                    <li>05点</li>
+                    <li>06点</li>
+                    <li>07点</li>
+                    <li>08点</li>
+                    <li>09点</li>
+                    <li>10点</li>
+                    <li>11点</li>
+                    <li>12点</li>
+                    <li>13点</li>
+                    <li>14点</li>
+                    <li>15点</li>
+                    <li>16点</li>
+                    <li>17点</li>
+                    <li>18点</li>
+                    <li>19点</li>
+                    <li>20点</li>
+                    <li>21点</li>
+                    <li>22点</li>
+                    <li>23点</li>
+                </ul>
+            </div>
+            <div class="sw-center">
+                <ul style="-webkit-transition-timing-function: cubic-bezier(0, 0, 0.2, 1); transition-timing-function: cubic-bezier(0, 0, 0.2, 1); -webkit-transform: translate3d(0px, -220px, 0px); -webkit-transition-duration: 100ms; transition-duration: 100ms;">
+                    <li>00分</li>
+                    <li>10分</li>
+                    <li>20分</li>
+                    <li>30分</li>
+                    <li>40分</li>
+                    <li>50分</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="sw-frame"></div>
+    <div id="sw-line"></div>
+</div>
+<script>
+
+</script>
+--></body>
+<script src="assets/js/spinningwheel.js"></script>
+<script>
+    openOneSlot();
+    function done() {
+        var results = SpinningWheel.getSelectedValues();
+        console.log(results);
+//        document.getElementById('result').innerHTML = 'values: ' + results.values.join(' ') + '<br />keys: ' + results.keys.join(', ');
+    }
+
+    function cancel() {
+//        document.getElementById('result').innerHTML = 'cancelled!';
+    }
+
+
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            window.scrollTo(0, 0);
+        }, 100);
+    }, true);
+
+    function openOneSlot() {
+        var hours = {
+            1: '00点',
+            2: '01点',
+            3: '02点',
+            4: '03点',
+            5: '04点',
+            6: '05点',
+            7: '06点',
+            8: '07点',
+            9: '08点',
+            10: '09点',
+            11: '10点',
+            12: '11点',
+            13: '12点',
+            14: '13点',
+            15: '14点',
+            16: '15点',
+            17: '16点',
+            18: '17点',
+            19: '18点',
+            20: '19点',
+            21: '20点',
+            22: '21点',
+            23: '22点',
+            24: '23点'
+        };
+        var mins = {
+            1: '00分',
+            2: '05分',
+            3: '10分',
+            4: '15分',
+            5: '20分',
+            6: '25分',
+            7: '30分',
+            8: '35分',
+            9: '40分',
+            10: '45分',
+            11: '50分',
+            12: '55分',
+        };
+        SpinningWheel.addSlot(hours, 'center', 5);
+        SpinningWheel.addSlot(mins, 'center', 5);
+
+        SpinningWheel.setCancelAction(cancel);
+        SpinningWheel.setDoneAction(done);
+
+        SpinningWheel.open();
+    }</script>
+</html>

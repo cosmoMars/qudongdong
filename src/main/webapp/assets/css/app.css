@@ -1,6 +1,7 @@
 /*
 main
 */
+
 .main-body {
     background: #EBEBEB;
 }
@@ -638,4 +639,7 @@ addDating
 .am-icon-chevron-right{
     position: absolute;
     right: 10px;
+}
+.am-list-border>li>a:focus, .am-list-border>li>a:hover {
+    background-color: transparent;!important;
 }
