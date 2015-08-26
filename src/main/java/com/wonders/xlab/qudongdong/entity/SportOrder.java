@@ -74,6 +74,11 @@ public class SportOrder extends AbstractBaseEntity<Long> {
     private boolean carryOne;
 
     /**
+     * 当前人数
+     */
+    private int currentCount;
+
+    /**
      * 参与人数
      */
     private int peopleCount;
@@ -110,7 +115,6 @@ public class SportOrder extends AbstractBaseEntity<Long> {
      * 是否官方
      */
     private boolean official;
-
 
     public User getUser() {
         return user;
@@ -184,6 +188,14 @@ public class SportOrder extends AbstractBaseEntity<Long> {
         this.carryOne = carryOne;
     }
 
+    public int getCurrentCount() {
+        return currentCount;
+    }
+
+    public void setCurrentCount(int currentCount) {
+        this.currentCount = currentCount;
+    }
+
     public int getPeopleCount() {
         return peopleCount;
     }
@@ -231,4 +243,5 @@ public class SportOrder extends AbstractBaseEntity<Long> {
     public void setOfficial(boolean official) {
         this.official = official;
     }
+
 }

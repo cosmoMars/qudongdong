@@ -15,6 +15,7 @@ import com.wonders.xlab.qudongdong.repository.SportOrderRepository;
 import com.wonders.xlab.qudongdong.repository.SportRepository;
 import com.wonders.xlab.qudongdong.repository.UserRepository;
 import com.wonders.xlab.qudongdong.utils.DateUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -64,6 +65,12 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
 
         User user = userRepository.findOne(userId);
+        if (StringUtils.isEmpty(user.getTel())) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("请完善你的信息")
+                    .setMessage("失败");
+        }
         Sport sport = sportRepository.findOne(sportId);
 
         SportOrder existOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
@@ -90,8 +97,8 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
         return new ControllerResult<>()
                 .setRet_code(0)
-                .setRet_values("添加成功")
-                .setMessage("添加成功");
+                .setRet_values("发布成功")
+                .setMessage("成功");
     }
 
     /**
@@ -123,10 +130,10 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             dto.setLocation(order.getLocation());
 
             dto.setPeopleCount(order.getPeopleCount());
-            dto.setCurrentPeople(order.getOrderCustomers().size());
+            dto.setCurrentPeople(order.getCurrentCount());
 
             dto.setAvatarUrl(order.getUser().getAvatarUrl());
-            dto.setSex(order.getSex().ordinal());
+            dto.setSex(order.getUser().getSex().ordinal());
             dto.setNickName(order.getUser().getNickName());
             dto.setSportName(order.getSport().getName());
             dto.setSports(new ArrayList<>(order.getUser().getSports()));
@@ -147,10 +154,12 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             if (dto.getCurrentPeople() < dto.getPeopleCount()) {
                 dto.setEnabled(true);
             }
-            if (now.getTime() - order.getStartTime().getTime() < 0) {
+            if (now.getTime() > order.getStartTime().getTime()) {
+                dto.setEnabled(false);
+            } else {
                 dto.setEnabled(true);
             }
-
+            dto.setAge(order.getUser().getAge());
             orderDtos.add(dto);
         }
 

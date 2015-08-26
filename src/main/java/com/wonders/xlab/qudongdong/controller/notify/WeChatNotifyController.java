@@ -218,13 +218,15 @@ public class WeChatNotifyController {
             user = userRepository.save(u);
         }
         try {
+            String url = null;
             if (StringUtils.equals(state, "list")) {
-                String url = "http://101.231.124.8:45698/qdd/main.html?userId=" + user.getId();
-                response.sendRedirect(url);
+                url = "http://101.231.124.8:45698/qdd/main.html?userId=" + user.getId();
             } else if (StringUtils.equals(state, "user")) {
-                String url = "http://101.231.124.8:45698/qdd/individualInfo.html?userId=" + user.getId();
-                response.sendRedirect(url);
+                url = "http://101.231.124.8:45698/qdd/individualInfo.html?userId=" + user.getId();
+            } else if (StringUtils.equals(state, "friend")) {
+                url = "http://101.231.124.8:45698/qdd/datingRequest.html?userId=" + user.getId();
             }
+            response.sendRedirect(url);
         } catch (IOException e) {
             e.printStackTrace();
         }

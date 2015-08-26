@@ -9,6 +9,8 @@ import com.wonders.xlab.qudongdong.entity.User;
 import com.wonders.xlab.qudongdong.repository.OrderCustomerRepository;
 import com.wonders.xlab.qudongdong.repository.SportOrderRepository;
 import com.wonders.xlab.qudongdong.repository.UserRepository;
+import com.wonders.xlab.qudongdong.utils.SmsUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -50,24 +52,26 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
 
         SportOrder sportOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
 
-        if (!DateUtils.isSameDay(new Date(), sportOrder.getCreatedDate())) {
+        if (sportOrder.getCreatedDate() != null && !DateUtils.isSameDay(new Date(), sportOrder.getCreatedDate())) {
             return new ControllerResult<>()
                     .setRet_code(-1)
                     .setRet_values("亲，今天还没有发起订单哦")
                     .setMessage("失败");
         }
 
-        List<OrderCustomer> orderCustomers = orderCustomerRepository.findBySportOrderIdAndUserAgreeIsNull(sportOrder.getId());
+        List<OrderCustomer> orderCustomers = orderCustomerRepository.findBySportOrderIdOrderByUserAgreeAsc(sportOrder.getId());
 
         List<Map<String, Object>> list = new ArrayList<>();
-        for (OrderCustomer customer : orderCustomers) {
+        for (OrderCustomer oCustomer : orderCustomers) {
             Map<String, Object> map = new HashMap<>();
-            map.put("orderCId", customer.getId());
-            map.put("customerId", customer.getCustomer().getId());
-            map.put("nickName", customer.getCustomer().getNickName());
-            map.put("avatar",customer.getCustomer().getAvatarUrl());
-            map.put("age", customer.getCustomer().getSex().ordinal());
-            map.put("city", customer.getCustomer().getCity());
+            map.put("orderCId", oCustomer.getId());
+            map.put("customerId", oCustomer.getCustomer().getId());
+            map.put("nickName", oCustomer.getCustomer().getNickName());
+            map.put("avatar", oCustomer.getCustomer().getAvatarUrl());
+            map.put("age", oCustomer.getCustomer().getSex().ordinal());
+            map.put("city", oCustomer.getCustomer().getCity());
+            map.put("sex", oCustomer.getCustomer().getSex().ordinal());
+            map.put("agree", oCustomer.getUserAgree());
 
             list.add(map);
         }
@@ -93,17 +97,35 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
         if (sportOrder.getUser().getId() == cId) {
             return new ControllerResult<>()
                     .setRet_code(-1)
-                    .setRet_values("不能对自己创建约练订单")
+                    .setRet_values("约自己？你又傲娇了！")
                     .setMessage("失败");
         }
+
+        OrderCustomer existOrder = orderCustomerRepository.findBySportOrderIdAndCustomerId(orderId, cId);
+
+        if (existOrder != null) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("亲，你已经对TA下约咯～")
+                    .setMessage("失败");
+        }
+
         User customer = userRepository.findOne(cId);
         OrderCustomer orderCustomer = new OrderCustomer();
         orderCustomer.setSportOrder(sportOrder);
         orderCustomer.setCustomer(customer);
+        if (customer.getTel() == null) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("对方手机还未填写哦")
+                    .setMessage("失败");
+        }
+        SmsUtils.sendInviteMessage(sportOrder.getUser().getTel(), customer.getNickName(), DateFormatUtils.format(sportOrder.getStartTime(), "yyyy.MM.dd HH:mm"), sportOrder.getLocation());
+
         orderCustomerRepository.save(orderCustomer);
         return new ControllerResult<>()
                 .setRet_code(0)
-                .setRet_values("添加成功")
+                .setRet_values("骚等，请求已发出咯～")
                 .setMessage("成功");
     }
 
@@ -121,6 +143,19 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
         OrderCustomer orderCustomer = orderCustomerRepository.findOne(ocId);
         orderCustomer.setUserAgree(agree);
         orderCustomerRepository.save(orderCustomer);
+        if (agree) {
+            SmsUtils.sendInviteSucceedMessage(orderCustomer.getCustomer().getTel(), orderCustomer.getSportOrder().getUser().getNickName(), DateFormatUtils.format(orderCustomer.getSportOrder().getStartTime(), "yyyy.MM.dd HH:mm"), orderCustomer.getSportOrder().getLocation());
+
+            SmsUtils.sendInviteSucceedMessage(orderCustomer.getSportOrder().getUser().getTel(), orderCustomer.getCustomer().getNickName(), DateFormatUtils.format(orderCustomer.getSportOrder().getStartTime(), "yyyy.MM.dd HH:mm"), orderCustomer.getSportOrder().getLocation());
+
+            SportOrder sportOrder = orderCustomer.getSportOrder();
+            sportOrder.setCurrentCount(sportOrder.getCurrentCount() + 1);
+
+            sportOrderRepository.save(sportOrder);
+
+        } else {
+            SmsUtils.sendRefusesMessage(orderCustomer.getCustomer().getTel(), orderCustomer.getCustomer().getNickName());
+        }
 
         return new ControllerResult<>()
                 .setRet_code(0)

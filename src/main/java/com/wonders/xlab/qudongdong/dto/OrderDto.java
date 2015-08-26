@@ -94,6 +94,11 @@ public class OrderDto {
      */
     private boolean official;
 
+    /**
+     * 年龄
+     */
+    private int age;
+
 
     public long getOrderId() {
         return orderId;
@@ -229,5 +234,13 @@ public class OrderDto {
 
     public void setOfficial(boolean official) {
         this.official = official;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

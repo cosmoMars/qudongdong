@@ -3,8 +3,6 @@ package com.wonders.xlab.qudongdong.utils;
 import com.bcloud.msg.http.HttpSender;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Calendar;
-
 /**
  * Created by lixuanwu on 15/8/20.
  */
@@ -53,7 +51,7 @@ public class SmsUtils {
     }
 
     /**
-     * 发送成功预约信息
+     * 发送接受预约信息
      *
      * @param mobiles
      * @param userName

@@ -10,7 +10,8 @@ import java.util.List;
  */
 public interface OrderCustomerRepository extends MyRepository<OrderCustomer, Long> {
 
-    List<OrderCustomer> findBySportOrderIdAndUserAgreeIsNull(long orderId);
+    List<OrderCustomer> findBySportOrderIdOrderByUserAgreeAsc(long orderId);
 
-//    List<OrderCustomer>
+    OrderCustomer findBySportOrderIdAndCustomerId(long sportOrderId, long customerId);
+
 }
