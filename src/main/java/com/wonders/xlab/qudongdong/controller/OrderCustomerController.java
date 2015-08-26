@@ -80,8 +80,8 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
 
     /**
      * 生成用户约练请求
-     * @param orderId
-     * @param cId
+     * @param orderId 订单id
+     * @param cId 请求的用户id
      * @return
      */
     @RequestMapping(value = "generateOrderCustomer/{orderId}/{cId}", method = RequestMethod.GET)
