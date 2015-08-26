@@ -7,7 +7,7 @@
     <meta name="keywords" content="">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>时间轴</title>
+    <title>时光轴</title>
 
     <!-- Set render engine for 360 browser -->
     <meta name="renderer" content="webkit">
@@ -62,8 +62,15 @@
     <div class="tl-title">
         <div class="tl-header">
             <div class="tl-background">
+                {{#compare sex}}
                 <img src="assets/i/user-background/background-girl.jpg" class="tl-background-img">
-
+                {{else}}
+                {{#judge sex}}
+                <img src="assets/i/user-background/background-boy.jpg" class="tl-background-img">
+                {{else}}
+                <img src="assets/i/user-background/background-girl.jpg" class="tl-background-img">
+                {{/judge}}
+                {{/compare}}
                 <div class="tl-masking"></div>
             </div>
         </div>
@@ -73,11 +80,17 @@
             </div>
             <div class="tl-user">
                 <span>{{nickName}}</span>
-
-                <!--<p class="am-icon-mars"></p>-->
-
+                {{#compare sex}}
+                <p class="am-icon-smile-o"></p>
+                {{else}}
+                {{#judge sex}}
+                <p class="am-icon-mars"></p>
+                {{else}}
+                <p class="am-icon-venus"></p>
+                {{/judge}}
+                {{/compare}}
                 <div class="tl-age">
-                    <span>{{age}}</span>
+                    <span>{{age}}岁</span>
                     <span>{{city}}</span>
                 </div>
             </div>
