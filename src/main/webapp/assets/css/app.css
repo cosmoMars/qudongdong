@@ -544,7 +544,7 @@ indivadualInfo
     background-color: white;
     font-weight: normal;
     padding-left: 0px;
-    padding-right: 2px;
+    padding-right: 15px;
 }
 
 .ii-sports {
@@ -595,6 +595,7 @@ addDating
     color: #66727d;
     background-color: white;
     font-weight: normal;
+    padding-right: 15px;
 }
 
 .ad-sports {
@@ -632,4 +633,9 @@ addDating
     right: 20px;
     top: 50px;
     font-size: 11px;
+}
+
+.am-icon-chevron-right{
+    position: absolute;
+    right: 10px;
 }
