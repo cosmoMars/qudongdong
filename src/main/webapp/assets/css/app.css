@@ -349,7 +349,7 @@ datingRequest
     top: 36px;
     left: 38%;
     color: white;
-    font-size: 18px;
+    font-size: 14px;
     width: 100%;
 }
 
@@ -369,7 +369,7 @@ datingRequest
 .tl-age {
     position: relative;
     top: 15px;
-    font-size: 14px;
+    font-size: 13px;
     color: #57626c;
 }
 
@@ -421,7 +421,7 @@ datingRequest
 .cbp_tmtimeline > li .cbp_tmlabel {
     margin: 0 0 5% 30%;
     padding: 5px;
-    font-size: 16px;
+    font-size: 13px;
     color: grey;
     position: absolute;
     top: 18px;
@@ -455,7 +455,7 @@ datingRequest
     padding-right: 3px;
     padding-left: 3px;
     width: 20px;
-    font-size: 13px;
+    font-size: 12px;
     color: white;
     background: #4EC296;
     -webkit-border-radius: 3px;
@@ -466,7 +466,7 @@ datingRequest
 .tl-start-time {
     margin-left: 5%;
     width: auto;
-    font-size: 13px;
+    font-size: 12px;
     padding-left: 2%;
     padding-right: 3%;
     color: white;
@@ -488,7 +488,7 @@ datingRequest
     position: absolute;
     top: 6px;
     right: 0;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .tl-gray {

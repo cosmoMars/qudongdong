@@ -106,8 +106,8 @@ function generateOrder() {
     var location = $('#location-text').html();
     var partner = getPartner($('#partner-text').html());
     var age = getAge($('#age-text').html());
-    var startTime = $('#startTime-text').attr('data-time');
-    var endTime = $('#endTime-text').attr('data-time');
+    var startTime = $('#startTime-text').attr('data-time')||'';
+    var endTime = $('#endTime-text').attr('data-time')||'';
     if(new Date(startTime)>= new Date(endTime)){
         $('#status').html("开始时间必须小于结束时间哦！");
         $('#my-alert').modal({relatedTarget: this});
@@ -120,6 +120,10 @@ function generateOrder() {
     }
     else if (content.length >= 12) {
         $('#status').html("说明仅限12个字哦！");
+        $('#my-alert').modal({relatedTarget: this,});
+    }
+    else if (location.length >= 10) {
+        $('#status').html("地点仅限10个字哦！");
         $('#my-alert').modal({relatedTarget: this,});
     }
     else {
