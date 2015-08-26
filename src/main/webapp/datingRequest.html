@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
 <body class="dr-body" id="dr-main">
+<div id="dr-null" class="dr-null"></div>
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
 <!--<![endif]-->
@@ -55,7 +56,15 @@
         <li>
             <div class="am-container dr-require-list">
                 <div class="dr-background">
+                    {{#compare sex}}
+                    <img src="assets/i/user-background/background-girl.jpg" class="dr-background-img">
+                    {{else}}
+                    {{#judge sex}}
                     <img src="assets/i/user-background/background-boy.jpg" class="dr-background-img">
+                    {{else}}
+                    <img src="assets/i/user-background/background-girl.jpg" class="dr-background-img">
+                    {{/judge}}
+                    {{/compare}}
                     <!--<img src="assets/i/user-background/background-boy.jpg" class="dr-background-img">-->
                     <!--<img src="assets/i/user-background/background-girl.jpg" class="dr-background-img">-->
                     <!--<img src="assets/i/request-02.png">-->
@@ -66,17 +75,70 @@
                         <img src="{{avatar}}" class="am-img-thumbnail">
                     </div>
                     <div class="dr-name am-text-truncate">{{nickName}}</div>
-                    <div class="dr-info"><span>{{age}}岁</span> {{city}} <span class="am-icon-mars dr-boy"></span></div>
+                    <div class="dr-info"><span>{{age}}岁</span> {{city}}
+                        {{#compare sex}}
+                        <span class="am-icon-smile-o dr-boy"></span>
+                        {{else}}
+                        {{#judge sex}}
+                        <span class="am-icon-mars dr-boy"></span>
+                        {{else}}
+                        <span class="am-icon-venus dr-girl"></span>
+                        {{/judge}}
+                        {{/compare}}
+                    </div>
+                    <!--{{#compare agree}}-->
+                    <!--<div class="am-g dr-conform-button">-->
+                    <!--<div class="am-u-sm-6">-->
+                    <!--<button onclick="responseCustomer(0,'{{orderCId}}')" type="button"-->
+                    <!--class="am-btn am-btn-success am-round am-btn-xs">残忍拒绝-->
+                    <!--</button>-->
+                    <!--</div>-->
+                    <!--<div class="am-u-sm-6">-->
+                    <!--<button onclick="responseCustomer(1,'{{orderCId}}')" type="button"-->
+                    <!--class="am-btn am-btn-danger am-round am-btn-xs">同意约炼-->
+                    <!--</button>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--{{else}}-->
+                    <!--{{#judge agree}}-->
+                    <!--{{else}}-->
+                    <!--{{/judge}}-->
+                    <!--{{/compare}}-->
+
+                    {{#ifNull agree}}
                     <div class="am-g dr-conform-button">
                         <div class="am-u-sm-6">
-                            <button onclick="responseCustomer(0,'{{orderCId}}')" type="button" class="am-btn am-btn-success am-round am-btn-xs">残忍拒绝</button>
+                            <button onclick="responseCustomer(0,'{{orderCId}}')" type="button"
+                                    class="am-btn am-btn-success am-round am-btn-xs">残忍拒绝
+                            </button>
                         </div>
                         <div class="am-u-sm-6">
-                            <button onclick="responseCustomer(1,'{{orderCId}}')" type="button" class="am-btn am-btn-danger am-round am-btn-xs">同意约炼
+                            <button onclick="responseCustomer(1,'{{orderCId}}')" type="button"
+                                    class="am-btn am-btn-danger am-round am-btn-xs">同意约炼
                             </button>
                         </div>
                     </div>
+                    {{else}}
+                    <div class="am-g dr-conform-button"></div>
+                    {{#if agree}}
+                    {{#compare sex}}
+                    <img src="assets/i/request-02.png" class="dr-request">
+                    <img src="assets/i/blue.png" class="dr-bottom">
+                    {{else}}
+                    {{#judge sex}}
+                    <img src="assets/i/request-02.png" class="dr-request">
+                    <img src="assets/i/blue.png" class="dr-bottom">
+                    {{else}}
                     <img src="assets/i/request-03.png" class="dr-request">
+                    <img src="assets/i/pick.png" class="dr-bottom">
+                    {{/judge}}
+                    {{/compare}}
+                    {{else}}
+                    <img src="assets/i/request-01.png" class="dr-request">
+                    <img src="assets/i/grey.png" class="dr-bottom">
+                    {{/if}}
+                    {{/ifNull}}
+
                 </div>
             </div>
         </li>
@@ -89,6 +151,16 @@
             </div>
             <div class="am-modal-footer">
                 <span class="am-modal-btn">确定</span>
+            </div>
+        </div>
+    </div>
+    <div class="am-modal am-modal-alert" tabindex="-1" id="success-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-bd" id="success">
+                发布成功！
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" onclick="toMain();">确定</span>
             </div>
         </div>
     </div>

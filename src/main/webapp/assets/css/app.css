@@ -238,6 +238,15 @@ main
 /*
 datingRequest
 */
+.dr-null {
+    position: absolute;
+    top: 200px;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    color: grey;
+}
+
 .dr-body {
     background: #EBEBEB;
 }
@@ -260,12 +269,19 @@ datingRequest
     width: 100%;
 }
 
-.dr-request{
+.dr-request {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: -61px;
+    right: -1px;
     width: 70px;
     height: 63px;
+}
+
+.dr-bottom {
+    position: relative;
+    bottom: 30px;
+    /*left: 0;*/
+    width: 100%;
 }
 
 .dr-background {
@@ -637,17 +653,20 @@ addDating
     -webkit-border-radius: 5px;
     border-radius: 5px;
 }
-.ad-limit{
+
+.ad-limit {
     position: absolute;
     right: 20px;
     top: 50px;
     font-size: 11px;
 }
 
-.am-icon-chevron-right{
+.am-icon-chevron-right {
     position: absolute;
     right: 10px;
 }
-.am-list-border>li>a:focus, .am-list-border>li>a:hover {
-    background-color: transparent;!important;
+
+.am-list-border > li > a:focus, .am-list-border > li > a:hover {
+    background-color: transparent;
+!important;
 }

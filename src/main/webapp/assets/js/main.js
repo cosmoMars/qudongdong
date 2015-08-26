@@ -18,6 +18,7 @@ if (userId != null) {
 $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
     var listTemple = Handlebars.compile($('#listBox').html());
     Handlebars.registerHelper("compare", function (v1, options) {
+        console.log(v1);
         if (v1 == 0) {
             //满足添加继续执行
             return options.fn(this);
