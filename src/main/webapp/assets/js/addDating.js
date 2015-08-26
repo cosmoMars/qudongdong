@@ -109,7 +109,7 @@ function generateOrder() {
     var startTime = $('#startTime-text').attr('data-time');
     var endTime = $('#endTime-text').attr('data-time');
     if(new Date(startTime)>= new Date(endTime)){
-        $('#status').html("开始时间不能大于结束时间哦！");
+        $('#status').html("开始时间必须小于结束时间哦！");
         $('#my-alert').modal({relatedTarget: this});
         return false;
     }
