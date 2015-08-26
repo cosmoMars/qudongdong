@@ -122,46 +122,55 @@ function generateOrder() {
     var age = getAge($('#age-text').html());
     var startTime = $('#startTime-text').html();
     var endTime = $('#endTime-text').html();
-    var context = $('#context-text').val();
-    if (location.length == 0 || partner.length == 0 || age.length == 0 || startTime.length == 0 || endTime.length == 0 || context.length == 0&&context.length >= 12) {
+    var content = $('#content-text').val();
+    if (location.length == 0 || partner.length == 0 || age.length == 0 || startTime.length == 0 || endTime.length == 0 || content.length == 0) {
         $('#status').html("您还有字段未填写哦！");
         $('#my-alert').modal({relatedTarget: this,})
     }
-    else if (context.length >= 12){
+    else if (content.length >= 12) {
         $('#status').html("说明仅限12个字哦！");
         $('#my-alert').modal({relatedTarget: this,})
     }
+    else {
 
-    var jsonData = {
-        "location": location,
-        "sex": partner,
-        "ageRange": age,
-        "payMethod": 0,
-        "transfer": false,
-        "carryOne": true,
-        "peopleCount": 1,
-        "content": context,
-        "startTime": startTime,
-        "endTime": endTime,
-        "official": 0
-    };
-    var data = JSON.stringify(jsonData);
+        var jsonData = {
+            "location": location,
+            "sex": partner,
+            "ageRange": age,
+            "payMethod": 0,
+            "transfer": false,
+            "carryOne": true,
+            "peopleCount": 1,
+            "content": content,
+            "startTime": startTime,
+            "endTime": endTime,
+            "official": 0
+        };
 
-    var generateOrderUrl = commonUrl + 'order/generateOrder/' + userId_ + '/1';
-    $.ajax({
-        url: generateOrderUrl,
-        type: "POST",
-        data: data,
-        dataType: "json",
-        headers: {"Accept": "application/json", "Content-Type": "application/json; charset=UTF-8"},
-        success: function (response) {
-            if (response.ret_code == 0) {
+        var data = JSON.stringify(jsonData);
+
+        var generateOrderUrl = commonUrl + 'order/generateOrder/' + userId_ + '/1';
+
+        $.ajax({
+            url: generateOrderUrl,
+            type: "POST",
+            data: data,
+            dataType: "json",
+            headers: {"Accept": "application/json", "Content-Type": "application/json; charset=UTF-8"},
+            success: function (response) {
+                if (response.ret_code == 0) {
+                    $('#status').html(response.ret_values);
+                    $('#my-alert').modal({relatedTarget: this,})
+                }
+                else {
+                    $('#status').html(response.ret_values);
+                    $('#my-alert').modal({relatedTarget: this,})
+                }
+            },
+            error: function () {
+                $('#status').html("发布失败！");
                 $('#my-alert').modal({relatedTarget: this,})
             }
-        },
-        error: function () {
-            $('#status').html("发布失败！");
-            $('#my-alert').modal({relatedTarget: this,})
-        }
-    });
+        });
+    }
 }
