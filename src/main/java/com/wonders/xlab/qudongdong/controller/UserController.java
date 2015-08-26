@@ -2,14 +2,12 @@ package com.wonders.xlab.qudongdong.controller;
 
 import com.wonders.xlab.framework.controller.AbstractBaseController;
 import com.wonders.xlab.framework.repository.MyRepository;
+import com.wonders.xlab.qudongdong.dto.UserDto;
 import com.wonders.xlab.qudongdong.dto.result.ControllerResult;
 import com.wonders.xlab.qudongdong.entity.User;
 import com.wonders.xlab.qudongdong.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by mars on 15/8/18.
@@ -94,4 +92,28 @@ public class UserController extends AbstractBaseController<User, Long> {
                 .setRet_values("该用户不存在！")
                 .setMessage("失败");
     }
+
+
+    /**
+     * 修改用户
+     * @param userId
+     * @param dto
+     * @return
+     */
+    @RequestMapping(value = "updateUser/{userId}", method = RequestMethod.POST)
+    public Object updateUser(@PathVariable long userId, @RequestBody UserDto dto) {
+
+        User user = userRepository.findOne(userId);
+
+        User resultUser = dto.updateUser(user);
+
+        userRepository.save(resultUser);
+
+        return new ControllerResult<>()
+                .setRet_code(0)
+                .setRet_values("修改成功")
+                .setMessage("成功");
+
+    }
+
 }

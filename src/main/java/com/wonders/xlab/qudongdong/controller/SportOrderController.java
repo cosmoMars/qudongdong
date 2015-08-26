@@ -67,7 +67,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         Sport sport = sportRepository.findOne(sportId);
 
         SportOrder existOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
-        if (org.apache.commons.lang3.time.DateUtils.isSameDay(new Date(), existOrder.getCreatedDate())) {
+        if (existOrder != null && org.apache.commons.lang3.time.DateUtils.isSameDay(new Date(), existOrder.getCreatedDate())) {
             return new ControllerResult<>()
                     .setRet_code(-1)
                     .setRet_values("亲，你今天已经躁动过咯～")

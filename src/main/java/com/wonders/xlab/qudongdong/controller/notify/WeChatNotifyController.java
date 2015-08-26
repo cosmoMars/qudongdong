@@ -181,9 +181,42 @@ public class WeChatNotifyController {
 
         String openId = (String) resultMap.get("openid");
 
-        User user = userRepository.findByOpenId(openId);
         System.out.println("openId = " + openId);
         String state = request.getParameter("state");
+
+        User user = userRepository.findByOpenId(openId);
+        if (StringUtils.isEmpty(accessTokenCache.getFromCache("token"))) {
+
+            ResponseEntity<JsonNode> resultNode = restTemplate.getForEntity("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appId + "&secret=" + appSecret, JsonNode.class);
+            JsonNode jsonNode = resultNode.getBody();
+
+            System.out.println("token = " + jsonNode.get("access_token").asText());
+
+            accessTokenCache.addToCache("token", jsonNode.get("access_token").asText());
+
+        }
+
+        if (user == null) {
+
+            ResponseEntity<JsonNode> responseUser = restTemplate.getForEntity("https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + accessTokenCache.getFromCache("token") + "&openid=" + openId, JsonNode.class);
+            JsonNode nodeUser = responseUser.getBody();
+            System.out.println("responseUser = " + nodeUser);
+
+//            Map resultUser = null;
+//            try {
+//                resultUser = objectMapper.readValue(responseUser.getBody(), HashMap.class);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
+            User u = new User();
+            u.setOpenId(openId);
+            u.setAvatarUrl(nodeUser.get("headimgurl").asText());
+            u.setNickName(nodeUser.get("nickname").asText());
+            u.setCity(nodeUser.get("city").asText());
+            u.setSex(User.Sex.values()[(nodeUser.get("sex").asInt())]);
+            user = userRepository.save(u);
+        }
         try {
             if (StringUtils.equals(state, "list")) {
                 String url = "http://101.231.124.8:45698/qdd/main.html?userId=" + user.getId();
