@@ -48,23 +48,35 @@ $(function () {
     });
 
     $('#partner-btn').on('click', function () {
-        $('#ad-partner').modal({
+        var gender;
+        $('#ii-gender').modal({
             relatedTarget: this,
-            onConfirm: function (e) {
-                $('#partner-text').html(e.data);
+            onConfirm: function () {
+                var temp = document.getElementsByName("gender");
+                for (var i = 0; i < temp.length; i++) {
+                    if (temp[i].checked)
+                        gender = temp[i].value;
+                }
+                $('#gender-text').html(gender);
             },
-            onCancel: function (e) {
+            onCancel: function () {
             }
         });
     });
 
     $('#age-btn').on('click', function () {
-        $('#ad-age').modal({
+        var age;
+        $('#ii-age').modal({
             relatedTarget: this,
-            onConfirm: function (e) {
-                $('#age-text').html(e.data);
+            onConfirm: function () {
+                var temp = document.getElementsByName("age");
+                for (var i = 0; i < temp.length; i++) {
+                    if (temp[i].checked)
+                        age = temp[i].value;
+                }
+                $('#age-text').html(age);
             },
-            onCancel: function (e) {
+            onCancel: function () {
             }
         });
     });
