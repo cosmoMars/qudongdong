@@ -1,7 +1,6 @@
 /*
 main
 */
-
 .main-body {
     background: #EBEBEB;
 }
@@ -192,7 +191,6 @@ main
     margin-right: 12px;
     height: 12px;
     width: 16px;
-
 }
 
 .main-people span {
@@ -280,7 +278,6 @@ datingRequest
 .dr-bottom {
     position: relative;
     bottom: 30px;
-    /*left: 0;*/
     width: 100%;
 }
 
@@ -364,8 +361,11 @@ datingRequest
     top: 0;
     width: 100%;
     height: 200px;
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0)), color-stop(0.7, rgba(255, 255, 255, 0.1)), color-stop(0.7, rgba(255, 255, 255, 0.1)), to(rgba(87, 98, 108, 0.6)));
-
+    background: -webkit-gradient(linear, left top, left bottom,
+    from(rgba(255, 255, 255, 0)),
+    color-stop(0.7, rgba(255, 255, 255, 0.1)),
+    color-stop(0.7, rgba(255, 255, 255, 0.1)),
+    to(rgba(87, 98, 108, 0.6)));
 }
 
 .tl-user {
@@ -374,7 +374,7 @@ datingRequest
     left: 38%;
     color: white;
     font-size: 14px;
-    width: 100%;
+    width: 62%;
 }
 
 .tl-user p {
@@ -386,8 +386,7 @@ datingRequest
     position: absolute;
     top: 130px;
     left: 8%;
-
-    width: 100%;
+    width: 92%;
 }
 
 .tl-age {
@@ -523,6 +522,12 @@ datingRequest
     color: #4EC296;
 }
 
+hr {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
 /*
 indivadualInfo
 */
@@ -545,7 +550,6 @@ indivadualInfo
 .ii-avatar {
     width: 100%;
     height: 80px;
-
 }
 
 .ii-avatar img {
@@ -561,7 +565,6 @@ indivadualInfo
     width: 100%;
     line-height: 80px;
     overflow: hidden;
-
 }
 
 .ii-badge {
@@ -613,7 +616,6 @@ addDating
     width: 100%;
     line-height: 80px;
     overflow: hidden;
-
 }
 
 .ad-badge {
