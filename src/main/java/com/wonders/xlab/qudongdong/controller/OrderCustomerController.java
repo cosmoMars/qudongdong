@@ -62,6 +62,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
         List<Map<String, Object>> list = new ArrayList<>();
         for (OrderCustomer customer : orderCustomers) {
             Map<String, Object> map = new HashMap<>();
+            map.put("orderCId", customer.getId());
             map.put("customerId", customer.getCustomer().getId());
             map.put("nickName", customer.getCustomer().getNickName());
             map.put("avatar",customer.getCustomer().getAvatarUrl());
