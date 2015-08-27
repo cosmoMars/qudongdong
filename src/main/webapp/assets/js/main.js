@@ -10,15 +10,27 @@ function GetQueryString(name) {
 }
 
 var userId = GetQueryString("userId");
+
 if (userId != null) {
     var userId_ = decodeURIComponent(userId);
-    $('#imgUrl').attr('href', 'addDatings.html?userId=' + userId_);
+    $.get(commonUrl + 'user/validateUser/' + userId_, function (data) {
+        console.log(data.ret_code);
+        if (data.ret_code == -1) {
+            $('#imgAdd').click(function () {
+                $('#status').html(data.ret_values);
+                $('#my-alert').modal({relatedTarget: this,})
+            });
+        }
+        else {
+            $('#imgUrl').attr('href', 'addDatings.html?userId=' + userId_);
+        }
+    })
 }
+
 
 $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
     var listTemple = Handlebars.compile($('#listBox').html());
     Handlebars.registerHelper("compare", function (v1, options) {
-        console.log(v1);
         if (v1 == 0) {
             //满足添加继续执行
             return options.fn(this);

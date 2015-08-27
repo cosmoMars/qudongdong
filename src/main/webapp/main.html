@@ -39,9 +39,16 @@
 <body class="main-body">
 <ul class="am-list am-list-static am-list-border main-list main-margin" id="main-list" style="margin-bottom: 30px">
 </ul>
-<div class="main-side-bar">
+<div class="main-side-bar main-top-bar">
+    <div class="am-g main-top">
+        <div class="am-u-sm-4"><span class="main-top-text">一起躁</span></div>
+        <div class="am-u-sm-4" style="color: grey">躁友信息</div>
+        <div class="am-u-sm-4" style="color: grey">我的信息</div>
+    </div>
+</div>
+<div class="main-side-bar main-bottom-bar">
     <a href="#" id="imgUrl" style="display: block">
-        <span class="main-add">+来一发</span>
+        <img class="main-add" src="assets/i/add.png" id="imgAdd"/>
     </a>
 </div>
 <div class="main-null" id="main-null"></div>
@@ -127,7 +134,7 @@
                                     class="am-btn am-btn-success am-round am-btn-xs main-green" id="main-confirm">一起躁
                             </button>
                             {{else}}
-                            <button type="button" class="am-btn am-btn-default am-round am-btn-xs" disabled="disabled">来晚啦
+                            <button type="button" class="am-btn am-btn-default am-round am-btn-xs" disabled="disabled">来晚了
                             </button>
                             {{/if}}
                         </div>

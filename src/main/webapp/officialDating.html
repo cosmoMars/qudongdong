@@ -69,6 +69,12 @@
     <div class="ad-info">
         <ul class="am-list am-list-static am-list-border">
             <li>
+                <a class="ii-href" id="numOfP-btn"></a>
+                <span class="am-badge ad-badge" id="numOfP-text"></span>
+                <i class="am-icon-chevron-right"></i>
+                人数
+            </li>
+            <li>
                 <a class="ii-href" id="partner-btn"></a>
                 <span class="am-badge ad-badge am-badge-danger" id="partner-text"></span>
                 <i class="am-icon-chevron-right"></i>
@@ -92,7 +98,7 @@
     </div>
     <div class="ad-button">
         <div class="ad-sub">
-            <button onclick="generateOrder()" class="am-btn am-btn-danger am-round ad-btn">确定发布</button>
+            <button onclick="generateOfficialOrder()" class="am-btn am-btn-danger am-round ad-btn">确定发布</button>
         </div>
     </div>
 </div>
@@ -114,6 +120,18 @@
         <div class="am-modal-bd">
             运动地点（仅限15个字符）
             <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-numOfP">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            人数
+            <input type="number" class="am-modal-prompt-input">
         </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn" data-am-modal-cancel>取消</span>
@@ -200,6 +218,6 @@
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/spinningwheel.js"></script>
 <script src="assets/js/common.js"></script>
-<script src="assets/js/addDating.js"></script>
+<script src="assets/js/officialDating.js"></script>
 </body>
 </html>
