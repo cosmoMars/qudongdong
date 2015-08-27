@@ -23,7 +23,7 @@ $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
             //满足添加继续执行
             return options.fn(this);
         }
-        else{
+        else {
             return options.inverse(this);
         }
     });
@@ -32,11 +32,15 @@ $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
             //满足添加继续执行
             return options.fn(this);
         }
-        else{
+        else {
             return options.inverse(this);
         }
     });
-    $('#main-list').html(listTemple(data.ret_values));
+    if (data.ret_values.length == 0) {
+        $('#main-null').html("亲，给你抢沙发哦～");
+    } else {
+        $('#main-list').html(listTemple(data.ret_values));
+    }
 })
 
 
