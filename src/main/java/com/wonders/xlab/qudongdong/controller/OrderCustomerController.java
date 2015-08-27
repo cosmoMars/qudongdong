@@ -52,7 +52,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
 
         SportOrder sportOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
 
-        if (sportOrder.getCreatedDate() != null && !DateUtils.isSameDay(new Date(), sportOrder.getCreatedDate())) {
+        if (sportOrder == null || !DateUtils.isSameDay(new Date(), sportOrder.getCreatedDate())) {
             return new ControllerResult<>()
                     .setRet_code(-1)
                     .setRet_values("亲，今天还没有发起订单哦")
@@ -84,8 +84,9 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
 
     /**
      * 生成用户约练请求
+     *
      * @param orderId 订单id
-     * @param cId 请求的用户id
+     * @param cId     请求的用户id
      * @return
      */
     @RequestMapping(value = "generateOrderCustomer/{orderId}/{cId}", method = RequestMethod.GET)
@@ -114,7 +115,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
         OrderCustomer orderCustomer = new OrderCustomer();
         orderCustomer.setSportOrder(sportOrder);
         orderCustomer.setCustomer(customer);
-        if (customer.getTel() == null) {
+        if (sportOrder.getUser().getTel() == null) {
             return new ControllerResult<>()
                     .setRet_code(-1)
                     .setRet_values("对方手机还未填写哦")
@@ -132,6 +133,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
 
     /**
      * 用户同意约炼
+     *
      * @param ocId
      * @param agree
      * @return
@@ -141,25 +143,45 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
                                    @PathVariable boolean agree) {
 
         OrderCustomer orderCustomer = orderCustomerRepository.findOne(ocId);
-        orderCustomer.setUserAgree(agree);
-        orderCustomerRepository.save(orderCustomer);
+
+        SportOrder sportOrder = orderCustomer.getSportOrder();
+
+        List<OrderCustomer>  orderCustomers = new ArrayList<>(sportOrder.getOrderCustomers());
+
+        for (OrderCustomer customer : orderCustomers) {
+            if (customer.getId() == ocId) {
+                customer.setUserAgree(true);
+            } else {
+                customer.setUserAgree(false);
+            }
+        }
+//
+//        if (sportOrder.getCurrentCount() >= sportOrder.getPeopleCount()) {
+//            return new ControllerResult<>()
+//                    .setRet_code(-1)
+//                    .setRet_values("亲，你已经有骚年和你一起躁动咯～")
+//                    .setMessage("失败");
+//        }
+//        orderCustomer.setUserAgree(agree);
+        orderCustomerRepository.save(orderCustomers);
         if (agree) {
-            SmsUtils.sendInviteSucceedMessage(orderCustomer.getCustomer().getTel(), orderCustomer.getSportOrder().getUser().getNickName(), DateFormatUtils.format(orderCustomer.getSportOrder().getStartTime(), "yyyy.MM.dd HH:mm"), orderCustomer.getSportOrder().getLocation());
+            // 发送给申请人
+            SmsUtils.sendInviteSucceedMessage(orderCustomer.getCustomer().getTel(), sportOrder.getUser().getNickName(), DateFormatUtils.format(sportOrder.getStartTime(), "yyyy.MM.dd HH:mm"), sportOrder.getLocation());
 
-            SmsUtils.sendInviteSucceedMessage(orderCustomer.getSportOrder().getUser().getTel(), orderCustomer.getCustomer().getNickName(), DateFormatUtils.format(orderCustomer.getSportOrder().getStartTime(), "yyyy.MM.dd HH:mm"), orderCustomer.getSportOrder().getLocation());
+            // 发送给发起人
+            SmsUtils.sendInviteSucceedMessage(sportOrder.getUser().getTel(), orderCustomer.getCustomer().getNickName(), DateFormatUtils.format(sportOrder.getStartTime(), "yyyy.MM.dd HH:mm"), sportOrder.getLocation());
 
-            SportOrder sportOrder = orderCustomer.getSportOrder();
             sportOrder.setCurrentCount(sportOrder.getCurrentCount() + 1);
 
             sportOrderRepository.save(sportOrder);
 
         } else {
-            SmsUtils.sendRefusesMessage(orderCustomer.getCustomer().getTel(), orderCustomer.getCustomer().getNickName());
+            SmsUtils.sendRefusesMessage(orderCustomer.getCustomer().getTel(), sportOrder.getUser().getNickName());
         }
 
         return new ControllerResult<>()
                 .setRet_code(0)
-                .setRet_values("修改成功")
+                .setRet_values("亲，赶快和小伙伴躁动起来吧～")
                 .setMessage("成功");
 
     }

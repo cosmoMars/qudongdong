@@ -14,9 +14,10 @@ import com.wonders.xlab.qudongdong.entity.User;
 import com.wonders.xlab.qudongdong.repository.SportOrderRepository;
 import com.wonders.xlab.qudongdong.repository.SportRepository;
 import com.wonders.xlab.qudongdong.repository.UserRepository;
-import com.wonders.xlab.qudongdong.utils.DateUtils;
+import com.wonders.xlab.qudongdong.utils.WdDateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +25,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.*;
 
 /**
@@ -64,6 +66,17 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
                                 @RequestBody SportOrderDto sportOrderDto) {
 
 
+        try {
+            if(DateUtils.parseDate(sportOrderDto.getStartTime(), "yyyy-MM-dd HH:mm").getTime() > DateUtils.parseDate(sportOrderDto.getEndTime(), "yyyy-MM-dd HH:mm").getTime()) {
+                return new ControllerResult<>()
+                        .setRet_code(-1)
+                        .setRet_values("请填写正确的躁动时间哦～")
+                        .setMessage("失败");
+
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         User user = userRepository.findOne(userId);
         if (StringUtils.isEmpty(user.getTel())) {
             return new ControllerResult<>()
@@ -140,7 +153,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             dto.setContent(order.getContent());
             dto.setOfficial(order.isOfficial());
 
-            int diffTime = DateUtils.calculatePeiorMiniutesOfTwoDate(order.getCreatedDate(), now);
+            int diffTime = WdDateUtils.calculatePeiorMiniutesOfTwoDate(order.getCreatedDate(), now);
             if (diffTime < 60) {
                 dto.setDiffTime(diffTime + "分钟");
             } else {

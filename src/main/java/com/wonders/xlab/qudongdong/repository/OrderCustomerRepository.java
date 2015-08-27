@@ -14,4 +14,6 @@ public interface OrderCustomerRepository extends MyRepository<OrderCustomer, Lon
 
     OrderCustomer findBySportOrderIdAndCustomerId(long sportOrderId, long customerId);
 
+    List<OrderCustomer> findBySportOrderIdAndCustomerIdNot(long sportOrderId, long customerId);
+
 }
