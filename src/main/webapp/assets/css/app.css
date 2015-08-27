@@ -336,6 +336,11 @@ datingRequest
     color: deepskyblue;
 }
 
+.dr-a{
+    width: 110px;
+    height: 110px;
+}
+
 .tl-title {
     width: 100%;
     height: 240px;
