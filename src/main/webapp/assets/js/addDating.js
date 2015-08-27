@@ -122,8 +122,8 @@ function generateOrder() {
         $('#status').html("说明仅限12个字哦！");
         $('#my-alert').modal({relatedTarget: this,});
     }
-    else if (location.length >= 10) {
-        $('#status').html("地点仅限10个字哦！");
+    else if (location.length >= 15) {
+        $('#status').html("地点仅限15个字哦！");
         $('#my-alert').modal({relatedTarget: this,});
     }
     else {
