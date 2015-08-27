@@ -27,6 +27,8 @@ if (userId != null) {
     })
 }
 
+$('#datingRequest').attr('href', 'datingRequest.html?userId=' + userId_);
+$('#individualInfo').attr('href', 'individualInfo.html?userId=' + userId_);
 
 $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
     var listTemple = Handlebars.compile($('#listBox').html());

@@ -725,3 +725,7 @@ addDating
     background-color: transparent;
 !important;
 }
+
+a{
+    color: grey;
+}
