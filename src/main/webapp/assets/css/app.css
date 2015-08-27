@@ -188,6 +188,7 @@ main
 .main-danger {
     background-color: darkgrey;
     border-color: darkgrey;
+    color: white;
 }
 
 .main-icon-people {
@@ -394,8 +395,9 @@ datingRequest
 }
 
 .tl-user p {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: -23px;
+    position: absolute;
+    right: 30%;
 }
 
 .tl-info {
@@ -420,8 +422,11 @@ datingRequest
 
 .tl-location {
     display: block;
-    width: 130px;
-    height: 16px;
+    width: 75%;
+}
+.tl-name {
+    display: block;
+    width: 62%;
 }
 
 .cbp_tmtimeline {

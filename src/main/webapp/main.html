@@ -75,12 +75,14 @@
                                     {{#if official}}
                                     {{else}}
                                     {{#compare sex}}
-                                    <p class="am-icon-smile-o main-boy"></p>
+                                    <p class="am-icon-smile-o main-boy"
+                                       style="padding-right: 15px;padding-left: 4.5px;"></p>
                                     {{else}}
                                     {{#judge sex}}
                                     <p class="am-icon-mars main-boy"></p>
                                     {{else}}
-                                    <p class="am-icon-venus main-girl"></p>
+                                    <p class="am-icon-venus main-girl"
+                                       style="padding-right: 13.5px;padding-left: 5.5px;"></p>
                                     {{/judge}}
                                     {{/compare}}
                                     {{/if}}
@@ -125,7 +127,7 @@
                                     class="am-btn am-btn-success am-round am-btn-xs main-green" id="main-confirm">一起躁
                             </button>
                             {{else}}
-                            <button type="button" class="am-btn am-btn-success am-round am-btn-xs main-danger">来晚了
+                            <button type="button" class="am-btn am-btn-default am-round am-btn-xs" disabled="disabled">来晚啦
                             </button>
                             {{/if}}
                         </div>
