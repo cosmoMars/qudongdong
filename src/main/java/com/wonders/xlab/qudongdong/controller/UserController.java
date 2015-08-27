@@ -51,6 +51,12 @@ public class UserController extends AbstractBaseController<User, Long> {
                     .setMessage("成功");
             switch (type) {
                 case 0:
+                    if (!info.matches("^1((3|5|8){1}\\d{1}|70|77)\\d{8}$")) {
+                        return new ControllerResult<>()
+                                .setRet_code(-1)
+                                .setRet_values("骚年，手机格式不正确")
+                                .setMessage("失败");
+                    }
                     user.setTel(info);
                     userRepository.save(user);
                     return result;

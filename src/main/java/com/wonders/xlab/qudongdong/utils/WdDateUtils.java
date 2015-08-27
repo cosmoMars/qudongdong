@@ -15,7 +15,7 @@ import java.util.*;
 /**
  * @author xu
  */
-public class DateUtils {
+public class WdDateUtils {
     /**
      * 将日期转换成只有年月日的日期，其余默认为0。
      *
@@ -141,7 +141,7 @@ public class DateUtils {
      */
     public static List getAlLHoliday() {
         List list = new ArrayList();
-        String path = DateUtils.class.getClassLoader().getResource("holiday.txt").getPath();
+        String path = WdDateUtils.class.getClassLoader().getResource("holiday.txt").getPath();
         File file = new File(path);
         if (file.isFile() && file.exists()) {
             try {
@@ -159,9 +159,9 @@ public class DateUtils {
     }
 
     public static boolean oneDayDifference(Date oldDate, Date newDate) {
-        DateUtils.convertToYYYYMMDD(oldDate);
-        DateUtils.convertToYYYYMMDD(newDate);
-        if (DateUtils.convertToYYYYMMDD(oldDate).equals(DateUtils.convertToYYYYMMDD(newDate))) {
+        WdDateUtils.convertToYYYYMMDD(oldDate);
+        WdDateUtils.convertToYYYYMMDD(newDate);
+        if (WdDateUtils.convertToYYYYMMDD(oldDate).equals(WdDateUtils.convertToYYYYMMDD(newDate))) {
             return false;
         } else {
             return true;
@@ -199,7 +199,7 @@ public class DateUtils {
         cto.set(Calendar.SECOND, 0);
         cto.set(Calendar.MILLISECOND, 0);
 
-        return DateUtils.calculatePeiorDaysOfTwoDate(cfrom.getTime(), cto.getTime());
+        return WdDateUtils.calculatePeiorDaysOfTwoDate(cfrom.getTime(), cto.getTime());
     }
 
     //当周开始时间
