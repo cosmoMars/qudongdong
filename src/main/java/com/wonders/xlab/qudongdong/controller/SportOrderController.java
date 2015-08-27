@@ -66,14 +66,28 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
                                 @RequestBody SportOrderDto sportOrderDto) {
 
 
+        Date now = new Date();
         try {
-            if(DateUtils.parseDate(sportOrderDto.getStartTime(), "yyyy-MM-dd HH:mm").getTime() > DateUtils.parseDate(sportOrderDto.getEndTime(), "yyyy-MM-dd HH:mm").getTime()) {
+            Date startTime = DateUtils.parseDate(sportOrderDto.getStartTime(), "yyyy-MM-dd HH:mm");
+            Date endTime = DateUtils.parseDate(sportOrderDto.getEndTime(), "yyyy-MM-dd HH:mm");
+            if (now.getTime() > startTime.getTime()) {
                 return new ControllerResult<>()
                         .setRet_code(-1)
-                        .setRet_values("请填写正确的躁动时间哦～")
+                        .setRet_values("骚年，躁动时间过早哦")
                         .setMessage("失败");
-
             }
+            if (endTime.getTime() - startTime.getTime() < 30 * 60 * 1000) {
+                return new ControllerResult<>()
+                        .setRet_code(-1)
+                        .setRet_values("骚年，躁动时间要30分钟以上哦")
+                        .setMessage("失败");
+            }
+//            if(startTime.getTime() > endTime.getTime()) {
+//                return new ControllerResult<>()
+//                        .setRet_code(-1)
+//                        .setRet_values("请填写正确的躁动时间哦～")
+//                        .setMessage("失败");
+//            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -86,13 +100,13 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         }
         Sport sport = sportRepository.findOne(sportId);
 
-        SportOrder existOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
-        if (existOrder != null && org.apache.commons.lang3.time.DateUtils.isSameDay(new Date(), existOrder.getCreatedDate())) {
-            return new ControllerResult<>()
-                    .setRet_code(-1)
-                    .setRet_values("亲，你今天已经躁动过咯～")
-                    .setMessage("失败");
-        }
+//        SportOrder existOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
+//        if (existOrder != null && org.apache.commons.lang3.time.DateUtils.isSameDay(new Date(), existOrder.getCreatedDate())) {
+//            return new ControllerResult<>()
+//                    .setRet_code(-1)
+//                    .setRet_values("亲，你今天已经躁动过咯～")
+//                    .setMessage("失败");
+//        }
 
         SportOrder sportOrder = sportOrderDto.toNewOrder();
 
@@ -164,13 +178,10 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
             dto.setPercent(dto.getCurrentPeople() / dto.getPeopleCount());
 
-            if (dto.getCurrentPeople() < dto.getPeopleCount()) {
+            if (now.getTime() > order.getStartTime().getTime() || dto.getCurrentPeople() < dto.getPeopleCount()) {
                 dto.setEnabled(true);
-            }
-            if (now.getTime() > order.getStartTime().getTime()) {
-                dto.setEnabled(false);
             } else {
-                dto.setEnabled(true);
+                dto.setEnabled(false);
             }
             dto.setAge(order.getUser().getAge());
             orderDtos.add(dto);

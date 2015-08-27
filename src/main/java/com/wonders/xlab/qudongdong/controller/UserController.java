@@ -4,10 +4,16 @@ import com.wonders.xlab.framework.controller.AbstractBaseController;
 import com.wonders.xlab.framework.repository.MyRepository;
 import com.wonders.xlab.qudongdong.dto.UserDto;
 import com.wonders.xlab.qudongdong.dto.result.ControllerResult;
+import com.wonders.xlab.qudongdong.entity.SportOrder;
 import com.wonders.xlab.qudongdong.entity.User;
+import com.wonders.xlab.qudongdong.repository.SportOrderRepository;
 import com.wonders.xlab.qudongdong.repository.UserRepository;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * Created by mars on 15/8/18.
@@ -18,6 +24,9 @@ public class UserController extends AbstractBaseController<User, Long> {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private SportOrderRepository sportOrderRepository;
 
     @Override
     protected MyRepository<User, Long> getRepository() {
@@ -120,6 +129,34 @@ public class UserController extends AbstractBaseController<User, Long> {
                 .setRet_values("修改成功")
                 .setMessage("成功");
 
+    }
+
+    /**
+     * 校验用户手机和微信号
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "validateUser/{userId}", method = RequestMethod.GET)
+    public Object validateUser(@PathVariable long userId) {
+        User user = userRepository.findOne(userId);
+
+        if (StringUtils.isEmpty(user.getTel()) || StringUtils.isEmpty(user.getWeChat())) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("骚年，请先去完善个人信息")
+                    .setMessage("失败");
+        }
+        SportOrder existOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
+        if (existOrder != null && DateUtils.isSameDay(new Date(), existOrder.getCreatedDate())) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("骚年，你今天已经躁动过咯～")
+                    .setMessage("失败");
+        }
+        return new ControllerResult<>()
+                .setRet_code(0)
+                .setRet_values("校验通过")
+                .setMessage("成功");
     }
 
 }

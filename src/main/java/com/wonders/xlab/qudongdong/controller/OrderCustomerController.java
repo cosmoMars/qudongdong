@@ -10,6 +10,7 @@ import com.wonders.xlab.qudongdong.repository.OrderCustomerRepository;
 import com.wonders.xlab.qudongdong.repository.SportOrderRepository;
 import com.wonders.xlab.qudongdong.repository.UserRepository;
 import com.wonders.xlab.qudongdong.utils.SmsUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +56,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
         if (sportOrder == null || !DateUtils.isSameDay(new Date(), sportOrder.getCreatedDate())) {
             return new ControllerResult<>()
                     .setRet_code(-1)
-                    .setRet_values("亲，今天还没有发起订单哦")
+                    .setRet_values("骚年，今天还没有发起订单哦")
                     .setMessage("失败");
         }
 
@@ -107,11 +108,18 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
         if (existOrder != null) {
             return new ControllerResult<>()
                     .setRet_code(-1)
-                    .setRet_values("亲，你已经对TA下约咯～")
+                    .setRet_values("骚年，你已经对TA下约咯～")
                     .setMessage("失败");
         }
 
         User customer = userRepository.findOne(cId);
+        if (StringUtils.isEmpty(customer.getTel()) || StringUtils.isEmpty(customer.getWeChat())) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("骚年，请先去完善个人信息")
+                    .setMessage("失败");
+        }
+
         OrderCustomer orderCustomer = new OrderCustomer();
         orderCustomer.setSportOrder(sportOrder);
         orderCustomer.setCustomer(customer);
@@ -181,7 +189,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
 
         return new ControllerResult<>()
                 .setRet_code(0)
-                .setRet_values("亲，赶快和小伙伴躁动起来吧～")
+                .setRet_values("骚年，赶快和小伙伴躁动起来吧～")
                 .setMessage("成功");
 
     }
