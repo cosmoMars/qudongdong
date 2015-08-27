@@ -51,7 +51,7 @@ $.get(commonUrl + 'orderCustomer/listOrderCustomer/' + userId_, function (data) 
         }
     }
     else {
-        $('#dr-main').html(data.ret_values);
+        $('#dr-null').html(data.ret_values);
     }
 });
 
