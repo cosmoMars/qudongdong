@@ -53,11 +53,10 @@ $.get(commonUrl + 'orderCustomer/listOrderCustomer/' + userId_, function (data) 
     else {
         $('#dr-main').html(data.ret_values);
     }
-
 });
 
-function toMain() {
-    location.href = 'datingRequest.html?userId=' + userId_;
+function toReload() {
+    location.reload();
 }
 
 function responseCustomer(result, customerId) {
@@ -65,16 +64,16 @@ function responseCustomer(result, customerId) {
     $.get(responseCustomerUrl, function (data) {
         if (data.ret_code == 0) {
             if (result) {
-                $('#success').html('您已同意约练！');
+                $('#success').html(data.ret_values);
             }
             else {
-                $('#success').html('您已成功拒绝！');
+                $('#success').html(data.ret_values);
             }
             $('#success-alert').modal({relatedTarget: this,})
 
         }
         else {
-            $('#status').html("请求失败！");
+            $('#status').html(data.ret_values);
             $('#my-alert').modal({relatedTarget: this,})
         }
     });

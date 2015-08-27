@@ -36,8 +36,9 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body class="dr-body" id="dr-main">
+<body class="dr-body">
 <div id="dr-null" class="dr-null"></div>
+<div id="dr-main"></div>
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
 <!--<![endif]-->
@@ -72,7 +73,9 @@
                 </div>
                 <div class="dr-avatar-info">
                     <div class="dr-avatar">
-                        <img src="{{avatar}}" class="am-img-thumbnail">
+                        <a href="timeLine.html?userId={{customerId}}">
+                            <img src="{{avatar}}" class="am-img-thumbnail">
+                        </a>
                     </div>
                     <div class="dr-name am-text-truncate">{{nickName}}</div>
                     <div class="dr-info"><span>{{age}}岁</span> {{city}}
@@ -160,7 +163,7 @@
                 发布成功！
             </div>
             <div class="am-modal-footer">
-                <span class="am-modal-btn" onclick="toMain();">确定</span>
+                <span class="am-modal-btn" onclick="toReload();">确定</span>
             </div>
         </div>
     </div>

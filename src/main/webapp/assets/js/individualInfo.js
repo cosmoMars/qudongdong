@@ -28,7 +28,6 @@ $.get(commonUrl + 'user/retrieveInfo/' + userId_, function (data) {
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
-                                $('#text-tel').html(e.data);
                                 $('#my-alert').modal({relatedTarget: this,})
                             }
                         },
@@ -48,11 +47,10 @@ $.get(commonUrl + 'user/retrieveInfo/' + userId_, function (data) {
                 relatedTarget: this,
                 onConfirm: function (e) {
                     $.ajax({
-                        url: commonUrl + 'user/editInfo/' + userId_ + '/' + e.data +'/5',
+                        url: commonUrl + 'user/editInfo/' + userId_ + '/' + e.data + '/5',
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
-                                $('#text-weChat').html(e.data);
                                 $('#my-alert').modal({relatedTarget: this,})
                             }
                         },
@@ -92,7 +90,6 @@ $.get(commonUrl + 'user/retrieveInfo/' + userId_, function (data) {
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
-                                $('#text-gender').html(getGender(gender));
                                 $('#my-alert').modal({relatedTarget: this,})
                             }
                         },
@@ -116,7 +113,6 @@ $.get(commonUrl + 'user/retrieveInfo/' + userId_, function (data) {
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
-                                $('#text-age').html(e.data + "岁");
                                 $('#my-alert').modal({relatedTarget: this,})
                             }
                         },
@@ -140,7 +136,6 @@ $.get(commonUrl + 'user/retrieveInfo/' + userId_, function (data) {
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
-                                $('#text-height').html(e.data + "cm");
                                 $('#my-alert').modal({relatedTarget: this,})
                             }
                         },
@@ -164,7 +159,6 @@ $.get(commonUrl + 'user/retrieveInfo/' + userId_, function (data) {
                         type: "POST",
                         success: function (response) {
                             if (response.ret_code == 0) {
-                                $('#text-weight').html(e.data + "kg");
                                 $('#my-alert').modal({relatedTarget: this,})
                             }
                         },
@@ -180,4 +174,8 @@ $.get(commonUrl + 'user/retrieveInfo/' + userId_, function (data) {
         });
     });
 })
+
+function toReload() {
+    location.reload();
+}
 

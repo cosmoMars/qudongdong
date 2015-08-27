@@ -277,7 +277,7 @@ datingRequest
 
 .dr-bottom {
     position: relative;
-    bottom: 30px;
+    bottom: 38px;
     width: 100%;
 }
 
@@ -520,6 +520,12 @@ datingRequest
 
 .tl-green {
     color: #4EC296;
+}
+
+.tl-null {
+    color: grey;
+    padding-top: 20px;
+    text-align: center;
 }
 
 hr {

@@ -41,8 +41,9 @@
 <div id="tl-title"></div>
 <div>
     <div class="tl-main">
-        <ul class="cbp_tmtimeline" id="tl-main">
-        </ul>
+        <div id="tl-main">
+            <div id="tl-null" class="tl-null"></div>
+        </div>
         <hr/>
     </div>
 </div>
@@ -99,24 +100,27 @@
     </div>
 </script>
 <script type="text/x-handlebars-template" id="timeLine">
-    {{#each this}}
-    <li>
-        <div class="cbp_tmtime"><span>{{month}}/</span>{{day}}</div>
-        <div class="cbp_tmicon">
-            <img src="assets/i/sports/run.png">
-        </div>
-        <div class="cbp_tmlabel">
-            <div><span>{{location}}</span>
+    <ul class="cbp_tmtimeline">
+        {{#each this}}
+        <li>
+            <div class="cbp_tmtime"><span>{{month}}/</span>{{day}}</div>
+            <div class="cbp_tmicon">
+                <img src="assets/i/sports/run.png">
+            </div>
+            <div class="cbp_tmlabel">
+                <div><span>{{location}}</span>
 
-                <div class="tl-people">
-                    <img src="assets/i/people.png" class="tl-icon-people"><span class="tl-green">1/1</span>
+                    <div class="tl-people">
+                        <img src="assets/i/people.png" class="tl-icon-people"><span class="tl-green">1/1</span>
+                    </div>
+                </div>
+                <div><span class="tl-item">{{sportName}}</span> <span
+                        class="tl-start-time">{{startTime}}-{{endTime}}</span>
                 </div>
             </div>
-            <div><span class="tl-item">{{sportName}}</span> <span class="tl-start-time">{{startTime}}-{{endTime}}</span>
-            </div>
-        </div>
-    </li>
-    {{/each}}
+        </li>
+        {{/each}}
+    </ul>
 </script>
 </body>
 </html>

@@ -15,15 +15,22 @@ if (userId != null) {
 }
 
 $.get(commonUrl + 'order/listUserOrder/' + userId_, function (data) {
+
     var listTemple = Handlebars.compile($('#timeLine').html());
-    $('#tl-main').html(listTemple(data.ret_values.orders));
+    if (data.ret_values.orders.length == 0) {
+        $('#tl-null').html("主人还没有发布过信息哦～");
+    }
+    else {
+        $('#tl-main').html(listTemple(data.ret_values.orders));
+    }
+
     var listTemple = Handlebars.compile($('#title').html());
     Handlebars.registerHelper("compare", function (v1, options) {
         if (v1 == 0) {
             //满足添加继续执行
             return options.fn(this);
         }
-        else{
+        else {
             return options.inverse(this);
         }
     });
@@ -32,7 +39,7 @@ $.get(commonUrl + 'order/listUserOrder/' + userId_, function (data) {
             //满足添加继续执行
             return options.fn(this);
         }
-        else{
+        else {
             return options.inverse(this);
         }
     });
