@@ -272,7 +272,6 @@ datingRequest
 .dr-null {
     position: absolute;
     top: 200px;
-    height: 100%;
     width: 100%;
     text-align: center;
     color: grey;
@@ -285,6 +284,11 @@ datingRequest
 .dr-require-li li {
     background-color: #EBEBEB;
     border-width: 0px;
+}
+
+.dr-require-li{
+    margin-top: 47px;
+    margin-bottom: -57px;
 }
 
 .dr-require-list {
