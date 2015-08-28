@@ -42,8 +42,10 @@
 <div class="main-side-bar main-top-bar">
     <div class="am-g main-top">
         <div class="am-u-sm-4"><span class="main-top-text">一起躁</span></div>
-        <div class="am-u-sm-4" style="color: grey"><a id="datingRequest" style="display: block">躁友信息</a></div>
-        <div class="am-u-sm-4" style="color: grey"><a id="individualInfo" style="display: block">我的信息</a></div>
+        <div class="am-u-sm-4" style="color: grey"><a id="datingRequest" style="color:grey;display: block">躁友信息</a>
+        </div>
+        <div class="am-u-sm-4" style="color: grey"><a id="individualInfo" style="color:grey;display: block">我的信息</a>
+        </div>
     </div>
 </div>
 <div class="main-side-bar main-bottom-bar">
@@ -77,70 +79,76 @@
                                                                            class="am-radius main-radius"/></a>
 
                             <div class="main-gray">
-                                <div class="main-name am-text-truncate">{{nickName}}
-                                    <span>{{age}}岁</span>
-                                    {{#if official}}
+                                {{#if official}}
+                                <div class="main-name" style="width: 100%">{{nickName}}
                                     {{else}}
-                                    {{#compare sex}}
-                                    <p class="am-icon-smile-o main-boy"
-                                       style="padding-right: 15px;padding-left: 4.5px;"></p>
-                                    {{else}}
-                                    {{#judge sex}}
-                                    <p class="am-icon-mars main-boy"></p>
-                                    {{else}}
-                                    <p class="am-icon-venus main-girl"
-                                       style="padding-right: 13.5px;padding-left: 5.5px;"></p>
-                                    {{/judge}}
-                                    {{/compare}}
-                                    {{/if}}
+                                    <div class="main-name am-text-truncate">{{nickName}}
+                                        <span>{{age}}岁</span>
+                                        {{/if}}
+                                        {{#if official}}
+                                        {{else}}
+                                        {{#compare sex}}
+                                        <p class="am-icon-smile-o main-boy"
+                                           style="padding-right: 15px;padding-left: 4.5px;"></p>
+                                        {{else}}
+                                        {{#judge sex}}
+                                        <p class="am-icon-mars main-boy"></p>
+                                        {{else}}
+                                        <p class="am-icon-venus main-girl"
+                                           style="padding-right: 13.5px;padding-left: 5.5px;"></p>
+                                        {{/judge}}
+                                        {{/compare}}
+                                        {{/if}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="am-u-sm-8 main-right">
-                        <div class="main-location">地点：{{location}}</div>
-                        <div class="main-time">{{diffTime}} 前发布
-                            {{#if official}}
-                            <img src="assets/i/zaodong.jpg" class="main-logo"/>
-                            {{/if}}
-                        </div>
-                        <div class="main-people">
-                            <img src="assets/i/people.png"
-                                 class="main-icon-people">
-                            {{#if official}}
-                            <span>{{currentPeople}}人|{{peopleCount}}人</span>
-                            {{else}}
-                            <span>单独约</span>
-                            {{/if}}
-                        </div>
-                        <div><span class="main-item">{{sportName}}</span> <span class="main-start-time">{{startTime}}-{{endTime}}</span>
-                        </div>
-                        <div>
-                            <img src="assets/i/sports/run.png" class="main-sports"/>
-                            <img src="assets/i/sports/yoga.png" class="main-sports"/>
-                            <img src="assets/i/sports/swiming.png" class="main-sports"/>
-                            <img src="assets/i/sports/badminton.png" class="main-sports"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="main-container main-text-bottom">
-                <div class="am-g main-g">
-                    <div class="am-u-sm-9 main-9">{{content}}</div>
-                    <div class="am-u-sm-3 main-3">
-                        <div class="main-button">
-                            {{#if enabled}}
-                            <button onclick="generateOrderCustomer('{{orderId}}')" type="button"
-                                    class="am-btn am-btn-success am-round am-btn-xs main-green" id="main-confirm">一起躁
-                            </button>
-                            {{else}}
-                            <button type="button" class="am-btn am-btn-default am-round am-btn-xs" disabled="disabled">来晚了
-                            </button>
-                            {{/if}}
+                        <div class="am-u-sm-8 main-right">
+                            <div class="main-location">地点：{{location}}</div>
+                            <div class="main-time">{{diffTime}} 前发布
+                                {{#if official}}
+                                <img src="assets/i/zaodong.jpg" class="main-logo"/>
+                                {{/if}}
+                            </div>
+                            <div class="main-people">
+                                <img src="assets/i/people.png"
+                                     class="main-icon-people">
+                                {{#if official}}
+                                <span>{{currentPeople}}人|{{peopleCount}}人</span>
+                                {{else}}
+                                <span>单独约</span>
+                                {{/if}}
+                            </div>
+                            <div><span class="main-item">{{sportName}}</span> <span class="main-start-time">{{startTime}}-{{endTime}}</span>
+                            </div>
+                            <div>
+                                <img src="assets/i/sports/run.png" class="main-sports"/>
+                                <img src="assets/i/sports/yoga.png" class="main-sports"/>
+                                <img src="assets/i/sports/swiming.png" class="main-sports"/>
+                                <img src="assets/i/sports/badminton.png" class="main-sports"/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="main-container main-text-bottom">
+                    <div class="am-g main-g">
+                        <div class="am-u-sm-9 main-9">{{content}}</div>
+                        <div class="am-u-sm-3 main-3">
+                            <div class="main-button">
+                                {{#if enabled}}
+                                <button onclick="generateOrderCustomer('{{orderId}}')" type="button"
+                                        class="am-btn am-btn-success am-round am-btn-xs main-green" id="main-confirm">
+                                    一起躁
+                                </button>
+                                {{else}}
+                                <button type="button" class="am-btn am-btn-default am-round am-btn-xs"
+                                        disabled="disabled">来晚了
+                                </button>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </li>
     </ul>
     {{/each}}

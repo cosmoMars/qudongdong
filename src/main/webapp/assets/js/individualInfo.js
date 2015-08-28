@@ -179,3 +179,6 @@ function toReload() {
     location.reload();
 }
 
+$('#datingRequest').attr('href', 'datingRequest.html?userId=' + userId_);
+$('#main').attr('href', 'main.html?userId=' + userId_);
+

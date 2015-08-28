@@ -78,3 +78,6 @@ function responseCustomer(result, customerId) {
         }
     });
 }
+
+$('#main').attr('href', 'main.html?userId=' + userId_);
+$('#individualInfo').attr('href', 'individualInfo.html?userId=' + userId_);

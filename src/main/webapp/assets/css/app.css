@@ -22,7 +22,8 @@ main
     top: 0px;
     z-index: 100;
 }
-.main-top{
+
+.main-top {
     width: 100%;
     height: 100%;
     border-radius: 5px;
@@ -31,7 +32,8 @@ main
     color: #4EC296;
     padding-top: 12px;
 }
-.main-top-text{
+
+.main-top-text {
     padding-bottom: 12px;
     border-bottom: 2px solid #4EC296;
 }
@@ -357,7 +359,7 @@ datingRequest
     color: deepskyblue;
 }
 
-.dr-a{
+.dr-a {
     width: 110px;
     height: 110px;
 }
@@ -444,6 +446,7 @@ datingRequest
     display: block;
     width: 75%;
 }
+
 .tl-name {
     display: block;
     width: 62%;
@@ -598,6 +601,8 @@ indivadualInfo
     background-color: white;
     color: #66727d;
     font-size: 14px;
+    margin-top: 35px;
+    margin-bottom: -18px;
 }
 
 .ii-avatar {
@@ -686,7 +691,11 @@ addDating
 .ad-content {
     height: 60px;
     width: 100%;
+    border:solid 1px grey; border-radius:3px;
     resize: none;
+}
+.ad-content:focus {
+    outline: none;
 }
 
 .ad-sub {
@@ -721,11 +730,7 @@ addDating
     right: 10px;
 }
 
-.am-list-border > li > a:focus, .am-list-border > li > a:hover {
+.am-list-border > li > a:focus, .am-list-border > li > a:hover .am-u-sm-4 > a:focus, .am-u-sm-4 > a:hover {
     background-color: transparent;
 !important;
-}
-
-a{
-    color: grey;
 }

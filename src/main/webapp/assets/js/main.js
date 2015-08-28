@@ -51,7 +51,7 @@ $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
         }
     });
     if (data.ret_values.length == 0) {
-        $('#main-null').html("亲，给你抢沙发哦～");
+        $('#main-null').html("骚年，给你抢沙发哦～");
     } else {
         $('#main-list').html(listTemple(data.ret_values));
     }
@@ -59,7 +59,6 @@ $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
 
 
 function generateOrderCustomer(orderId) {
-    console.log(orderId);
     var generateOrderCustomerUrl = commonUrl + 'orderCustomer/generateOrderCustomer/ ' + orderId + '/' + userId_;
     $.get(generateOrderCustomerUrl, function (data) {
         if (data.ret_code == 0) {
