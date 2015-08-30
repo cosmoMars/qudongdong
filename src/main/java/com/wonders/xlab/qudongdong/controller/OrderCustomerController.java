@@ -60,7 +60,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
                     .setMessage("失败");
         }
 
-        List<OrderCustomer> orderCustomers = orderCustomerRepository.findBySportOrderIdOrderByUserAgreeAsc(sportOrder.getId());
+        List<OrderCustomer> orderCustomers = orderCustomerRepository.findBySportOrderIdOrderByUserAgreeDesc(sportOrder.getId());
 
         List<Map<String, Object>> list = new ArrayList<>();
         for (OrderCustomer oCustomer : orderCustomers) {
@@ -69,7 +69,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
             map.put("customerId", oCustomer.getCustomer().getId());
             map.put("nickName", oCustomer.getCustomer().getNickName());
             map.put("avatar", oCustomer.getCustomer().getAvatarUrl());
-            map.put("age", oCustomer.getCustomer().getSex().ordinal());
+            map.put("age", oCustomer.getCustomer().getAge());
             map.put("city", oCustomer.getCustomer().getCity());
             map.put("sex", oCustomer.getCustomer().getSex().ordinal());
             map.put("agree", oCustomer.getUserAgree());
@@ -102,7 +102,6 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
                     .setRet_values("约自己？你又傲娇了！")
                     .setMessage("失败");
         }
-
         OrderCustomer existOrder = orderCustomerRepository.findBySportOrderIdAndCustomerId(orderId, cId);
 
         if (existOrder != null) {
@@ -119,19 +118,26 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
                     .setRet_values("骚年，请先去完善个人信息")
                     .setMessage("失败");
         }
-
         OrderCustomer orderCustomer = new OrderCustomer();
         orderCustomer.setSportOrder(sportOrder);
         orderCustomer.setCustomer(customer);
+
         if (sportOrder.getUser().getTel() == null) {
             return new ControllerResult<>()
                     .setRet_code(-1)
                     .setRet_values("对方手机还未填写哦")
                     .setMessage("失败");
         }
-        SmsUtils.sendInviteMessage(sportOrder.getUser().getTel(), customer.getNickName(), DateFormatUtils.format(sportOrder.getStartTime(), "yyyy.MM.dd HH:mm"), sportOrder.getLocation());
+        if (sportOrder.isOfficial()) {
+            orderCustomer.setUserAgree(true);
+            sportOrder.setCurrentCount(sportOrder.getCurrentCount() + 1);
+        }
+        if (!sportOrder.isOfficial()) {
+            SmsUtils.sendInviteMessage(sportOrder.getUser().getTel(), customer.getNickName(), DateFormatUtils.format(sportOrder.getStartTime(), "yyyy.MM.dd HH:mm"), sportOrder.getLocation());
+        }
 
         orderCustomerRepository.save(orderCustomer);
+        sportOrderRepository.save(sportOrder);
         return new ControllerResult<>()
                 .setRet_code(0)
                 .setRet_values("骚等，请求已发出咯～")
@@ -174,10 +180,10 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
         orderCustomerRepository.save(orderCustomers);
         if (agree) {
             // 发送给申请人
-            SmsUtils.sendInviteSucceedMessage(orderCustomer.getCustomer().getTel(), sportOrder.getUser().getNickName(), DateFormatUtils.format(sportOrder.getStartTime(), "yyyy.MM.dd HH:mm"), sportOrder.getLocation());
+            SmsUtils.sendInviteSucceedMessage(orderCustomer.getCustomer().getTel(), sportOrder.getUser().getNickName(),  sportOrder.getUser().getWeChat());
 
             // 发送给发起人
-            SmsUtils.sendInviteSucceedMessage(sportOrder.getUser().getTel(), orderCustomer.getCustomer().getNickName(), DateFormatUtils.format(sportOrder.getStartTime(), "yyyy.MM.dd HH:mm"), sportOrder.getLocation());
+            SmsUtils.sendInviteSucceedMessage(sportOrder.getUser().getTel(), orderCustomer.getCustomer().getNickName(),  orderCustomer.getCustomer().getWeChat());
 
             sportOrder.setCurrentCount(sportOrder.getCurrentCount() + 1);
 

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface OrderCustomerRepository extends MyRepository<OrderCustomer, Long> {
 
-    List<OrderCustomer> findBySportOrderIdOrderByUserAgreeAsc(long orderId);
+    List<OrderCustomer> findBySportOrderIdOrderByUserAgreeDesc(long orderId);
 
     OrderCustomer findBySportOrderIdAndCustomerId(long sportOrderId, long customerId);
 

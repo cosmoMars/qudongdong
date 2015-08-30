@@ -19,7 +19,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -137,20 +136,12 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
     private Object listSportOrder(
             @PageableDefault(sort = "createdDate", direction = Sort.Direction.DESC)
             Pageable pageable) {
-        Page<SportOrder> orderPage = sportOrderRepository.findAll(pageable);
-
-        if (!orderPage.hasContent()) {
-            return new ControllerResult<>()
-                    .setRet_code(0)
-                    .setRet_values("")
-                    .setMessage("查询成功");
-        }
-        List<SportOrder> orders = orderPage.getContent();
+        List<SportOrder> orderPages = sportOrderRepository.findTopByToday(new Date(), pageable);
 
         List<OrderDto> orderDtos = new ArrayList<>();
 
         Date now = new Date();
-        for (SportOrder order : orders) {
+        for (SportOrder order : orderPages) {
             OrderDto dto = new OrderDto();
             dto.setOrderId(order.getId());
             dto.setUserId(order.getUser().getId());
@@ -178,7 +169,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
             dto.setPercent(dto.getCurrentPeople() / dto.getPeopleCount());
 
-            if (now.getTime() > order.getStartTime().getTime() || dto.getCurrentPeople() < dto.getPeopleCount()) {
+            if (now.getTime() < order.getStartTime().getTime() && dto.getCurrentPeople() < dto.getPeopleCount()) {
                 dto.setEnabled(true);
             } else {
                 dto.setEnabled(false);
@@ -203,7 +194,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
         User user = userRepository.findOne(userId);
 
-        List<SportOrder> sportOrders = sportOrderRepository.findByUser(user);
+        List<SportOrder> sportOrders = sportOrderRepository.findByUserOrderByCreatedDateDesc(user);
 
         JsonNodeFactory jsonNodeFactory = objectMapper.getNodeFactory();
 
@@ -228,6 +219,8 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             map.put("sportName", sportOrder.getSport().getName());
             map.put("sportIcon",sportOrder.getSport().getIconUrl());
             map.put("location", sportOrder.getLocation());
+            map.put("currentPeople", sportOrder.getCurrentCount());
+            map.put("peopleCount", sportOrder.getPeopleCount());
 
             list.add(map);
         }

@@ -73,6 +73,12 @@ public class User extends AbstractBaseEntity<Long> {
     @OrderBy("id asc")
     private Set<Sport> sports;
 
+
+    /**
+     * 是否官方
+     */
+    private boolean official;
+
     public String getOpenId() {
         return openId;
     }
@@ -156,4 +162,12 @@ public class User extends AbstractBaseEntity<Long> {
     public String getWeChat() { return weChat; }
 
     public void setWeChat(String weChat) { this.weChat = weChat; }
+
+    public boolean isOfficial() {
+        return official;
+    }
+
+    public void setOfficial(boolean official) {
+        this.official = official;
+    }
 }
