@@ -4,16 +4,22 @@ import com.wonders.xlab.framework.controller.AbstractBaseController;
 import com.wonders.xlab.framework.repository.MyRepository;
 import com.wonders.xlab.qudongdong.dto.UserDto;
 import com.wonders.xlab.qudongdong.dto.result.ControllerResult;
+import com.wonders.xlab.qudongdong.entity.Sport;
 import com.wonders.xlab.qudongdong.entity.SportOrder;
 import com.wonders.xlab.qudongdong.entity.User;
 import com.wonders.xlab.qudongdong.repository.SportOrderRepository;
+import com.wonders.xlab.qudongdong.repository.SportRepository;
 import com.wonders.xlab.qudongdong.repository.UserRepository;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created by mars on 15/8/18.
@@ -27,6 +33,9 @@ public class UserController extends AbstractBaseController<User, Long> {
 
     @Autowired
     private SportOrderRepository sportOrderRepository;
+
+    @Autowired
+    private SportRepository sportRepository;
 
     @Override
     protected MyRepository<User, Long> getRepository() {
@@ -47,70 +56,68 @@ public class UserController extends AbstractBaseController<User, Long> {
     /**
      * @param userId
      * @param info
-     * @param type   0(tel):1(sex):2(age):3(height):4():5(weChat)
+     * @param type   0(tel):1(sex):2(age):3(height):4():5(weChat):6(sports)
      * @return
      */
     @RequestMapping(value = "editInfo/{userId}/{info}/{type}", method = RequestMethod.POST)
     public Object editInfo(@PathVariable long userId, @PathVariable String info, @PathVariable int type) {
         User user = userRepository.findOne(userId);
-        if (user != null) {
-            ControllerResult result = new ControllerResult<>()
-                    .setRet_code(0)
-                    .setRet_values("修改成功！")
-                    .setMessage("成功");
-            switch (type) {
-                case 0:
-                    if (!info.matches("^1((3|5|8){1}\\d{1}|70|77)\\d{8}$")) {
-                        return new ControllerResult<>()
-                                .setRet_code(-1)
-                                .setRet_values("骚年，手机格式不正确")
-                                .setMessage("失败");
-                    }
-                    user.setTel(info);
-                    userRepository.save(user);
-                    return result;
-                case 1:
-                    if (info.equals("Female")) {
-                        user.setSex(User.Sex.Female);
-                        userRepository.save(user);
-                        return result;
-                    } else if (info.equals("Male")) {
-                        user.setSex(User.Sex.Male);
-                        userRepository.save(user);
-                        return result;
-                    }
-                case 2:
-                    user.setAge(Integer.parseInt(info));
-                    userRepository.save(user);
-                    return result;
-                case 3:
-                    user.setHeight(Double.parseDouble(info));
-                    userRepository.save(user);
-                    return result;
-                case 4:
-                    user.setWeight(Double.parseDouble(info));
-                    userRepository.save(user);
-                    return result;
-                case 5:
-                    user.setWeChat(info);
-                    userRepository.save(user);
-                    return result;
-                default:
+
+        if (user == null) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("该用户不存在！")
+                    .setMessage("失败");
+        }
+
+        switch (type) {
+            case 0:
+                if (!info.matches("^1((3|5|8){1}\\d{1}|70|77)\\d{8}$")) {
                     return new ControllerResult<>()
                             .setRet_code(-1)
-                            .setRet_values("请求失误！")
+                            .setRet_values("骚年，手机格式不正确")
                             .setMessage("失败");
-            }
+                }
+                user.setTel(info);
+
+            case 1:
+                if (info.equals("Female")) {
+                    user.setSex(User.Sex.Female);
+                } else if (info.equals("Male")) {
+                    user.setSex(User.Sex.Male);
+                }
+            case 2:
+                user.setAge(Integer.parseInt(info));
+            case 3:
+                user.setHeight(Double.parseDouble(info));
+            case 4:
+                user.setWeight(Double.parseDouble(info));
+            case 5:
+                user.setWeChat(info);
+            case 6:
+                String[] str = StringUtils.split(info, ",");
+                List<Long> ids = new ArrayList<>();
+                for (String s : str) {
+                    ids.add(NumberUtils.toLong(s));
+                }
+                List<Sport> sports = sportRepository.findAll(ids);
+                user.setSports(new HashSet<>(sports));
+                for (int i = 0; i < str.length; i++) {
+                    System.out.println(str[i]);
+                }
         }
+        userRepository.save(user);
         return new ControllerResult<>()
-                .setRet_code(-1)
-                .setRet_values("该用户不存在！")
-                .setMessage("失败");
+                .setRet_code(0)
+                .setRet_values("修改成功！")
+                .setMessage("成功");
+
     }
 
 
     /**
      * 修改用户
+     *
      * @param userId
      * @param dto
      * @return
@@ -133,6 +140,7 @@ public class UserController extends AbstractBaseController<User, Long> {
 
     /**
      * 校验用户手机和微信号
+     *
      * @param userId
      * @return
      */
