@@ -114,13 +114,24 @@ function getAge(type) {
 };
 
 function generateOfficialOrder() {
+    var htmlContent="";
+    var ue = UE.getContent();
+    //对编辑器的操作最好在编辑器ready之后再做
+    ue.ready(function () {
+        //设置编辑器的内容
+        ue.setContent('hello');
+        //获取html内容，返回: <p>hello</p>
+        htmlContent = ue.getContent();
+        //获取纯文本内容，返回: hello
+        var txt = ue.getContentTxt();
+    });
     var numOfP = $('#numOfP-text').html();
     var location = $('#location-text').html();
     var partner = getPartner($('#partner-text').html());
     var age = getAge($('#age-text').html());
-    var startTime = $('#startTime-text').attr('data-time')||'';
-    var endTime = $('#endTime-text').attr('data-time')||'';
-    if(new Date(startTime)>= new Date(endTime)){
+    var startTime = $('#startTime-text').attr('data-time') || '';
+    var endTime = $('#endTime-text').attr('data-time') || '';
+    if (new Date(startTime) >= new Date(endTime)) {
         $('#status').html("开始时间必须小于结束时间哦！");
         $('#my-alert').modal({relatedTarget: this});
         return false;
@@ -151,7 +162,8 @@ function generateOfficialOrder() {
             "content": content,
             "startTime": startTime,
             "endTime": endTime,
-            "official": 1
+            "official": 1,
+            "htmlInfo":htmlContent
         };
 
         var data = JSON.stringify(jsonData);
@@ -183,7 +195,7 @@ function generateOfficialOrder() {
 }
 
 function toMain() {
-    location.href = 'main.html?userId='+userId_;
+    location.href = 'main.html?userId=' + userId_;
 }
 
 function startDone() {

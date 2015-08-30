@@ -97,6 +97,10 @@
             </li>
         </ul>
     </div>
+
+    <!--<textarea name="introduction" id="introduction" style="height:400px;"></textarea>-->
+     <script id="introduction" name="introduction" type="text/plain" style="height:800px;"></script>
+
     <div class="ad-button">
         <div class="ad-sub">
             <button onclick="generateOfficialOrder()" class="am-btn am-btn-danger am-round ad-btn">确定发布</button>
@@ -220,5 +224,12 @@
 <script src="assets/js/spinningwheel.js"></script>
 <script src="assets/js/common.js"></script>
 <script src="assets/js/officialDating.js"></script>
+<script src="ueditor/ueditor.config.js"></script>
+<script src="ueditor/ueditor.all.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var ue = UE.getEditor('introduction');
+    });
+</script>
 </body>
 </html>
