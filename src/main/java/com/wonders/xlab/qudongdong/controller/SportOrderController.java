@@ -63,8 +63,6 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
     public Object generateOrder(@PathVariable long userId,
                                 @PathVariable long sportId,
                                 @RequestBody SportOrderDto sportOrderDto) {
-
-
         Date now = new Date();
         try {
             Date startTime = DateUtils.parseDate(sportOrderDto.getStartTime(), "yyyy-MM-dd HH:mm");
@@ -114,6 +112,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         if (sportOrderDto.getOfficial()) {
             sportOrder.setOfficial(true);
             sportOrder.setPeopleCount(sportOrderDto.getPeopleCount());
+            sportOrder.setHtmlInfo(sportOrderDto.getHtmlInfo());
         } else {
             sportOrder.setOfficial(false);
             sportOrder.setPeopleCount(1);
@@ -217,7 +216,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             map.put("day", DateFormatUtils.format(sportOrder.getCreatedDate(), "d"));
 
             map.put("sportName", sportOrder.getSport().getName());
-            map.put("sportIcon",sportOrder.getSport().getIconUrl());
+            map.put("sportIcon", sportOrder.getSport().getIconUrl());
             map.put("location", sportOrder.getLocation());
             map.put("currentPeople", sportOrder.getCurrentCount());
             map.put("peopleCount", sportOrder.getPeopleCount());
@@ -229,6 +228,17 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         return new ControllerResult<>()
                 .setRet_code(0)
                 .setRet_values(node)
+                .setMessage("成功");
+    }
+
+    @RequestMapping(value = "getOrderHtmlInfo/{orderId}", method = RequestMethod.GET)
+    public Object getOrderHtmlInfo(@PathVariable long orderId) {
+
+        SportOrder order = sportOrderRepository.findOne(orderId);
+
+        return new ControllerResult<>()
+                .setRet_code(0)
+                .setRet_values(order.getHtmlInfo())
                 .setMessage("成功");
     }
 }

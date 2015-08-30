@@ -116,6 +116,12 @@ public class SportOrder extends AbstractBaseEntity<Long> {
      */
     private boolean official;
 
+    /**
+     * 富文本页面
+     */
+    @Lob
+    private String htmlInfo;
+
     public User getUser() {
         return user;
     }
@@ -244,4 +250,12 @@ public class SportOrder extends AbstractBaseEntity<Long> {
         this.official = official;
     }
 
+
+    public String getHtmlInfo() {
+        return htmlInfo;
+    }
+
+    public void setHtmlInfo(String htmlInfo) {
+        this.htmlInfo = htmlInfo;
+    }
 }

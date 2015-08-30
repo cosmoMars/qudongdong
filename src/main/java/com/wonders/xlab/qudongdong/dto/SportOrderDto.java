@@ -74,6 +74,11 @@ public class SportOrderDto {
 
     private Boolean official;
 
+    /**
+     * 富文本
+     */
+    private String htmlInfo;
+
     public SportOrder toNewOrder() {
         SportOrder order = new SportOrder();
         order.setLocation(location);
@@ -179,5 +184,13 @@ public class SportOrderDto {
 
     public void setOfficial(Boolean official) {
         this.official = official;
+    }
+
+    public String getHtmlInfo() {
+        return htmlInfo;
+    }
+
+    public void setHtmlInfo(String htmlInfo) {
+        this.htmlInfo = htmlInfo;
     }
 }
