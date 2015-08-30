@@ -639,7 +639,7 @@ indivadualInfo
     padding-right: 15px;
 }
 
-.ii-sports{
+.ii-sports {
     color: #66727d;
     background-color: white;
     font-weight: normal;
@@ -650,6 +650,7 @@ indivadualInfo
 .ii-sports-icon {
     width: 25px;
     height: 25px;
+    margin-top: -4px;
 }
 
 .am-icon-chevron-right {
@@ -751,17 +752,26 @@ addDating
 !important;
 }
 
-.am-avg-sm-2 > li > div {
+.am-avg-sm-5 > li > div {
     margin: 0 auto;
-    width: 95px;
-    height: 35px;
+    width: 42px;
+    height: 42px;
     color: grey;
     text-align: center;
     font-size: 14px;
     background-color: white;
-    padding-top: 5px;
+    /*padding-top: 5px;*/
 }
-.am-avg-sm-2 > li > div >img{
-    width: 25px;
-    height: 25px;
+
+.am-avg-sm-5 > li > div > img {
+    width: 42px;
+    height: 42px;
+}
+
+.ss-cover {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 42px;
+    height: 42px;
+    position: relative;
+    top: -42px;
 }

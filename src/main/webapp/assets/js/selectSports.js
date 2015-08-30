@@ -20,20 +20,16 @@ $.get(commonUrl + 'sport/listSport', function (data) {
     $('#ss-main').html(listTemple(data.ret_values));
 
     $.each(data.ret_values, function selectSports(n, values) {
-        var div = document.getElementById("sports" + values.id);
-        var select = "#sports" + values.id;
-        var flag;
-        $(select).click(function () {
-            if (flag) {
-                div.style.backgroundColor = "white";
-                div.style.color = "grey";
-                info.splice(info.indexOf(values.id), 1);
-            } else {
-                div.style.backgroundColor = "#4EC296";
-                div.style.color = "white";
-                info.push(values.id);
-            }
-            flag = !flag;
+        //var div1 = document.getElementById("sports" + values.id);
+        var div = document.getElementById("sportsCover" + values.id);
+        //var flag;
+        $("#sports" + values.id).click(function () {
+            div.style.display = "block";
+            info.splice(info.indexOf(values.id), 1);
+        });
+        $("#sportsCover" + values.id).click(function () {
+            div.style.display = "none";
+            info.push(values.id);
         });
     });
 });
