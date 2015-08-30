@@ -114,17 +114,7 @@ function getAge(type) {
 };
 
 function generateOfficialOrder() {
-    var htmlContent="";
-    var ue = UE.getContent();
-    //对编辑器的操作最好在编辑器ready之后再做
-    ue.ready(function () {
-        //设置编辑器的内容
-        ue.setContent('hello');
-        //获取html内容，返回: <p>hello</p>
-        htmlContent = ue.getContent();
-        //获取纯文本内容，返回: hello
-        var txt = ue.getContentTxt();
-    });
+    var htmlInfo = UE.getEditor('introduction').getContent();
     var numOfP = $('#numOfP-text').html();
     var location = $('#location-text').html();
     var partner = getPartner($('#partner-text').html());
@@ -163,7 +153,7 @@ function generateOfficialOrder() {
             "startTime": startTime,
             "endTime": endTime,
             "official": 1,
-            "htmlInfo":htmlContent
+            "htmlInfo": htmlInfo
         };
 
         var data = JSON.stringify(jsonData);
