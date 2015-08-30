@@ -28,12 +28,10 @@ $.get(commonUrl + 'sport/listSport', function (data) {
                 div.style.backgroundColor = "white";
                 div.style.color = "grey";
                 info.splice(info.indexOf(values.id), 1);
-                console.log(info);
             } else {
                 div.style.backgroundColor = "#4EC296";
                 div.style.color = "white";
                 info.push(values.id);
-                console.log(info);
             }
             flag = !flag;
         });

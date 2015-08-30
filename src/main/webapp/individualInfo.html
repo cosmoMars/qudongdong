@@ -129,8 +129,11 @@
                         <img src="assets/i/add.png" class="ii-sports-icon"/>
                     </a>
                 </span>
-                <span class="am-badge ii-sports"><img src="assets/i/sports/run.png" class="ii-sports-icon"/></span>
+                {{#each sports}}
+                <span class="am-badge ii-sports"><img src="{{iconUrl}}" class="ii-sports-icon"/></span>
+                {{/each}}
                 喜欢的运动
+
             </li>
             <li>
                 <a class="ii-href" href="clause.html"></a>
