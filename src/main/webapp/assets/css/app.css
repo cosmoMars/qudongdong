@@ -288,7 +288,7 @@ datingRequest
     border-width: 0px;
 }
 
-.dr-require-li{
+.dr-require-li {
     margin-top: 47px;
     margin-bottom: -57px;
 }
@@ -639,7 +639,15 @@ indivadualInfo
     padding-right: 15px;
 }
 
-.ii-sports {
+.ii-sports{
+    color: #66727d;
+    background-color: white;
+    font-weight: normal;
+    padding-left: 0px;
+    padding-right: 3px;
+}
+
+.ii-sports-icon {
     width: 25px;
     height: 25px;
 }
@@ -697,9 +705,11 @@ addDating
 .ad-content {
     height: 60px;
     width: 100%;
-    border:solid 1px grey; border-radius:3px;
+    border: solid 1px grey;
+    border-radius: 3px;
     resize: none;
 }
+
 .ad-content:focus {
     outline: none;
 }
@@ -739,4 +749,19 @@ addDating
 .am-list-border > li > a:focus, .am-list-border > li > a:hover .am-u-sm-4 > a:focus, .am-u-sm-4 > a:hover {
     background-color: transparent;
 !important;
+}
+
+.am-avg-sm-2 > li > div {
+    margin: 0 auto;
+    width: 95px;
+    height: 35px;
+    color: grey;
+    text-align: center;
+    font-size: 14px;
+    background-color: white;
+    padding-top: 5px;
+}
+.am-avg-sm-2 > li > div >img{
+    width: 25px;
+    height: 25px;
 }
