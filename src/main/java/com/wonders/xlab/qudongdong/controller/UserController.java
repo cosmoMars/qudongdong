@@ -4,6 +4,7 @@ import com.wonders.xlab.framework.controller.AbstractBaseController;
 import com.wonders.xlab.framework.repository.MyRepository;
 import com.wonders.xlab.qudongdong.dto.UserDto;
 import com.wonders.xlab.qudongdong.dto.result.ControllerResult;
+import com.wonders.xlab.qudongdong.entity.Sport;
 import com.wonders.xlab.qudongdong.entity.SportOrder;
 import com.wonders.xlab.qudongdong.entity.User;
 import com.wonders.xlab.qudongdong.repository.SportOrderRepository;
@@ -14,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by mars on 15/8/18.
@@ -37,6 +40,8 @@ public class UserController extends AbstractBaseController<User, Long> {
     public Object retrieveInfo(@PathVariable long userId) {
 
         User user = userRepository.findOne(userId);
+        Set<Sport> sports = new HashSet<>(user.getSports());
+        user.setSports(sports);
 
         return new ControllerResult<>()
                 .setRet_code(0)
