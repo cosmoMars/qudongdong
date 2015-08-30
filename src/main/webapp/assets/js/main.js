@@ -14,7 +14,6 @@ var userId = GetQueryString("userId");
 if (userId != null) {
     var userId_ = decodeURIComponent(userId);
     $.get(commonUrl + 'user/validateUser/' + userId_, function (data) {
-        console.log(data.ret_code);
         if (data.ret_code == -1) {
             $('#imgAdd').click(function () {
                 $('#status').html(data.ret_values);

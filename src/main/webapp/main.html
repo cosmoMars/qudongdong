@@ -122,10 +122,9 @@
                             <div><span class="main-item">{{sportName}}</span> <span class="main-start-time">{{startTime}}-{{endTime}}</span>
                             </div>
                             <div>
-                                <img src="assets/i/sports/run.png" class="main-sports"/>
-                                <img src="assets/i/sports/yoga.png" class="main-sports"/>
-                                <img src="assets/i/sports/swiming.png" class="main-sports"/>
-                                <img src="assets/i/sports/badminton.png" class="main-sports"/>
+                                {{#each sports}}
+                                <img src="{{iconUrl}}" class="main-sports"/>
+                                {{/each}}
                             </div>
                         </div>
                     </div>
@@ -149,6 +148,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </li>
     </ul>
     {{/each}}
