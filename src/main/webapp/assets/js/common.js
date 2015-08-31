@@ -54,3 +54,4 @@ wx.ready(function () {
         });
     };
 })
+wx.hideOptionMenu();
