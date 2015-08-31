@@ -21,7 +21,7 @@ function getSex(type) {
  * Copyright 2015,谢俊
  * 时间:2015年6月9号 10:18
  */
-$.get(commonUrl + '/weChat/getJsConfig', function(data) {
+$.get(commonUrl + '/weChat/getJsConfig/'+location.href, function(data) {
     wxconfig(data);
 });
 
