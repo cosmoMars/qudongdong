@@ -55,7 +55,7 @@ public class UEditorController {
             try {
                 String fileName = "healtharticle-image-" + String.valueOf((new Date()).getTime()) + "-" + upfile.getOriginalFilename();
 
-                if (QiniuUtils.upload(upfile.getBytes(), "/integral-mall", fileName)) {
+                if (QiniuUtils.upload(upfile.getBytes(), "qudongdong", fileName)) {
                     return new UploadResult().setState("SUCCESS").setTitle(fileName).setOriginal(fileName).setUrl(fileName);
                 }
                 // {"url" : "http://7xk3mz.com2.z0.glb.qiniucdn.com/healtharticle-image-1436684006380"}
