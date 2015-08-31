@@ -77,7 +77,7 @@
                         <div class="main-center">
                             {{#if official}}
                             <a href="officialInfo.html?orderId={{orderId}}"><img src="{{avatarUrl}}"
-                                                                           class="am-radius main-radius"/></a>
+                                                                                 class="am-radius main-radius"/></a>
                             {{else}}
                             <a href="timeLine.html?userId={{userId}}"><img src="{{avatarUrl}}"
                                                                            class="am-radius main-radius"/></a>
@@ -163,7 +163,7 @@
                 加入成功！
             </div>
             <div class="am-modal-footer">
-                <span class="am-modal-btn">好哒</span>
+                <span class="am-modal-btn" onclick="toReload()">好哒</span>
             </div>
         </div>
     </div>
