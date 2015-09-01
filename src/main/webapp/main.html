@@ -109,23 +109,27 @@
                             </div>
                         </div>
                         <div class="am-u-sm-8 main-right">
+                            <div>
+                                <span class="main-item">{{sportName}}</span>
+                                <span class="main-item">单独约</span>
+                                <span class="main-start-time">{{startTime}}-{{endTime}}</span>
+                            </div>
                             <div class="main-location">地点：{{location}}</div>
                             <div class="main-time">{{diffTime}} 前发布
                                 {{#if official}}
                                 <img src="assets/i/zaodong.jpg" class="main-logo"/>
                                 {{/if}}
                             </div>
-                            <div class="main-people">
-                                <img src="assets/i/people.png"
-                                     class="main-icon-people">
-                                {{#if official}}
-                                {{currentPeople}}人 | {{peopleCount}}人
-                                {{else}}
-                                <span>单独约</span>
-                                {{/if}}
-                            </div>
-                            <div><span class="main-item">{{sportName}}</span> <span class="main-start-time">{{startTime}}-{{endTime}}</span>
-                            </div>
+                            <!--<div class="main-people">-->
+                                <!--<img src="assets/i/people.png"-->
+                                     <!--class="main-icon-people">-->
+                                <!--{{#if official}}-->
+                                <!--{{currentPeople}}人 | {{peopleCount}}人-->
+                                <!--{{else}}-->
+                                <!--<span>单独约</span>-->
+                                <!--{{/if}}-->
+                            <!--</div>-->
+
                             <div>
                                 {{#each sports}}
                                 <img src="{{iconUrl}}" class="main-sports"/>
