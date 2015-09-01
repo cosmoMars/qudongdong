@@ -213,7 +213,7 @@ public class WeChatNotifyController {
         try {
             String url = null;
             if (StringUtils.equals(state, "list")) {
-                url = "http://101.231.124.8:45698/qdd/main.html?userId=" + user.getId();
+                url = "http://zao.reindeerjob.com/main.html?userId=" + user.getId();
             } /*else if (StringUtils.equals(state, "user")) {
                 url = "http://101.231.124.8:45698/qdd/individualInfo.html?userId=" + user.getId();
             } else if (StringUtils.equals(state, "friend")) {

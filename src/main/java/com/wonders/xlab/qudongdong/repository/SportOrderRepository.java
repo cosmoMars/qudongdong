@@ -18,6 +18,7 @@ public interface SportOrderRepository extends MyRepository<SportOrder, Long> {
 
     SportOrder findTopByUserIdOrderByCreatedDateDesc(long userId);
 
-    @Query("from SportOrder sp where date_format(sp.createdDate, '%Y-%m-%d') = date_format(?1, '%Y-%m-%d')")
-    List<SportOrder> findTopByToday(Date today, Pageable pageable);
+    @Query("from SportOrder sp where date_format(sp.createdDate, '%Y-%m-%d') = date_format(?1, '%Y-%m-%d') and sp.official = false ")
+    List<SportOrder> findTopByTodayWithOutOfficial(Date today, Pageable pageable);
+
 }

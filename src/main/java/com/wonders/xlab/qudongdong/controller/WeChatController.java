@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.UnsupportedEncodingException;
@@ -43,8 +41,8 @@ public class WeChatController {
     @Qualifier(value = "accessTokenCache")
     private HCCache<String, String> accessTokenCache;
 
-    @RequestMapping(value = "getJsConfig", method = RequestMethod.GET)
-    public Map<String, String> getJsConfig() {
+    @RequestMapping(value = "getJsConfig", method = RequestMethod.POST)
+    public Map<String, String> getJsConfig(@RequestParam String url) {
 
         if (StringUtils.isEmpty(accessTokenCache.getFromCache("token"))) {
 
@@ -60,7 +58,7 @@ public class WeChatController {
         JsonNode ticketNode = restTemplate.getForObject("https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=" + accessTokenCache.getFromCache("token") + "&type=jsapi", JsonNode.class);
 
         if (!StringUtils.isEmpty(ticketNode.get("ticket").asText())) {
-            return sign(ticketNode.get("ticket").asText(), "http://zao.reindeerjob.com");
+            return sign(ticketNode.get("ticket").asText(), url);
         }
 
         return null;

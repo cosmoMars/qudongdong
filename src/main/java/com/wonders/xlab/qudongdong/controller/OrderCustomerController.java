@@ -159,6 +159,12 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
         OrderCustomer orderCustomer = orderCustomerRepository.findOne(ocId);
 
         SportOrder sportOrder = orderCustomer.getSportOrder();
+        if (new Date().getTime() > sportOrder.getStartTime().getTime()) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("该信息已过期")
+                    .setMessage("失败");
+        }
 
         List<OrderCustomer>  orderCustomers = new ArrayList<>(sportOrder.getOrderCustomers());
 
