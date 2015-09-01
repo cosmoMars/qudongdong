@@ -82,21 +82,26 @@ public class UserController extends AbstractBaseController<User, Long> {
                             .setMessage("失败");
                 }
                 user.setTel(info);
-
+                break;
             case 1:
                 if (info.equals("Female")) {
                     user.setSex(User.Sex.Female);
                 } else if (info.equals("Male")) {
                     user.setSex(User.Sex.Male);
                 }
+                break;
             case 2:
                 user.setAge(Integer.parseInt(info));
+                break;
             case 3:
                 user.setHeight(Double.parseDouble(info));
+                break;
             case 4:
                 user.setWeight(Double.parseDouble(info));
+                break;
             case 5:
                 user.setWeChat(info);
+                break;
             case 6:
                 String[] str = StringUtils.split(info, ",");
                 List<Long> ids = new ArrayList<>();
@@ -108,13 +113,13 @@ public class UserController extends AbstractBaseController<User, Long> {
                 for (int i = 0; i < str.length; i++) {
                     System.out.println(str[i]);
                 }
+                break;
         }
         userRepository.save(user);
         return new ControllerResult<>()
                 .setRet_code(0)
                 .setRet_values("修改成功！")
                 .setMessage("成功");
-
     }
 
 

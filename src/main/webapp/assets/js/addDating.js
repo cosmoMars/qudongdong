@@ -2,17 +2,46 @@
  * Created by 倩钰 on 2015/8/24.
  */
 
+var info = new Array();
+
 $(function () {
-    /*$('#title-btn').on('click', function () {
-     $('#ad-title').modal({
-     relatedTarget: this,
-     onConfirm: function (e) {
-     $('#title-text').html(e.data);
-     },
-     onCancel: function (e) {
-     }
-     });
-     });*/
+
+    $('#title-btn').on('click', function () {
+        $.get(commonUrl + 'sport/listSport', function (data) {
+            var listTemple = Handlebars.compile($('#sports').html());
+            $('#ss-main').html(listTemple(data.ret_values));
+            $.each(data.ret_values, function selectSports(n, values) {
+                var div = document.getElementById("sportsCover" + values.id);
+                //var flag;
+                $("#sports" + values.id).click(function () {
+                    div.style.display = "block";
+                    if (info.length != 0) {
+                        for (var i = 0; i < info.length; i++) {
+                            var div1 = document.getElementById("sportsCover" + info[i]);
+                            div1.style.display = "none";
+                            info.splice(info.indexOf(i), 1);
+                            console.log(info);
+                        }
+                    }
+                    info.push(values.id);
+                    console.log(info);
+                    $('#ss-title').val(values.name);
+                });
+                //$("#sportsCover" + values.id).click(function () {
+                //    info.splice(info.indexOf(values.id), 1);
+                //});
+            });
+        });
+
+        $('#ad-title').modal({
+            relatedTarget: this,
+            onConfirm: function (e) {
+                $('#title-text').html(e.data);
+            },
+            onCancel: function (e) {
+            }
+        });
+    });
 
     $('#location-btn').on('click', function () {
         $('#ad-location').modal({
@@ -103,18 +132,20 @@ function getAge(type) {
 };
 
 function generateOrder() {
+    console.log(info[0]);
+    var title = $('#title-text').html();
     var location = $('#location-text').html();
     var partner = getPartner($('#partner-text').html());
     var age = getAge($('#age-text').html());
-    var startTime = $('#startTime-text').attr('data-time')||'';
-    var endTime = $('#endTime-text').attr('data-time')||'';
-    if(new Date(startTime)>= new Date(endTime)){
+    var startTime = $('#startTime-text').attr('data-time') || '';
+    var endTime = $('#endTime-text').attr('data-time') || '';
+    if (new Date(startTime) >= new Date(endTime)) {
         $('#status').html("开始时间必须小于结束时间哦！");
         $('#my-alert').modal({relatedTarget: this});
         return false;
     }
     var content = $('#content-text').val();
-    if (location.length == 0 || partner.length == 0 || age.length == 0 || startTime.length == 0 || endTime.length == 0 || content.length == 0) {
+    if (location.length == 0 || partner.length == 0 || age.length == 0 || startTime.length == 0 || endTime.length == 0 || content.length == 0 || title.length == 0) {
         $('#status').html("您还有字段未填写哦！");
         $('#my-alert').modal({relatedTarget: this,});
     }
@@ -144,7 +175,9 @@ function generateOrder() {
 
         var data = JSON.stringify(jsonData);
 
-        var generateOrderUrl = commonUrl + 'order/generateOrder/' + userId_ + '/1';
+        var generateOrderUrl = commonUrl + 'order/generateOrder/' + userId_ + '/' + info[0];
+
+        console.log(generateOrderUrl);
 
         $.ajax({
             url: generateOrderUrl,
@@ -171,7 +204,7 @@ function generateOrder() {
 }
 
 function toMain() {
-    location.href = 'main.html?userId='+userId_;
+    location.href = 'main.html?userId=' + userId_;
 }
 
 function startDone() {

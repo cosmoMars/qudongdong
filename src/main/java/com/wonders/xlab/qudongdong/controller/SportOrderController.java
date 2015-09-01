@@ -128,18 +128,40 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
     /**
      * 订单列表
+     *
      * @param pageable
      * @return
      */
     @RequestMapping(value = "listSportOrder/{userId}", method = RequestMethod.GET)
-    private Object listSportOrder(
-            @PageableDefault(sort = "createdDate", direction = Sort.Direction.DESC)
-            Pageable pageable) {
-        List<SportOrder> orderPages = sportOrderRepository.findTopByToday(new Date(), pageable);
+    private Object listSportOrder(@RequestParam(required = false) String loaction,
+                                  @RequestParam(required = false) Integer sex,
+                                  @RequestParam(required = false) Integer age,
+                                  @PageableDefault(sort = "createdDate", direction = Sort.Direction.DESC)
+                                  Pageable pageable) {
+
+        JsonNodeFactory nodeFactory = objectMapper.getNodeFactory();
+        ObjectNode resultNode = nodeFactory.objectNode();
+        Map<String, Object> filters = new HashMap<>();
+        Date now = new Date();
+        filters.put("startTime_lessThanOrEqualTo", now);
+        filters.put("endTime_greaterThanOrEqualTo", now);
+        filters.put("official_equal", true);
+
+        List<SportOrder> officialOrders = sportOrderRepository.findAll(filters);
+        List<Map<String, Object>> officialList = new ArrayList<>();
+        for (SportOrder soo : officialOrders) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("orderId", soo.getId());
+            map.put("content", soo.getContent());
+            officialList.add(map);
+        }
+
+        resultNode.putPOJO("officialOrder", officialList);
+
+        List<SportOrder> orderPages = sportOrderRepository.findTopByTodayWithOutOfficial(now, pageable);
 
         List<OrderDto> orderDtos = new ArrayList<>();
 
-        Date now = new Date();
         for (SportOrder order : orderPages) {
             OrderDto dto = new OrderDto();
             dto.setOrderId(order.getId());
@@ -155,7 +177,6 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             dto.setSportName(order.getSport().getName());
             dto.setSports(new ArrayList<>(order.getUser().getSports()));
             dto.setContent(order.getContent());
-            dto.setOfficial(order.isOfficial());
 
             int diffTime = WdDateUtils.calculatePeiorMiniutesOfTwoDate(order.getCreatedDate(), now);
             if (diffTime < 60) {
@@ -176,15 +197,17 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             dto.setAge(order.getUser().getAge());
             orderDtos.add(dto);
         }
+        resultNode.putPOJO("sportOrder", orderDtos);
 
         return new ControllerResult<>()
                 .setRet_code(0)
-                .setRet_values(orderDtos)
+                .setRet_values(resultNode)
                 .setMessage("成功");
     }
 
     /**
      * 时光轴
+     *
      * @param userId
      * @return
      */
@@ -231,6 +254,11 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
                 .setMessage("成功");
     }
 
+    /**
+     * 获取htmlInfo
+     * @param orderId
+     * @return
+     */
     @RequestMapping(value = "getOrderHtmlInfo/{orderId}", method = RequestMethod.GET)
     public Object getOrderHtmlInfo(@PathVariable long orderId) {
 

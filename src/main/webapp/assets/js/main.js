@@ -70,3 +70,7 @@ function generateOrderCustomer(orderId) {
         }
     });
 }
+
+function toReload() {
+    location.href = 'main.html?userId=' + userId_;
+}

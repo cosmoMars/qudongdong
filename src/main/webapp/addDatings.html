@@ -42,9 +42,9 @@
     <div class="ad-info">
         <ul class="am-list am-list-static am-list-border">
             <li>
-                <!--<a class="ii-href" id="title-btn"></a>-->
-                <span class="am-badge ad-badge" id="title-text">跑步</span>
-                <i class="am-icon-chevron-right" style="display: none"></i>
+                <a class="ii-href" id="title-btn"></a>
+                <span class="am-badge ad-badge" id="title-text"></span>
+                <i class="am-icon-chevron-right"></i>
                 主题
             </li>
             <li>
@@ -101,8 +101,10 @@
 <div class="am-modal am-modal-prompt" tabindex="-1" id="ad-title">
     <div class="am-modal-dialog">
         <div class="am-modal-bd">
-            请选择运动主题
-            <input type="text" class="am-modal-prompt-input">
+            <div id="ss-main">
+            </div>
+            <input type="hidden" class="am-modal-prompt-input" id="ss-title">
+            <!--<input type="hidden" class="am-modal-prompt-input" id="ss-id">-->
         </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn" data-am-modal-cancel>取消</span>
@@ -200,7 +202,25 @@
 <![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
 <script src="assets/js/spinningwheel.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="assets/js/common.js"></script>
+<script src="assets/js/handlebars.min.js"></script>
 <script src="assets/js/addDating.js"></script>
+<script type="text/x-handlebars-template" id="sports">
+    <ul class="am-avg-sm-4 am-thumbnails">
+        {{#each this}}
+        <li>
+            <div class="am-round" style="background-color: inherit">
+                <img src="{{iconUrl}}" id="sports{{id}}" style="width: 35px;height: 35px;">
+                <span style="font-size: 12px;">{{name}}</span>
+                <!--<div class="am-round ss-cover" id="sportsCover{{id}}">-->
+                <img src="assets/i/confirm.png" class="ss-cover" id="sportsCover{{id}}"
+                     style="display: none; width: 35px;height: 35px; top: -62px; left: 8px"/>
+                <!--</div>-->
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</script>
 </body>
 </html>

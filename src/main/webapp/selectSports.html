@@ -36,11 +36,11 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body style="background-color: gainsboro">
-<div class="am-container" id="ss-main" style="margin-top: 150px;padding-right: 30px;padding-left: 30px">
+<body>
+<div class="am-container" id="ss-main" style="margin-top: 100px;padding-right: 30px;padding-left: 30px">
 </div>
 <div style="margin: 20px auto;width: 100px;">
-    <button onclick="selectSports()" class="am-btn am-btn-success am-round" style="width: 100%">
+    <button onclick="selectSports()" class="am-btn am-btn-success am-round am-btn-lg" style="width: 100%">
         好 哒
     </button>
 </div>
@@ -73,18 +73,20 @@
 <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 <script src="assets/js/amazeui.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="assets/js/common.js"></script>
 <script src="assets/js/handlebars.min.js"></script>
 <script src="assets/js/selectSports.js"></script>
 <script type="text/x-handlebars-template" id="sports">
-    <ul class="am-avg-sm-5 am-thumbnails">
+    <ul class="am-avg-sm-4 am-thumbnails">
         {{#each this}}
-        <li>
+        <li style="padding-bottom: 40px;">
             <div class="am-round ">
                 <img src="{{iconUrl}}" id="sports{{id}}">
-
-                <div class="am-round ss-cover" id="sportsCover{{id}}"></div>
-                <!--{{name}}-->
+                <span>{{name}}</span>
+                <!--<div class="am-round ss-cover" id="sportsCover{{id}}">-->
+                <img src="assets/i/confirm.png" class="ss-cover" id="sportsCover{{id}}" style="display: none;"/>
+                <!--</div>-->
             </div>
         </li>
         {{/each}}

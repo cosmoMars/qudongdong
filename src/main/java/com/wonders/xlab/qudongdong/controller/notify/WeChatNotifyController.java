@@ -167,10 +167,10 @@ public class WeChatNotifyController {
     public void recall(HttpServletRequest request, HttpServletResponse response) {
 
         String code = request.getParameter("code");
-        System.out.println("code = " + code);
+//        System.out.println("code = " + code);
         String responseText = restTemplate.getForObject("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + appId + "&secret=" + appSecret + "&code=" + code + "&grant_type=authorization_code", String.class);
 
-        System.out.println("responseText = " + responseText);
+//        System.out.println("responseText = " + responseText);
 
         Map resultMap = null;
         try {
@@ -181,7 +181,7 @@ public class WeChatNotifyController {
 
         String openId = (String) resultMap.get("openid");
 
-        System.out.println("openId = " + openId);
+//        System.out.println("openId = " + openId);
         String state = request.getParameter("state");
 
         User user = userRepository.findByOpenId(openId);
@@ -190,7 +190,7 @@ public class WeChatNotifyController {
             ResponseEntity<JsonNode> resultNode = restTemplate.getForEntity("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appId + "&secret=" + appSecret, JsonNode.class);
             JsonNode jsonNode = resultNode.getBody();
 
-            System.out.println("token = " + jsonNode.get("access_token").asText());
+//            System.out.println("token = " + jsonNode.get("access_token").asText());
 
             accessTokenCache.addToCache("token", jsonNode.get("access_token").asText());
 
@@ -201,13 +201,6 @@ public class WeChatNotifyController {
             ResponseEntity<JsonNode> responseUser = restTemplate.getForEntity("https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + accessTokenCache.getFromCache("token") + "&openid=" + openId, JsonNode.class);
             JsonNode nodeUser = responseUser.getBody();
             System.out.println("responseUser = " + nodeUser);
-
-//            Map resultUser = null;
-//            try {
-//                resultUser = objectMapper.readValue(responseUser.getBody(), HashMap.class);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
 
             User u = new User();
             u.setOpenId(openId);
@@ -220,12 +213,12 @@ public class WeChatNotifyController {
         try {
             String url = null;
             if (StringUtils.equals(state, "list")) {
-                url = "http://101.231.124.8:45698/qdd/main.html?userId=" + user.getId();
-            } else if (StringUtils.equals(state, "user")) {
+                url = "http://zao.reindeerjob.com/main.html?userId=" + user.getId();
+            } /*else if (StringUtils.equals(state, "user")) {
                 url = "http://101.231.124.8:45698/qdd/individualInfo.html?userId=" + user.getId();
             } else if (StringUtils.equals(state, "friend")) {
                 url = "http://101.231.124.8:45698/qdd/datingRequest.html?userId=" + user.getId();
-            }
+            }*/
             response.sendRedirect(url);
         } catch (IOException e) {
             e.printStackTrace();

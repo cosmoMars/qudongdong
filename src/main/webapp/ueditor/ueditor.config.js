@@ -32,7 +32,7 @@
 
         // 服务器统一请求接口路径
         //, serverUrl: 'http://10.10.11.17:8080/ue'
-        , serverUrl: 'http://localhost:8080/ue'
+        , serverUrl: 'http://101.231.124.8:45698/qdd/ue'
 
         ////工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
         //,imageUrl:"http://101.231.124.8:45677/xlab-healthcloud/discovery/cms/uploadPicture"             //图片上传提交地址
