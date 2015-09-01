@@ -138,7 +138,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
                                   @RequestParam(required = false) Integer age,
                                   @PageableDefault(sort = "createdDate", direction = Sort.Direction.DESC)
                                   Pageable pageable) {
-        
+
         JsonNodeFactory nodeFactory = objectMapper.getNodeFactory();
         ObjectNode resultNode = nodeFactory.objectNode();
         Map<String, Object> filters = new HashMap<>();
@@ -177,7 +177,6 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             dto.setSportName(order.getSport().getName());
             dto.setSports(new ArrayList<>(order.getUser().getSports()));
             dto.setContent(order.getContent());
-            dto.setOfficial(order.isOfficial());
 
             int diffTime = WdDateUtils.calculatePeiorMiniutesOfTwoDate(order.getCreatedDate(), now);
             if (diffTime < 60) {
