@@ -751,6 +751,9 @@ addDating
     background-color: transparent;
 !important;
 }
+.am-list-border>li>a:focus, .am-list-border>li>a:hover {
+    background-color: transparent;
+}
 
 .am-avg-sm-5 > li > div {
     margin: 0 auto;
