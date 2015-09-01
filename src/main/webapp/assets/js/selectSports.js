@@ -25,11 +25,11 @@ $.get(commonUrl + 'sport/listSport', function (data) {
         //var flag;
         $("#sports" + values.id).click(function () {
             div.style.display = "block";
-            info.splice(info.indexOf(values.id), 1);
+            info.push(values.id);
         });
         $("#sportsCover" + values.id).click(function () {
             div.style.display = "none";
-            info.push(values.id);
+            info.splice(info.indexOf(values.id), 1);
         });
     });
 });
