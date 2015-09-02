@@ -1,0 +1,177 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>主页</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="assets/i/logo.png">
+
+    <link rel="apple-touch-icon-precomposed" href="assets/i/logo.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/i/logo.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/i/logo.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/i/logo.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
+<body class="main-body">
+<ul class="am-list am-list-static am-list-border main-list main-margin" id="main-list" style="margin-bottom: 30px">
+</ul>
+<div class="main-side-bar main-top-bar">
+    <div class="am-g main-top">
+        <div class="am-u-sm-4"><span class="main-top-text">一起躁</span></div>
+        <div class="am-u-sm-4" style="color: grey"><a id="datingRequest" style="color:grey;display: block">躁友信息</a>
+        </div>
+        <div class="am-u-sm-4" style="color: grey"><a id="individualInfo" style="color:grey;display: block">我的信息</a>
+        </div>
+    </div>
+</div>
+<div class="main-side-bar main-bottom-bar">
+    <a href="#" id="imgUrl" style="display: block">
+        <img class="main-add" src="assets/i/add.png" id="imgAdd"/>
+    </a>
+</div>
+<div class="main-null" id="main-null"></div>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/handlebars.min.js"></script>
+<script src="assets/js/main.js"></script>
+<script type="text/x-handlebars-template" id="listBox">
+    {{#each this}}
+    <ul class="am-list am-list-static am-list-border main-list main-margin">
+        <li>
+            <div class="main-container">
+                <div class="am-g main-g">
+                    <div class="am-u-sm-4 main-left">
+                        <div class="main-center">
+                            {{#if official}}
+                            <a href="officialInfo.html?orderId={{orderId}}"><img src="{{avatarUrl}}"
+                                                                                 class="am-radius main-radius"/></a>
+                            {{else}}
+                            <a href="timeLine.html?userId={{userId}}"><img src="{{avatarUrl}}"
+                                                                           class="am-radius main-radius"/></a>
+                            {{/if}}
+
+                            <div class="main-gray">
+                                {{#if official}}
+                                <div class="main-name" style="width: 100%">{{nickName}}
+                                    {{else}}
+                                    <div class="main-name am-text-truncate">{{nickName}}
+                                        <span>{{age}}岁</span>
+                                        {{/if}}
+                                        {{#if official}}
+                                        {{else}}
+                                        {{#compare sex}}
+                                        <p class="am-icon-smile-o main-boy"
+                                           style="padding-right: 15px;padding-left: 4.5px;"></p>
+                                        {{else}}
+                                        {{#judge sex}}
+                                        <p class="am-icon-mars main-boy"></p>
+                                        {{else}}
+                                        <p class="am-icon-venus main-girl"
+                                           style="padding-right: 13.5px;padding-left: 5.5px;"></p>
+                                        {{/judge}}
+                                        {{/compare}}
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-8 main-right">
+                            <div>
+                                <span class="main-item">{{sportName}}</span>
+                                <span class="main-item">单独约</span>
+                                <span class="main-start-time">{{startTime}}-{{endTime}}</span>
+                            </div>
+                            <div class="main-location">地点：{{location}}</div>
+                            <div class="main-time">{{diffTime}} 前发布
+                                {{#if official}}
+                                <img src="assets/i/zaodong.jpg" class="main-logo"/>
+                                {{/if}}
+                            </div>
+                            <!--<div class="main-people">-->
+                            <!--<img src="assets/i/people.png"-->
+                            <!--class="main-icon-people">-->
+                            <!--{{#if official}}-->
+                            <!--{{currentPeople}}人 | {{peopleCount}}人-->
+                            <!--{{else}}-->
+                            <!--<span>单独约</span>-->
+                            <!--{{/if}}-->
+                            <!--</div>-->
+
+                            <div>
+                                {{#each sports}}
+                                <img src="{{iconUrl}}" class="main-sports"/>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main-container main-text-bottom">
+                    <div class="am-g main-g">
+                        <div class="am-u-sm-9 main-9">{{content}}</div>
+                        <div class="am-u-sm-3 main-3">
+                            <div class="main-button">
+                                {{#if enabled}}
+                                <button onclick="generateOrderCustomer('{{orderId}}')" type="button"
+                                        class="am-btn am-btn-success am-round am-btn-xs main-green" id="main-confirm">
+                                    一起躁
+                                </button>
+                                {{else}}
+                                <button type="button" class="am-btn am-btn-default am-round am-btn-xs"
+                                        disabled="disabled">来晚了
+                                </button>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    {{/each}}
+    <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-bd" id="status">
+                加入成功！
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" onclick="toReload()">好哒</span>
+            </div>
+        </div>
+    </div>
+</script>
+</body>
+</html>

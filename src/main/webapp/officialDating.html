@@ -39,71 +39,61 @@
 </head>
 <body class="ad-body">
 <div class="ad-container">
-    <div class="ad-info">
-        <ul class="am-list am-list-static am-list-border">
-            <li>
-                <!--<a class="ii-href" id="title-btn"></a>-->
-                <span class="am-badge ad-badge" id="title-text">跑步</span>
-                <i class="am-icon-chevron-right"></i>
+    <div class="ad-container">
+        <div class="ad-info">
+            <div class="ad-title">
                 主题
-            </li>
-            <li>
-                <a class="ii-href" id="location-btn"></a>
-                <span class="am-badge ad-badge" id="location-text"></span>
-                <i class="am-icon-chevron-right"></i>
+                <span class="am-badge ad-badge am-badge-danger" id="title-text"></span>
+                <a id="title-btn"><i class="am-icon-chevron-right ad-arrows"></i></a>
+            </div>
+            <div class="ad-location">
                 地点
-            </li>
-            <li>
-                <a class="ii-href" id="startTime-btn"></a>
-                <span class="am-badge ad-badge" id="startTime-text"></span>
-                <i class="am-icon-chevron-right"></i>
+                <span class="am-badge ad-badge am-badge-danger" id="location-text"></span>
+                <a id="location-btn"><i class="am-icon-chevron-right ad-arrows"></i></a>
+            </div>
+            <div class="ad-start">
                 开始时间
-            </li>
-            <li>
-                <a class="ii-href" id="endTime-btn"></a>
-                <span class="am-badge ad-badge" id="endTime-text"></span>
-                <i class="am-icon-chevron-right"></i>
+                <span class="am-badge ad-badge am-badge-danger" id="startTime-text"></span>
+                <a id="startTime-btn"><i class="am-icon-chevron-right ad-arrows"></i></a>
+            </div>
+            <div class="ad-end">
                 结束时间
-            </li>
-        </ul>
-    </div>
-    <div class="ad-info">
-        <ul class="am-list am-list-static am-list-border">
-            <li>
-                <a class="ii-href" id="numOfP-btn"></a>
-                <span class="am-badge ad-badge" id="numOfP-text"></span>
-                <i class="am-icon-chevron-right"></i>
+                <span class="am-badge ad-badge am-badge-danger" id="endTime-text"></span>
+                <a id="endTime-btn"><i class="am-icon-chevron-right ad-arrows"></i></a>
+            </div>
+        </div>
+        <div class="ad-info">
+            <div class="ad-partner">
                 人数
-            </li>
-            <li>
-                <a class="ii-href" id="partner-btn"></a>
-                <span class="am-badge ad-badge am-badge-danger" id="partner-text"></span>
-                <i class="am-icon-chevron-right"></i>
+                <span class="am-badge ad-badge am-badge-danger" id="numOfP-text"></span>
+                <a id="numOfP-btn"><i class="am-icon-chevron-right ad-arrows"></i></a>
+            </div>
+            <div class="ad-partner">
                 对象
-            </li>
-            <li>
-                <a class="ii-href" id="age-btn"></a>
-                <span class="am-badge ad-badge am-badge-danger" id="age-text"></span>
-                <i class="am-icon-chevron-right"></i>
+                <span class="am-badge ad-badge am-badge-danger" id="partner-text"></span>
+                <a id="partner-btn"><i class="am-icon-chevron-right ad-arrows"></i></a>
+            </div>
+            <div class="ad-age">
                 年龄
-            </li>
-        </ul>
-    </div>
-    <div class="ad-info">
-        <ul class="am-list am-list-static am-list-border">
-            <li>
-                <textarea class="ad-content" placeholder="空乏的说明是没有人会报名的" id="content-text"></textarea>
-                <span class="ad-limit">仅限12个字</span>
-            </li>
-        </ul>
-    </div>
-
-    <!--<textarea name="introduction" id="introduction" style="height:400px;"></textarea>-->
-     <script id="introduction" name="introduction" type="text/plain" style="height:800px;"></script>
-
-    <div class="ad-button">
-        <div class="ad-sub">
-            <button onclick="generateOfficialOrder()" class="am-btn am-btn-danger am-round ad-btn">确定发布</button>
+                <span class="am-badge ad-badge am-badge-danger" id="age-text"></span>
+                <a id="age-btn"><i class="am-icon-chevron-right ad-arrows"></i></a>
+            </div>
+        </div>
+        <div class="ad-info">
+            <ul class="am-list am-list-static am-list-border">
+                <li>
+                    <textarea class="ad-content" placeholder="空乏的说明是没有人会报名的" id="content-text"></textarea>
+                    <span class="ad-limit">仅限12个字</span>
+                </li>
+            </ul>
+        </div>
+        <!--<textarea name="introduction" id="introduction" style="height:400px;"></textarea>-->
+        <script id="introduction" name="introduction" type="text/plain"
+                style="height:500px;margin-bottom:20px;"></script>
+        <div class="ad-button">
+            <div class="ad-sub">
+                <button onclick="generateOfficialOrder()" class="am-btn am-btn-danger am-round ad-btn">确定发布</button>
+            </div>
         </div>
     </div>
 </div>
@@ -227,9 +217,8 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="assets/js/common.js"></script>
 <script src="assets/js/officialDating.js"></script>
-
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         var ue = UE.getEditor('introduction');
     });
 </script>

@@ -56,7 +56,6 @@ $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
     }
 })
 
-
 function generateOrderCustomer(orderId) {
     var generateOrderCustomerUrl = commonUrl + 'orderCustomer/generateOrderCustomer/ ' + orderId + '/' + userId_;
     $.get(generateOrderCustomerUrl, function (data) {

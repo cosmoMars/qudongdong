@@ -39,10 +39,10 @@
 <body class="ii-body">
 <div class="main-side-bar main-top-bar">
     <div class="am-g main-top">
-        <div class="am-u-sm-4" style="color: grey"><a id="main" style="color:grey;display: block">一起躁</a></div>
-        <div class="am-u-sm-4" style="color: grey"><a id="datingRequest" style="color:grey;display: block">躁友信息</a>
+        <div class="am-u-sm-3" style="color: grey"><a id="main" style="color:grey;display: block">一起躁</a></div>
+        <div class="am-u-sm-6" style="color: grey"><a id="datingRequest" style="color:grey;display: block">躁友信息</a>
         </div>
-        <div class="am-u-sm-4"><span class="main-top-text">我的信息</span></div>
+        <div class="am-u-sm-3"><span class="main-top-text">我的信息</span></div>
     </div>
 </div>
 <div class="ii-container" id="ii-main">
@@ -62,87 +62,69 @@
 <script src="assets/js/individualInfo.js"></script>
 <script type="text/x-handlebars-template" id="individualInfo">
     <div class="ii-info">
-        <ul class="am-list am-list-static am-list-border">
-            <li>
-                <div class="ii-avatar">
-                    <img src="{{avatarUrl}}" class="am-radius"/>
-
-                    <div class="ii-title">头像</div>
-                </div>
-            </li>
-            <li>
-                <span class="am-badge ii-badge">{{nickName}}</span>
-                昵称
-            </li>
-            <li>
-                <a class="ii-href" id="tel-btn"></a>
-                <span class="am-badge ii-badge am-badge-danger" id="text-tel">{{tel}}</span>
-                <i class="am-icon-chevron-right"></i>
-                手机号
-            </li>
-            <li>
-                <a class="ii-href" id="weChat-btn"></a>
-                <span class="am-badge ii-badge am-badge-danger" id="text-weChat">{{weChat}}</span>
-                <i class="am-icon-chevron-right"></i>
-                微信号
-            </li>
-            <li>
-                <a class="ii-href" href="timeLine.html?userId={{id}}"></a>
-                <i class="am-icon-chevron-right"></i>
-                时光轴
-            </li>
-            <!--<li>-->
-            <!--<a class="ii-href" href="datingRequest.html?userId={{id}}"></a>-->
-            <!--<i class="am-icon-chevron-right"></i>-->
-            <!--我的约伴-->
-            <!--</li>-->
-        </ul>
+        <div class="ii-avatar">
+            头像
+            <img src="{{avatarUrl}}" class="am-radius"/>
+        </div>
+        <div class="ii-nickName">
+            昵称
+            <span class="am-badge ii-badge">{{nickName}}</span>
+        </div>
+        <div class="ii-tel">
+            手机号
+            <span class="am-badge ii-badge am-badge-danger" id="text-tel">{{tel}}</span>
+            <a class="" id="tel-btn"><i class="am-icon-chevron-right ii-arrows"></i> </a>
+        </div>
+        <div class="ii-weChat">
+            微信号
+            <span class="am-badge ii-badge am-badge-danger" id="text-weChat">{{weChat}}</span>
+            <a id="weChat-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>
+        </div>
+        <div class="ii-timeLine">
+            时光轴
+            <a href="timeLine.html?userId={{id}}">
+                <i class="am-icon-chevron-right ii-arrows"></i>
+            </a>
+        </div>
     </div>
     <div class="ii-info">
-        <ul class="am-list am-list-static am-list-border">
-            <li>
-                <a class="ii-href" id="gender-btn"></a>
-                <span class="am-badge ii-badge am-badge-danger" id="text-gender"></span>
-                <i class="am-icon-chevron-right"></i>
-                性别
-            </li>
-            <li>
-                <a class="ii-href" id="age-btn"></a>
-                <span class="am-badge ii-badge am-badge-danger" id="text-age">{{age}}岁</span>
-                <i class="am-icon-chevron-right"></i>
-                年龄
-            </li>
-            <li>
-                <a class="ii-href" id="height-btn"></a>
-                <span class="am-badge ii-badge am-badge-danger" id="text-height">{{height}}cm</span>
-                <i class="am-icon-chevron-right"></i>
-                身高
-            </li>
-            <li>
-                <a class="ii-href" id="weight-btn"></a>
-                <span class="am-badge ii-badge am-badge-danger" id="text-weight">{{weight}}kg</span>
-                <i class="am-icon-chevron-right"></i>
-                体重
-            </li>
-            <li style="height: 56px;padding-top: 16px">
-                <span class="am-badge ii-sports">
-                    <a href="selectSports.html?userId={{id}}">
-                        <i class="am-icon-plus-circle am-icon-lg" style="color: grey;margin-top: -7px;"></i>
-                        <!--<img src="assets/i/add.png" class="ii-sports-icon"/>-->
-                    </a>
-                </span>
+        <div class="ii-gender">
+            性别
+            <span class="am-badge ii-badge am-badge-danger" id="text-gender"></span>
+            <a id="gender-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>
+        </div>
+        <div class="ii-age">
+            年龄
+            <span class="am-badge ii-badge am-badge-danger" id="text-age">{{age}}岁</span>
+            <a id="age-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>
+        </div>
+        <div class="ii-height">
+            身高
+            <span class="am-badge ii-badge am-badge-danger" id="text-height">{{height}}cm</span>
+            <a id="height-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>
+        </div>
+        <div class="ii-weight">
+            体重
+            <span class="am-badge ii-badge am-badge-danger" id="text-weight">{{weight}}kg</span>
+            <a id="weight-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>
+        </div>
+        <div class="ii-sports">
+            喜欢的运动
+            <div class="am-badge ii-icon">
                 {{#each sports}}
-                <span class="am-badge ii-sports"><img src="{{iconUrl}}" class="ii-sports-icon"/></span>
+                <img src="{{iconUrl}}" class="ii-sports-icon"/>
                 {{/each}}
-                喜欢的运动
-
-            </li>
-            <li>
-                <a class="ii-href" href="clause.html"></a>
-                <i class="am-icon-chevron-right"></i>
-                隐私条款
-            </li>
-        </ul>
+                <a href="selectSports.html?userId={{id}}">
+                    <i class="am-icon-plus-circle am-icon-lg" style="color: darkgrey"></i>
+                </a>
+            </div>
+        </div>
+        <div class="ii-clause">
+            隐私条款
+            <a href="clause.html">
+                <i class="am-icon-chevron-right ii-arrows"></i>
+            </a>
+        </div>
     </div>
     <div class="am-modal am-modal-prompt" tabindex="-1" id="ii-tel">
         <div class="am-modal-dialog">

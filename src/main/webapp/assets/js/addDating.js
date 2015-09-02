@@ -149,11 +149,11 @@ function generateOrder() {
         $('#status').html("您还有字段未填写哦！");
         $('#my-alert').modal({relatedTarget: this,});
     }
-    else if (content.length >= 12) {
+    else if (content.length >= 13) {
         $('#status').html("说明仅限12个字哦！");
         $('#my-alert').modal({relatedTarget: this,});
     }
-    else if (location.length >= 15) {
+    else if (location.length >= 16) {
         $('#status').html("地点仅限15个字哦！");
         $('#my-alert').modal({relatedTarget: this,});
     }
