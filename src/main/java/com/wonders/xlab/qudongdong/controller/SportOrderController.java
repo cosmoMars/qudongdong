@@ -65,6 +65,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
                                 @RequestBody SportOrderDto sportOrderDto) {
         Date now = new Date();
         try {
+            // 判断时间限制
             Date startTime = DateUtils.parseDate(sportOrderDto.getStartTime(), "yyyy-MM-dd HH:mm");
             Date endTime = DateUtils.parseDate(sportOrderDto.getEndTime(), "yyyy-MM-dd HH:mm");
             if (now.getTime() > startTime.getTime()) {
@@ -79,12 +80,6 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
                         .setRet_values("骚年，躁动时间要30分钟以上哦")
                         .setMessage("失败");
             }
-//            if(startTime.getTime() > endTime.getTime()) {
-//                return new ControllerResult<>()
-//                        .setRet_code(-1)
-//                        .setRet_values("请填写正确的躁动时间哦～")
-//                        .setMessage("失败");
-//            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -97,13 +92,14 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         }
         Sport sport = sportRepository.findOne(sportId);
 
-//        SportOrder existOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
-//        if (existOrder != null && org.apache.commons.lang3.time.DateUtils.isSameDay(new Date(), existOrder.getCreatedDate())) {
-//            return new ControllerResult<>()
-//                    .setRet_code(-1)
-//                    .setRet_values("亲，你今天已经躁动过咯～")
-//                    .setMessage("失败");
-//        }
+        // TODO: 暂时设定每天一条
+        SportOrder existOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
+        if (existOrder != null && DateUtils.isSameDay(new Date(), existOrder.getCreatedDate())) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("亲，你今天已经躁动过咯～")
+                    .setMessage("失败");
+        }
 
         SportOrder sportOrder = sportOrderDto.toNewOrder();
 
@@ -116,7 +112,6 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         } else {
             sportOrder.setOfficial(false);
             sportOrder.setPeopleCount(1);
-
         }
         sportOrderRepository.save(sportOrder);
 
@@ -141,6 +136,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
         JsonNodeFactory nodeFactory = objectMapper.getNodeFactory();
         ObjectNode resultNode = nodeFactory.objectNode();
+        // 查询官方的订单
         Map<String, Object> filters = new HashMap<>();
         Date now = new Date();
         filters.put("startTime_lessThanOrEqualTo", now);
@@ -158,8 +154,8 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
         resultNode.putPOJO("officialOrder", officialList);
 
+        // 查询用户发出的订单
         List<SportOrder> orderPages = sportOrderRepository.findTopByTodayWithOutOfficial(now, pageable);
-
         List<OrderDto> orderDtos = new ArrayList<>();
 
         for (SportOrder order : orderPages) {

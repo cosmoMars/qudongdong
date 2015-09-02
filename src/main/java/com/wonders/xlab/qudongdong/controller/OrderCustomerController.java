@@ -14,6 +14,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -80,6 +82,55 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
         return new ControllerResult<>()
                 .setRet_code(0)
                 .setRet_values(list)
+                .setMessage("成功");
+    }
+
+
+    @RequestMapping(value = "listOrderCustomerByStatus/{userId}/{past}", method = RequestMethod.GET)
+    public Object listOrderCustomerByStatus(@PathVariable long userId,
+                                            @PathVariable boolean past,
+                                            Pageable pageable) {
+
+        SportOrder sportOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
+
+        if (sportOrder == null || !DateUtils.isSameDay(new Date(), sportOrder.getCreatedDate())) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("骚年，今天还没有发起订单哦")
+                    .setMessage("失败");
+        }
+        List<OrderCustomer> orderCustomers;
+        Page<OrderCustomer> orderCustomerPage;
+        if (!past) {
+            orderCustomerPage = orderCustomerRepository.findBySportOrderIdAndUserAgreeIsNull(sportOrder.getId(), pageable);
+        } else {
+            orderCustomerPage = orderCustomerRepository.findBySportOrderIdAndUserAgreeIsTrueOrderByCreatedDateDesc(sportOrder.getId(), pageable);
+        }
+        if (orderCustomerPage.hasContent()) {
+            orderCustomers = orderCustomerPage.getContent();
+        } else {
+            orderCustomers = new ArrayList<>();
+        }
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (OrderCustomer oCustomer : orderCustomers) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("orderCId", oCustomer.getId());
+            map.put("customerId", oCustomer.getCustomer().getId());
+            map.put("nickName", oCustomer.getCustomer().getNickName());
+            map.put("avatar", oCustomer.getCustomer().getAvatarUrl());
+            map.put("age", oCustomer.getCustomer().getAge());
+            map.put("city", oCustomer.getCustomer().getCity());
+            map.put("sex", oCustomer.getCustomer().getSex().ordinal());
+            map.put("agree", oCustomer.getUserAgree());
+
+            list.add(map);
+        }
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("list", list);
+        resultMap.put("more", orderCustomerPage.hasNext());
+        return new ControllerResult<>()
+                .setRet_code(0)
+                .setRet_values(resultMap)
                 .setMessage("成功");
     }
 
@@ -166,7 +217,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
                     .setMessage("失败");
         }
 
-        List<OrderCustomer>  orderCustomers = new ArrayList<>(sportOrder.getOrderCustomers());
+        List<OrderCustomer> orderCustomers = new ArrayList<>(sportOrder.getOrderCustomers());
 
         for (OrderCustomer customer : orderCustomers) {
             if (customer.getId() == ocId) {
@@ -186,10 +237,10 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
         orderCustomerRepository.save(orderCustomers);
         if (agree) {
             // 发送给申请人
-            SmsUtils.sendInviteSucceedMessage(orderCustomer.getCustomer().getTel(), sportOrder.getUser().getNickName(),  sportOrder.getUser().getWeChat());
+            SmsUtils.sendInviteSucceedMessage(orderCustomer.getCustomer().getTel(), sportOrder.getUser().getNickName(), sportOrder.getUser().getWeChat());
 
             // 发送给发起人
-            SmsUtils.sendInviteSucceedMessage(sportOrder.getUser().getTel(), orderCustomer.getCustomer().getNickName(),  orderCustomer.getCustomer().getWeChat());
+            SmsUtils.sendInviteSucceedMessage(sportOrder.getUser().getTel(), orderCustomer.getCustomer().getNickName(), orderCustomer.getCustomer().getWeChat());
 
             sportOrder.setCurrentCount(sportOrder.getCurrentCount() + 1);
 

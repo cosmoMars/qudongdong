@@ -2,6 +2,8 @@ package com.wonders.xlab.qudongdong.repository;
 
 import com.wonders.xlab.framework.repository.MyRepository;
 import com.wonders.xlab.qudongdong.entity.OrderCustomer;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -15,5 +17,9 @@ public interface OrderCustomerRepository extends MyRepository<OrderCustomer, Lon
     OrderCustomer findBySportOrderIdAndCustomerId(long sportOrderId, long customerId);
 
     List<OrderCustomer> findBySportOrderIdAndCustomerIdNot(long sportOrderId, long customerId);
+
+    Page<OrderCustomer> findBySportOrderIdAndUserAgreeIsNull(long sportOrderId, Pageable pageable);
+
+    Page<OrderCustomer> findBySportOrderIdAndUserAgreeIsTrueOrderByCreatedDateDesc(long sportOrderId, Pageable pageable);
 
 }
