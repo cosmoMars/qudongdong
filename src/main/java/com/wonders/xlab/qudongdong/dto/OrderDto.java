@@ -89,10 +89,6 @@ public class OrderDto {
      */
     private String diffTime;
 
-    /**
-     * 官方
-     */
-    private boolean official;
 
     /**
      * 年龄
@@ -226,14 +222,6 @@ public class OrderDto {
 
     public void setDiffTime(String diffTime) {
         this.diffTime = diffTime;
-    }
-
-    public boolean isOfficial() {
-        return official;
-    }
-
-    public void setOfficial(boolean official) {
-        this.official = official;
     }
 
     public int getAge() {

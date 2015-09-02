@@ -112,6 +112,11 @@ public class SportOrder extends AbstractBaseEntity<Long> {
     private Date endTime;
 
     /**
+     * 是否官方
+     */
+    private boolean official;
+
+    /**
      * 富文本页面
      */
     @Lob
@@ -235,6 +240,14 @@ public class SportOrder extends AbstractBaseEntity<Long> {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public boolean isOfficial() {
+        return official;
+    }
+
+    public void setOfficial(boolean official) {
+        this.official = official;
     }
 
     public String getHtmlInfo() {
