@@ -42,7 +42,8 @@
     <div class="am-g main-top">
         <div class="am-u-sm-3" style="color: grey"><a id="main" style="color:grey;display: block">一起躁</a></div>
         <div class="am-u-sm-6"><span class="main-top-text">躁友信息</span></div>
-        <div class="am-u-sm-3" style="color: grey"><a id="individualInfo" style="color:grey;display: block">我的信息</a></div>
+        <div class="am-u-sm-3" style="color: grey"><a id="individualInfo" style="color:grey;display: block">我的信息</a>
+        </div>
     </div>
 </div>
 <div class="dr-tab">
@@ -96,7 +97,9 @@
     <li>
         <div class="dr-container">
             <div class="dr-avatar">
-                <img src="{{avatar}}" class="am-radius" style="height: 110px;width: 110px">
+                <a href="timeLine.html?userId={{customerId}}">
+                    <img src="{{avatar}}" class="am-radius" style="height: 110px;width: 110px">
+                </a>
             </div>
             <div class="dr-info">
                 <span class="am-text-truncate">{{nickName}}</span>
@@ -133,7 +136,9 @@
     <li>
         <div class="dr-container">
             <div class="dr-avatar">
+                <a href="timeLine.html?userId={{customerId}}">
                 <img src="{{avatar}}" class="am-radius" style="height: 110px;width: 110px">
+                </a>
             </div>
             <div class="dr-info">
                 <span class="am-text-truncate">{{nickName}}</span>
