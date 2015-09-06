@@ -98,11 +98,13 @@
     </div>
 </div>
 
+
 <div class="am-modal am-modal-prompt" tabindex="-1" id="ad-title">
     <div class="am-modal-dialog">
-        <div class="am-modal-bd">
-            请选择运动主题
-            <input type="text" class="am-modal-prompt-input">
+        <div class="am-modal-bd" style="height: 280px">
+            <div id="ss-main">
+            </div>
+            <input type="hidden" class="am-modal-prompt-input" id="ss-title">
         </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn" data-am-modal-cancel>取消</span>
@@ -216,11 +218,26 @@
 <script src="ueditor/ueditor.all.min.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="assets/js/common.js"></script>
+<script src="assets/js/handlebars.min.js"></script>
 <script src="assets/js/officialDating.js"></script>
 <script>
     $(document).ready(function () {
         var ue = UE.getEditor('introduction');
     });
+</script>
+<script type="text/x-handlebars-template" id="sports">
+    <ul class="am-avg-sm-4 am-thumbnails">
+        {{#each this}}
+        <li>
+            <div class="am-round" style="background-color: inherit">
+                <img src="{{iconUrl}}" id="sports{{id}}" style="width: 35px;height: 35px;">
+                <span style="font-size: 12px;">{{name}}</span>
+                <img src="assets/i/confirm.png" class="ss-cover" id="sportsCover{{id}}"
+                     style="display: none; width: 35px;height: 35px; top: -62px; left: 8px"/>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
 </script>
 </body>
 </html>

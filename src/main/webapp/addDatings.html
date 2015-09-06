@@ -76,7 +76,7 @@
     <div class="ad-info">
         <ul class="am-list am-list-static am-list-border">
             <li>
-                <textarea class="ad-content" placeholder="空乏的说明是没有人会报名的" id="content-text"></textarea>
+                <textarea class="ad-content" placeholder="空乏的说明是没有人会报名的..." id="content-text"></textarea>
                 <span class="ad-limit">仅限12个字</span>
             </li>
         </ul>
@@ -90,11 +90,10 @@
 
 <div class="am-modal am-modal-prompt" tabindex="-1" id="ad-title">
     <div class="am-modal-dialog">
-        <div class="am-modal-bd">
+        <div class="am-modal-bd" style="height: 280px">
             <div id="ss-main">
             </div>
             <input type="hidden" class="am-modal-prompt-input" id="ss-title">
-            <!--<input type="hidden" class="am-modal-prompt-input" id="ss-id">-->
         </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn" data-am-modal-cancel>取消</span>
@@ -118,7 +117,6 @@
     <div class="am-modal-dialog">
         <div class="am-modal-bd">
             请选择运动对象<br/>
-            <!--<input type="text" class="am-modal-prompt-input">-->
             <label class="am-radio-inline">
                 <input type="radio" value="男" name="partner">男
             </label>
@@ -203,10 +201,8 @@
             <div class="am-round" style="background-color: inherit">
                 <img src="{{iconUrl}}" id="sports{{id}}" style="width: 35px;height: 35px;">
                 <span style="font-size: 12px;">{{name}}</span>
-                <!--<div class="am-round ss-cover" id="sportsCover{{id}}">-->
                 <img src="assets/i/confirm.png" class="ss-cover" id="sportsCover{{id}}"
                      style="display: none; width: 35px;height: 35px; top: -62px; left: 8px"/>
-                <!--</div>-->
             </div>
         </li>
         {{/each}}

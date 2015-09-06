@@ -2,17 +2,40 @@
  * Created by qqy on 15/8/27.
  */
 
+var info = new Array();
 $(function () {
-    /*$('#title-btn').on('click', function () {
-     $('#ad-title').modal({
-     relatedTarget: this,
-     onConfirm: function (e) {
-     $('#title-text').html(e.data);
-     },
-     onCancel: function (e) {
-     }
-     });
-     });*/
+    $('#title-btn').on('click', function () {
+        $.get(commonUrl + 'sport/listSport', function (data) {
+            var listTemple = Handlebars.compile($('#sports').html());
+            $('#ss-main').html(listTemple(data.ret_values));
+            $.each(data.ret_values, function selectSports(n, values) {
+                var div = document.getElementById("sportsCover" + values.id);
+                //var flag;
+                $("#sports" + values.id).click(function () {
+                    div.style.display = "block";
+                    if (info.length != 0) {
+                        for (var i = 0; i < info.length; i++) {
+                            var div1 = document.getElementById("sportsCover" + info[i]);
+                            div1.style.display = "none";
+                            info.splice(info.indexOf(i), 1);
+                        }
+                    }
+                    info.push(values.id);
+                    $('#ss-title').val(values.name);
+                });
+            });
+        });
+
+        $('#ad-title').modal({
+            relatedTarget: this,
+            onConfirm: function (e) {
+                $('#title-text').html(e.data);
+            },
+            onCancel: function (e) {
+            }
+        });
+    });
+
 
     $('#location-btn').on('click', function () {
         $('#ad-location').modal({

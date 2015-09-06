@@ -20,16 +20,11 @@ $(function () {
                             var div1 = document.getElementById("sportsCover" + info[i]);
                             div1.style.display = "none";
                             info.splice(info.indexOf(i), 1);
-                            console.log(info);
                         }
                     }
                     info.push(values.id);
-                    console.log(info);
                     $('#ss-title').val(values.name);
                 });
-                //$("#sportsCover" + values.id).click(function () {
-                //    info.splice(info.indexOf(values.id), 1);
-                //});
             });
         });
 

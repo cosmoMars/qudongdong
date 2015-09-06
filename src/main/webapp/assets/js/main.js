@@ -49,7 +49,7 @@ $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
             return options.inverse(this);
         }
     });
-    if (data.ret_values.length == 0) {
+    if (data.ret_values.sportOrder.length == 0) {
         $('#main-null').html("骚年，给你抢沙发哦～");
     } else {
         $('#main-list').html(listTemple(data.ret_values));
