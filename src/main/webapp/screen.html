@@ -1,0 +1,218 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>主页</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="assets/i/logo.png">
+
+    <link rel="apple-touch-icon-precomposed" href="assets/i/logo.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/i/logo.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/i/logo.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/i/logo.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+    <style>
+        .sc-main {
+            background: white;
+            text-align: center;
+            font-size: 14px;
+            color: grey;
+        }
+
+        .sc-main:after {
+            content: initial;
+        }
+
+        .sc-avatar {
+            height: 50px;
+            width: 50px;
+        }
+
+        .sc-area {
+            padding: 18px;
+            color: grey;
+            border-top: #EBEBEB solid 1px;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        .sc-gender {
+            border-top: #EBEBEB solid 1px;
+            padding: 18px;
+            color: grey;
+            font-size: 13px;
+        }
+
+        .sc-age {
+            border-top: #EBEBEB solid 1px;
+            padding: 18px;
+            color: grey;
+            font-size: 13px;
+        }
+
+        .sc-border {
+            border-radius: 5px;
+            border: grey solid 1px;
+            text-align: center;
+            width: 65px;
+        }
+    </style>
+
+</head>
+<body class="main-body">
+
+<!-- 按钮触发器， 需要指定 target -->
+<button class="am-btn am-btn-success" data-am-offcanvas="{target: '#screen'}">右侧显示边栏</button>
+
+<!-- 侧边栏内容 -->
+<div id="screen" class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip sc-main">
+        <div class="am-g" style="padding-top: 5px;height: 30px;">
+            <div class="am-u-sm-3"><span style="color: #4EC296;">取消</span></div>
+            <div class="am-u-sm-6">
+                <div id="sc-city">
+                    <span data-am-offcanvas="{target: '#province'}">
+                        上海
+                        <i class="am-icon-angle-down"></i></span>
+                </div>
+            </div>
+            <div class="am-u-sm-3"><span style="color: #ff6152;">确定</span></div>
+        </div>
+        <div class="sc-area">
+            <div class="am-g" style="border-radius: 11px;border: grey solid 1px;">
+                <div class="am-u-sm-5"><span id="text-city" style="color: darkgrey">黄浦区</span></div>
+                <div class="am-u-sm-7">
+                    <span data-am-offcanvas="{target: '#city'}" style="font-size: 12.5px;">
+                        点击获取更多地区<i class="am-icon-angle-right"></i>
+                    </span>
+                </div>
+            </div>
+            <div style="padding-top: 20px;">
+                推荐地区
+                <ul class="am-avg-sm-3 am-thumbnails" style="font-size: 12.5px;margin-top: 15px;" id="city-list">
+                </ul>
+            </div>
+        </div>
+        <div class="sc-gender">
+            <div style="text-align: left;margin-bottom: 20px;">性别筛选</div>
+            <input type="hidden" id="select-gender">
+
+            <div class="am-g">
+                <div class="am-u-sm-6" onclick="selectGender(0)">
+                    <img src="i/nvhui.png" class="sc-avatar" id="girl1">
+                    <img src="i/nv.png" class="sc-avatar" id="girl2" style="display: none;">
+
+                    <div id="nv">女</div>
+                </div>
+                <div class="am-u-sm-6" onclick="selectGender(1)">
+                    <img src="i/nanhui.png" class="sc-avatar" id="boy1">
+                    <img src="i/nan.png" class="sc-avatar" id="boy2" style="display: none;">
+
+                    <div id="nan">男</div>
+                </div>
+            </div>
+        </div>
+        <div class="sc-age">
+            <div style="text-align: left;margin-bottom: 20px;">年龄筛选</div>
+            <input type="hidden" id="text-age">
+
+            <div class="am-g"  id="boy">
+                <div class="am-u-sm-4" onclick="selectAge(0)">
+                    <img src="i/nanhui.png" class="sc-avatar" id="age0-1">
+                    <img src="i/nan.png" class="sc-avatar" id="age0-2" style="display: none;">
+
+                    <div>18-24</div>
+                </div>
+                <div class="am-u-sm-4" onclick="selectAge(1)">
+                    <img src="i/18-24nanhui.png" class="sc-avatar" id="age1-1">
+                    <img src="i/18-24nan.png" class="sc-avatar" id="age1-2" style="display: none;">
+
+                    <div>25-30</div>
+                </div>
+                <div class="am-u-sm-4" onclick="selectAge(2)">
+                    <img src="i/30以上nanhui.png" class="sc-avatar" id="age2-1">
+                    <img src="i/30以上nan.png" class="sc-avatar" id="age2-2" style="display: none;">
+
+                    <div>30以上</div>
+                </div>
+            </div>
+            <div class="am-g" id="girl" style="display: none">
+                <div class="am-u-sm-4" onclick="selectAge(0)">
+                    <img src="i/nvhui.png" class="sc-avatar" id="age0-3">
+                    <img src="i/nv.png" class="sc-avatar" id="age0-4" style="display: none;">
+
+                    <div>18-24</div>
+                </div>
+                <div class="am-u-sm-4" onclick="selectAge(1)">
+                    <img src="i/18-24nvhui.png" class="sc-avatar" id="age1-3">
+                    <img src="i/18-24以上.png" class="sc-avatar" id="age1-4" style="display: none;">
+
+                    <div>25-30</div>
+                </div>
+                <div class="am-u-sm-4" onclick="selectAge(2)">
+                    <img src="i/30以上nvhui.png" class="sc-avatar" id="age2-3">
+                    <img src="i/30以上.png" class="sc-avatar" id="age2-4" style="display: none;">
+
+                    <div>30以上</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="province" class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip sc-main">
+        province
+    </div>
+</div>
+
+<div id="city" class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip sc-main">
+        city
+    </div>
+</div>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="assets/js/handlebars.min.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/screen.js"></script>
+<script type="text/x-handlebars-template" id="cityList">
+    {{#list this}}
+    {{/list}}
+</script>
+</body>
+</html>
