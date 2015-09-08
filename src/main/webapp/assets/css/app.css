@@ -66,8 +66,6 @@ main
 .main-container {
     background: white;
     height: 151px;
-    /*border-top-left-radius: 3px;*/
-    /*border-top-right-radius: 3px;*/
 }
 
 .main-g {
@@ -180,20 +178,6 @@ main
     width: 100%;
 }
 
-/*.main-people{*/
-/*height: 100%;*/
-/*}*/
-/*.main-item{*/
-/*position: absolute;*/
-/*top: 13px;*/
-/*left: 29%;*/
-/*}*/
-/*.main-start-time{*/
-/*position: absolute;*/
-/*top: 13px;*/
-/*left: 58%;*/
-/*}*/
-
 .main-people {
     background: #97a5b5;
     -webkit-border-radius: 2px;
@@ -277,7 +261,7 @@ main
 
 .main-null {
     position: absolute;
-    top: 200px;
+    top: 130px;
     width: 100%;
     color: grey;
     text-align: center;
@@ -298,93 +282,108 @@ datingRequest
     background: #EBEBEB;
 }
 
-.dr-require-li li {
-    background-color: #EBEBEB;
-    border-width: 0px;
-}
-
-.dr-require-li {
-    margin-top: 47px;
-    margin-bottom: -57px;
-}
-
-.dr-require-list {
-    padding: 0;
+.dr-container {
     background: white;
-    height: 265px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-}
-
-.dr-background-img {
-    width: 100%;
-}
-
-.dr-request {
-    position: absolute;
-    top: -61px;
-    right: -1px;
-    width: 70px;
-    height: 63px;
-}
-
-.dr-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-}
-
-.dr-background {
-    height: 140px;
-    width: 100%;
-    overflow: hidden;
-}
-
-.dr-avatar-info {
-    text-align: center;
-    width: 100%;
-    height: 205px;
-    position: relative;
-    top: -80px;
+    height: 120px;
+    width: 94%;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    margin: 10px auto 0;
 }
 
 .dr-avatar {
+    position: absolute;
+    top: 5px;
+    padding-left: 5px;
     margin: 0 auto;
-    width: 110px;
+    width: 115px;
     height: 110px;
 }
 
-.dr-name {
-    font-size: 16px;
-
-}
-
 .dr-info {
-    font-size: 14px;
+    position: absolute;
+    top: 5px;
+    left: 145px;
+    font-size: 16px;
     color: grey;
 }
 
+.dr-age {
+    font-size: 14px;
+    color: white;
+    background-color: grey;
+    padding: 1px 3px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+
+}
+
+.dr-city {
+    font-size: 14px;
+    color: white;
+    background-color: grey;
+    padding: 1px 5px;
+    margin-left: 10px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+
+}
+
+.dr-span {
+    color: grey;
+    font-size: 14px;
+    padding-top: 33px;
+}
+
 .dr-conform-button {
-    margin-top: 10px;
-    padding-right: 15%;
-    padding-left: 15%;
+    width: 94%;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.dr-btu-left, .dr-btu-left:focus, .dr-btu-left:hover {
+    width: 100%;
+    border: 1px solid #6dcfaa;
+    background-color: white;
+    color: #6dcfaa;
+}
+
+.dr-btu-right, .dr-btu-right:focus, .dr-btu-right:hover {
+    color: white;
+    width: 100%;
+    border: 1px solid #6dcfaa;
+    background-color: #6dcfaa;
 }
 
 .dr-girl {
     color: palevioletred;
+    /*position: absolute;*/
+    /*top: 3px;*/
+    /*right: -10px;*/
+    /*font-size: 15px;*/
 }
 
 .dr-boy {
     color: deepskyblue;
+    /*position: absolute;*/
+    /*top: 3px;*/
+    /*right: -10px;*/
+    /*font-size: 15px;*/
 }
 
-.dr-a {
-    width: 110px;
-    height: 110px;
+.dr-tab {
+    color: grey;
+    margin-top: 48px;
+    text-align: right;
+    width: 94%;
+    font-size: 14px;
 }
 
+/*
+timeLine
+*/
 .tl-title {
     width: 100%;
     height: 240px;
@@ -961,7 +960,7 @@ addDating
 .ad-content {
     height: 60px;
     width: 100%;
-    border: solid 1px grey;
+    border: solid 0px grey;
     border-radius: 3px;
     resize: none;
 }
@@ -995,6 +994,7 @@ addDating
     right: 10px;
     top: 38px;
     font-size: 11px;
+    color: grey;
 }
 
 .am-list-border > li > a:focus, .am-list-border > li > a:hover .am-u-sm-4 > a:focus, .am-u-sm-4 > a:hover {
@@ -1047,4 +1047,11 @@ addDating
         font-size: 13px;
     }
 
+    .dr-info {
+        position: absolute;
+        top: 5px;
+        left: 130px;
+        font-size: 16px;
+        color: grey;
+    }
 }
