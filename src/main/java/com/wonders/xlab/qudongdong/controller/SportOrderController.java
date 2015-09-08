@@ -128,7 +128,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
      * @return
      */
     @RequestMapping(value = "listSportOrder/{userId}", method = RequestMethod.GET)
-    private Object listSportOrder(@RequestParam(required = false) String loaction,
+    private Object listSportOrder(@RequestParam(required = false) String areaName,
                                   @RequestParam(required = false) Integer sex,
                                   @RequestParam(required = false) Integer age,
                                   @PageableDefault(sort = "createdDate", direction = Sort.Direction.DESC)
@@ -142,6 +142,13 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         filters.put("startTime_lessThanOrEqualTo", now);
         filters.put("endTime_greaterThanOrEqualTo", now);
         filters.put("official_equal", true);
+
+        if (areaName != null) {
+            filters.put("location_equal", areaName);
+        }
+        if (sex != null) {
+            filters.put("sex_equal", User.Sex.values()[sex]);
+        }
 
         List<SportOrder> officialOrders = sportOrderRepository.findAll(filters);
         List<Map<String, Object>> officialList = new ArrayList<>();

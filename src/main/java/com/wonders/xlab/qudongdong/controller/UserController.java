@@ -69,7 +69,7 @@ public class UserController extends AbstractBaseController<User, Long> {
         if (user == null) {
             return new ControllerResult<>()
                     .setRet_code(-1)
-                    .setRet_values("该用户不存在！")
+                    .setRet_values("该用户不存在")
                     .setMessage("失败");
         }
 
@@ -78,7 +78,7 @@ public class UserController extends AbstractBaseController<User, Long> {
                 if (!info.matches("^1((3|5|8){1}\\d{1}|70|77)\\d{8}$")) {
                     return new ControllerResult<>()
                             .setRet_code(-1)
-                            .setRet_values("骚年，手机格式不正确")
+                            .setRet_values("骚年，手机格式不正确～")
                             .setMessage("失败");
                 }
                 user.setTel(info);
@@ -118,7 +118,7 @@ public class UserController extends AbstractBaseController<User, Long> {
         userRepository.save(user);
         return new ControllerResult<>()
                 .setRet_code(0)
-                .setRet_values("修改成功！")
+                .setRet_values("修改成功")
                 .setMessage("成功");
     }
 
@@ -159,7 +159,7 @@ public class UserController extends AbstractBaseController<User, Long> {
         if (StringUtils.isEmpty(user.getTel()) || StringUtils.isEmpty(user.getWeChat())) {
             return new ControllerResult<>()
                     .setRet_code(-1)
-                    .setRet_values("骚年，请先去完善个人信息")
+                    .setRet_values("骚年，请先去完善个人信息～")
                     .setMessage("失败");
         }
         SportOrder existOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);

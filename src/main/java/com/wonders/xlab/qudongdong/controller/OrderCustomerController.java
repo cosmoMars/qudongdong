@@ -85,7 +85,14 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
                 .setMessage("成功");
     }
 
-
+    /**
+     * 查看用户回应信息
+     *
+     * @param userId
+     * @param past
+     * @param pageable
+     * @return
+     */
     @RequestMapping(value = "listOrderCustomerByStatus/{userId}/{past}", method = RequestMethod.GET)
     public Object listOrderCustomerByStatus(@PathVariable long userId,
                                             @PathVariable boolean past,
@@ -213,29 +220,21 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
         if (new Date().getTime() > sportOrder.getStartTime().getTime()) {
             return new ControllerResult<>()
                     .setRet_code(-1)
-                    .setRet_values("该信息已过期")
+                    .setRet_values("该信息已过期～")
                     .setMessage("失败");
         }
 
         List<OrderCustomer> orderCustomers = new ArrayList<>(sportOrder.getOrderCustomers());
 
-        for (OrderCustomer customer : orderCustomers) {
-            if (customer.getId() == ocId) {
-                customer.setUserAgree(true);
-            } else {
-                customer.setUserAgree(false);
-            }
-        }
-//
-//        if (sportOrder.getCurrentCount() >= sportOrder.getPeopleCount()) {
-//            return new ControllerResult<>()
-//                    .setRet_code(-1)
-//                    .setRet_values("亲，你已经有骚年和你一起躁动咯～")
-//                    .setMessage("失败");
-//        }
-//        orderCustomer.setUserAgree(agree);
-        orderCustomerRepository.save(orderCustomers);
         if (agree) {
+            for (OrderCustomer customer : orderCustomers) {
+                if (customer.getId() == ocId) {
+                    customer.setUserAgree(true);
+                } else {
+                    customer.setUserAgree(false);
+                }
+            }
+            orderCustomerRepository.save(orderCustomers);
             // 发送给申请人
             SmsUtils.sendInviteSucceedMessage(orderCustomer.getCustomer().getTel(), sportOrder.getUser().getNickName(), sportOrder.getUser().getWeChat());
 
@@ -246,14 +245,23 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
 
             sportOrderRepository.save(sportOrder);
 
+            return new ControllerResult<>()
+                    .setRet_code(0)
+                    .setRet_values("骚年，赶快和小伙伴躁动起来吧～")
+                    .setMessage("成功");
         } else {
+
+            orderCustomer.setUserAgree(false);
+
+            orderCustomerRepository.save(orderCustomers);
+
             SmsUtils.sendRefusesMessage(orderCustomer.getCustomer().getTel(), sportOrder.getUser().getNickName());
+            return new ControllerResult<>()
+                    .setRet_code(0)
+                    .setRet_values("骚年，你简直了～")
+                    .setMessage("成功");
         }
 
-        return new ControllerResult<>()
-                .setRet_code(0)
-                .setRet_values("骚年，赶快和小伙伴躁动起来吧～")
-                .setMessage("成功");
 
     }
 
