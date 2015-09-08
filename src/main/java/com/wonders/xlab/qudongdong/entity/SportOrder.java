@@ -27,10 +27,16 @@ public class SportOrder extends AbstractBaseEntity<Long> {
     private Set<OrderCustomer> orderCustomers;
 
     /**
-     * 运动
+     * 运动, optional = false
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Sport sport;
+
+    /**
+     * 地点
      */
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Sport sport;
+    private AreaCode areaCode;
 
     /**
      * 地点
@@ -256,5 +262,13 @@ public class SportOrder extends AbstractBaseEntity<Long> {
 
     public void setHtmlInfo(String htmlInfo) {
         this.htmlInfo = htmlInfo;
+    }
+
+    public AreaCode getAreaCode() {
+        return areaCode;
+    }
+
+    public void setAreaCode(AreaCode areaCode) {
+        this.areaCode = areaCode;
     }
 }

@@ -9,7 +9,7 @@ import java.util.Set;
  * Created by mars on 15/9/7.
  */
 @Entity
-@Table(name = "qdd_areacode")
+@Table(name = "qdd_ard")
 public class AreaCode extends AbstractPersistable<Long> {
 
     /**
@@ -25,7 +25,6 @@ public class AreaCode extends AbstractPersistable<Long> {
      */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "parent", cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
     private Set<AreaCode> children;
-
 
     public String getName() {
         return name;

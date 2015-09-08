@@ -11,6 +11,7 @@ import com.wonders.xlab.qudongdong.dto.result.ControllerResult;
 import com.wonders.xlab.qudongdong.entity.Sport;
 import com.wonders.xlab.qudongdong.entity.SportOrder;
 import com.wonders.xlab.qudongdong.entity.User;
+import com.wonders.xlab.qudongdong.repository.AreaCoderRepository;
 import com.wonders.xlab.qudongdong.repository.SportOrderRepository;
 import com.wonders.xlab.qudongdong.repository.SportRepository;
 import com.wonders.xlab.qudongdong.repository.UserRepository;
@@ -42,6 +43,9 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
     @Autowired
     private SportOrderRepository sportOrderRepository;
+
+    @Autowired
+    private AreaCoderRepository areaCoderRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -113,6 +117,10 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             sportOrder.setOfficial(false);
             sportOrder.setPeopleCount(1);
         }
+
+        if (sportOrderDto.getAreaCodeId() != null) {
+            sportOrder.setAreaCode(areaCoderRepository.findOne(sportOrderDto.getAreaCodeId()));
+        }
         sportOrderRepository.save(sportOrder);
 
         return new ControllerResult<>()
@@ -128,9 +136,9 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
      * @return
      */
     @RequestMapping(value = "listSportOrder/{userId}", method = RequestMethod.GET)
-    private Object listSportOrder(@RequestParam(required = false) String areaName,
-                                  @RequestParam(required = false) Integer sex,
-                                  @RequestParam(required = false) Integer age,
+    private Object listSportOrder(@RequestParam(required = false) Long areaId,
+                                  @RequestParam(required = false) Integer sexIdx,
+                                  @RequestParam(required = false) Integer ageIdx,
                                   @PageableDefault(sort = "createdDate", direction = Sort.Direction.DESC)
                                   Pageable pageable) {
 
@@ -143,11 +151,14 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         filters.put("endTime_greaterThanOrEqualTo", now);
         filters.put("official_equal", true);
 
-        if (areaName != null) {
-            filters.put("location_equal", areaName);
+        if (areaId != null) {
+            filters.put("location_equal", areaId);
         }
-        if (sex != null) {
-            filters.put("sex_equal", User.Sex.values()[sex]);
+        if (sexIdx != null) {
+            filters.put("sex_equal", User.Sex.values()[sexIdx]);
+        }
+        if (ageIdx != null) {
+            filters.put("age_equal", SportOrder.AgeRange.values()[ageIdx]);
         }
 
         List<SportOrder> officialOrders = sportOrderRepository.findAll(filters);

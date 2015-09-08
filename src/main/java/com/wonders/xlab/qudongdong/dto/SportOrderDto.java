@@ -79,6 +79,11 @@ public class SportOrderDto {
      */
     private String htmlInfo;
 
+    /**
+     * 地区id
+     */
+    private Long areaCodeId;
+
     public SportOrder toNewOrder() {
         SportOrder order = new SportOrder();
         order.setLocation(location);
@@ -192,5 +197,13 @@ public class SportOrderDto {
 
     public void setHtmlInfo(String htmlInfo) {
         this.htmlInfo = htmlInfo;
+    }
+
+    public Long getAreaCodeId() {
+        return areaCodeId;
+    }
+
+    public void setAreaCodeId(Long areaCodeId) {
+        this.areaCodeId = areaCodeId;
     }
 }
