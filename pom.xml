@@ -1,10 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.wonders.xlab</groupId>
-  <artifactId>qdd</artifactId>
-  <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
 
   <repositories>
     <repository>
@@ -17,12 +13,25 @@
   </repositories>
 
   <parent>
-    <groupId>com.wonders.xlab</groupId>
-    <artifactId>xlab-pom-root</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.2.7.RELEASE</version>
   </parent>
 
+  <groupId>com.wonders.xlab</groupId>
+  <artifactId>qdd</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <java.version>1.7</java.version>
+    <spring.version>4.2.1.RELEASE</spring.version>
+    <jackson.version>2.6.2</jackson.version>
+    <start-class>com.wonders.xlab.framework.Application</start-class>
+  </properties>
+
   <dependencies>
+
     <dependency>
       <groupId>com.wonders.xlab</groupId>
       <artifactId>xlab-framework</artifactId>
@@ -90,11 +99,13 @@
     <dependency>
       <groupId>org.dbunit</groupId>
       <artifactId>dbunit</artifactId>
+      <version>2.5.1</version>
     </dependency>
 
     <dependency>
       <groupId>com.github.springtestdbunit</groupId>
       <artifactId>spring-test-dbunit</artifactId>
+      <version>1.2.1</version>
     </dependency>
 
     <dependency>
