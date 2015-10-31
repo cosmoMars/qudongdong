@@ -42,8 +42,8 @@
     <div class="ad-info">
         <div class="ad-title">
             主题
-            <span class="am-badge ad-badge am-badge-danger" id="title-text"></span>
-            <a id="title-btn"><i class="am-icon-chevron-right ad-arrows"></i></a>
+            <span class="am-badge ad-badge am-badge-danger" id="title-text">羽毛球</span>
+            <!--<a id="title-btn"><i class="am-icon-chevron-right ad-arrows"></i></a>-->
         </div>
         <div class="ad-location">
             地点
@@ -62,6 +62,11 @@
         </div>
     </div>
     <div class="ad-info">
+        <div class="ad-partner">
+            人数
+            <span class="am-badge ad-badge am-badge-danger" id="numOfP-text"></span>
+            <a id="numOfP-btn"><i class="am-icon-chevron-right ad-arrows"></i></a>
+        </div>
         <div class="ad-partner">
             对象
             <span class="am-badge ad-badge am-badge-danger" id="partner-text"></span>
@@ -106,6 +111,18 @@
         <div class="am-modal-bd">
             运动地点（仅限15个字符）
             <input type="text" class="am-modal-prompt-input">
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-numOfP">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd">
+            人数
+            <input type="number" class="am-modal-prompt-input">
         </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn" data-am-modal-cancel>取消</span>

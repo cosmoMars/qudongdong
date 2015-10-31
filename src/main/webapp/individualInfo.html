@@ -37,15 +37,15 @@
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
 <body class="ii-body">
-<div class="main-side-bar main-top-bar">
-    <div class="am-g main-top">
-        <div class="am-u-sm-3" style="color: grey"><a id="main" style="color:grey;display: block">一起躁</a></div>
-        <div class="am-u-sm-6" style="color: grey"><a id="datingRequest" style="color:grey;display: block">躁友信息</a>
-        </div>
-        <div class="am-u-sm-3"><span class="main-top-text">我的信息</span></div>
-    </div>
-</div>
-<div class="ii-container" id="ii-main">
+<!--<div class="main-side-bar main-top-bar">-->
+<!--<div class="am-g main-top">-->
+<!--<div class="am-u-sm-3" style="color: grey"><a id="main" style="color:grey;display: block">一起躁</a></div>-->
+<!--<div class="am-u-sm-6" style="color: grey"><a id="datingRequest" style="color:grey;display: block">躁友信息</a>-->
+<!--</div>-->
+<!--<div class="am-u-sm-3"><span class="main-top-text">我的信息</span></div>-->
+<!--</div>-->
+<!--</div>-->
+<div class="ii-container" id="ii-main" style="margin-top: 10px;">
 </div>
 <!--[if (gte IE 9)|!(IE)]><!-->
 <script src="assets/js/jquery.min.js"></script>
@@ -94,12 +94,12 @@
             <span class="am-badge ii-badge am-badge-danger" id="text-weChat">{{weChat}}</span>
             <a id="weChat-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>
         </div>
-        <div class="ii-timeLine">
-            时光轴
-            <a href="timeLine.html?userId={{id}}">
-                <i class="am-icon-chevron-right ii-arrows"></i>
-            </a>
-        </div>
+        <!--<div class="ii-timeLine">-->
+        <!--时光轴-->
+        <!--<a href="timeLine.html?userId={{id}}">-->
+        <!--<i class="am-icon-chevron-right ii-arrows"></i>-->
+        <!--</a>-->
+        <!--</div>-->
     </div>
     <div class="ii-info">
         <div class="ii-gender">
@@ -112,19 +112,19 @@
             <span class="am-badge ii-badge am-badge-danger" id="text-age">{{age}}岁</span>
             <a id="age-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>
         </div>
-        <div class="ii-height">
-            身高
-            <span class="am-badge ii-badge am-badge-danger" id="text-height">{{height}}cm</span>
-            <a id="height-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>
-        </div>
-        <div class="ii-weight">
-            体重
-            <span class="am-badge ii-badge am-badge-danger" id="text-weight">{{weight}}kg</span>
-            <a id="weight-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>
-        </div>
+        <!--<div class="ii-height">-->
+        <!--身高-->
+        <!--<span class="am-badge ii-badge am-badge-danger" id="text-height">{{height}}cm</span>-->
+        <!--<a id="height-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>-->
+        <!--</div>-->
+        <!--<div class="ii-weight">-->
+        <!--体重-->
+        <!--<span class="am-badge ii-badge am-badge-danger" id="text-weight">{{weight}}kg</span>-->
+        <!--<a id="weight-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>-->
+        <!--</div>-->
         <div class="ii-sports">
             喜欢的运动
-            <div class="am-badge ii-icon">
+            <div class="am-badge ii-icon" style="bottom: 4px;">
                 {{#each sports}}
                 <img src="{{iconUrl}}" class="ii-sports-icon"/>
                 {{/each}}
@@ -133,12 +133,12 @@
                 </a>
             </div>
         </div>
-        <div class="ii-clause">
-            隐私条款
-            <a href="clause.html">
-                <i class="am-icon-chevron-right ii-arrows"></i>
-            </a>
-        </div>
+        <!--<div class="ii-clause">-->
+        <!--隐私条款-->
+        <!--<a href="clause.html">-->
+        <!--<i class="am-icon-chevron-right ii-arrows"></i>-->
+        <!--</a>-->
+        <!--</div>-->
     </div>
     <div class="am-modal am-modal-prompt" tabindex="-1" id="ii-tel">
         <div class="am-modal-dialog">

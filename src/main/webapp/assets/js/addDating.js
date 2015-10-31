@@ -48,7 +48,16 @@ $(function () {
             }
         });
     });
-
+    $('#numOfP-btn').on('click', function () {
+        $('#ad-numOfP').modal({
+            relatedTarget: this,
+            onConfirm: function (e) {
+                $('#numOfP-text').html(e.data);
+            },
+            onCancel: function (e) {
+            }
+        });
+    });
     $('#startTime-btn').on('click', function () {
         openOneSlot('start');
     });
@@ -127,10 +136,11 @@ function getAge(type) {
 };
 
 function generateOrder() {
-    console.log(info[0]);
-    var title = $('#title-text').html();
+    //console.log(info[0]);
+    //var title = $('#title-text').html();
     var location = $('#location-text').html();
     var partner = getPartner($('#partner-text').html());
+    var numOfP = $('#numOfP-text').html();
     var age = getAge($('#age-text').html());
     var startTime = $('#startTime-text').attr('data-time') || '';
     var endTime = $('#endTime-text').attr('data-time') || '';
@@ -140,7 +150,7 @@ function generateOrder() {
         return false;
     }
     var content = $('#content-text').val();
-    if (location.length == 0 || partner.length == 0 || age.length == 0 || startTime.length == 0 || endTime.length == 0 || content.length == 0 || title.length == 0) {
+    if (location.length == 0 || partner.length == 0 || age.length == 0 || startTime.length == 0 || endTime.length == 0 || content.length == 0 || numOfP.length == 0) {
         $('#status').html("您还有字段未填写哦！");
         $('#my-alert').modal({relatedTarget: this,});
     }
@@ -161,7 +171,7 @@ function generateOrder() {
             "payMethod": 0,
             "transfer": false,
             "carryOne": true,
-            "peopleCount": 1,
+            "peopleCount": numOfP,
             "content": content,
             "startTime": startTime,
             "endTime": endTime,
@@ -170,7 +180,7 @@ function generateOrder() {
 
         var data = JSON.stringify(jsonData);
 
-        var generateOrderUrl = commonUrl + 'order/generateOrder/' + userId_ + '/' + info[0];
+        var generateOrderUrl = commonUrl + 'order/generateOrder/' + userId_ + '/' + 2;
 
         console.log(generateOrderUrl);
 

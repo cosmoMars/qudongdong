@@ -38,15 +38,15 @@
 
 </head>
 <body class="main-body">
-<div class="main-top-bar">
-    <div class="am-g main-top">
-        <div class="am-u-sm-3"><span class="main-top-text">一起躁</span></div>
-        <div class="am-u-sm-6" style="color: grey;"><a id="datingRequest" style="color:grey;display: block">躁友信息</a>
-        </div>
-        <div class="am-u-sm-3" style="color: grey;"><a id="individualInfo" style="color:grey;display: block">我的信息</a>
-        </div>
-    </div>
-</div>
+<!--<div class="main-top-bar">-->
+<!--<div class="am-g main-top">-->
+<!--<div class="am-u-sm-3"><span class="main-top-text">一起躁</span></div>-->
+<!--<div class="am-u-sm-6" style="color: grey;"><a id="datingRequest" style="color:grey;display: block">躁友信息</a>-->
+<!--</div>-->
+<!--<div class="am-u-sm-3" style="color: grey;"><a id="individualInfo" style="color:grey;display: block">我的信息</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 <div id="main-list" class="main-list"></div>
 <div class="main-bottom-bar">
     <a href="#" id="imgUrl" style="display: block">
@@ -101,7 +101,7 @@
                     </div>
                     <div class="main-right">
                         <div class="main-yue">
-                            <span class="main-people">单独约</span>
+                            <span class="main-people">{{currentPeople}}|{{peopleCount}}</span>
                             <span class="main-item">{{sportName}}</span>
                             <span class="main-start-time">{{startTime}}-{{endTime}}</span>
                             <!--<div class="main-people"><span>单独约</span></div>-->
@@ -127,7 +127,7 @@
                         {{#if enabled}}
                         <button onclick="generateOrderCustomer('{{orderId}}')" type="button"
                                 class="am-btn am-btn-success am-round am-btn-xs main-green" id="main-confirm">
-                            一起躁
+                            我要预约
                         </button>
                         {{else}}
                         <button type="button" class="am-btn am-btn-default am-round am-btn-xs"
