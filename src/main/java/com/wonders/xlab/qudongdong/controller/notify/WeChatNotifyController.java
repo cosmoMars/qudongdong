@@ -32,7 +32,7 @@ import java.util.Map;
  * Created by mars on 15/8/21.
  */
 @RestController
-@RequestMapping("wechatNotify")
+@RequestMapping("weChatNotify")
 public class WeChatNotifyController {
 
     @Value("${myToken}")
@@ -57,6 +57,7 @@ public class WeChatNotifyController {
     @Qualifier(value = "accessTokenCache")
     private HCCache<String, String> accessTokenCache;
 
+    //验证回调
     @RequestMapping(value = "notify", method = RequestMethod.GET)
     public void valiateToken(@RequestParam String signature,
                              @RequestParam String timestamp,
@@ -75,6 +76,7 @@ public class WeChatNotifyController {
         }
     }
 
+    // 回调事件
     @RequestMapping(value = "notify", method = RequestMethod.POST)
     public void handleMessage(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -96,6 +98,7 @@ public class WeChatNotifyController {
 
             System.out.println("context = " + context);
 
+            //读取微信返回信息
             Document document = DocumentHelper.parseText(context);
             Element root = document.getRootElement();
             String openId = root.elementTextTrim("FromUserName");
@@ -103,12 +106,16 @@ public class WeChatNotifyController {
             String originUser = root.elementTextTrim("ToUserName");
             String msgType = root.elementTextTrim("MsgType");
 
+            // 获取事件
             if (StringUtils.equals(msgType, "event")) {
                 String event = root.elementTextTrim("Event");
 
                 System.out.println("event = " + event);
 
+                // 关注之间
                 if (StringUtils.equals(event, "subscribe")) {
+
+                    // 校验token
                     if (StringUtils.isEmpty(accessTokenCache.getFromCache("token"))) {
 
                         ResponseEntity<JsonNode> resultNode = restTemplate.getForEntity("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appId + "&secret=" + appSecret, JsonNode.class);
@@ -119,8 +126,10 @@ public class WeChatNotifyController {
                         accessTokenCache.addToCache("token", jsonNode.get("access_token").asText());
 
                     }
+                    // 查找user
                     User user = userRepository.findByOpenId(openId);
 
+                    // 没有用户创建用户
                     if (user == null) {
                         ResponseEntity<JsonNode> userJson = restTemplate.getForEntity("https://api.weixin.qq.com/cgi-bin/user/info?access_token=" + accessTokenCache.getFromCache("token") + "&openid=" + openId, JsonNode.class);
                         JsonNode userInfo = userJson.getBody();
@@ -133,41 +142,49 @@ public class WeChatNotifyController {
                         u.setSex(User.Sex.values()[userInfo.get("sex").asInt()]);
                         userRepository.save(u);
                     }
-                } else if (StringUtils.equals(event, "VIEW")) {
+                } /*else if (StringUtils.equals(event, "VIEW")) {
 
-                } /*else if (StringUtils.equals(event, "CLICK")) {
-                    String EventKey = root.elementTextTrim("EventKey");
-                    if (StringUtils.equals(EventKey, "Self_Info")) {
+                } else if (StringUtils.equals(event, "CLICK")) {
+                    User user = userRepository.findByOpenId(openId);
+                    String eventKey = root.elementTextTrim("EventKey");
 
-                        String responseMsg = MessageUtil.defaultTextMessage(openId, originUser, "温馨提示：暂时不能解析该消息");
+                    System.out.println("eventKey = " + eventKey);
+                    // 我要入会
+                    if (StringUtils.equals(eventKey, "joinClub")) {
 
-                        response.sendRedirect(EventKey);
-                        try {
-                            out = response.getWriter();
-                            out.println(responseMsg);
-                            out.flush();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } finally {
-                            if (null != out) {
-                                out.close();
-                            }
-                        }
+//                        String responseMsg = MessageUtil.defaultTextMessage(openId, originUser, "温馨提示：暂时不能解析该消息");
+//
+//                        response.sendRedirect(EventKey);
+//                        try {
+//                            out = response.getWriter();
+//                            out.println(responseMsg);
+//                            out.flush();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        } finally {
+//                            if (null != out) {
+//                                out.close();
+//                            }
+//                        }
+                        response.sendRedirect("http://101.231.124.8:45698/qdd/joinMember.html");
+                    } else if(StringUtils.equals(eventKey, "needCoach")) {
+                        response.sendRedirect("http://101.231.124.8:45698/qdd/datingCoach.html");
                     }
                 }*/
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
+    // 授权回调
     @RequestMapping(value = "recall")
     public void recall(HttpServletRequest request, HttpServletResponse response) {
 
+        // 回调状态码
         String code = request.getParameter("code");
-//        System.out.println("code = " + code);
+        // 通过状态码请求用户信息
         String responseText = restTemplate.getForObject("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + appId + "&secret=" + appSecret + "&code=" + code + "&grant_type=authorization_code", String.class);
 
 //        System.out.println("responseText = " + responseText);
@@ -181,11 +198,12 @@ public class WeChatNotifyController {
 
         String openId = (String) resultMap.get("openid");
 
-//        System.out.println("openId = " + openId);
         String state = request.getParameter("state");
 
+        System.out.println("state = " + state);
+
         User user = userRepository.findByOpenId(openId);
-        if (StringUtils.isEmpty(accessTokenCache.getFromCache("token"))) {
+        /*if (StringUtils.isEmpty(accessTokenCache.getFromCache("token"))) {
 
             ResponseEntity<JsonNode> resultNode = restTemplate.getForEntity("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" + appId + "&secret=" + appSecret, JsonNode.class);
             JsonNode jsonNode = resultNode.getBody();
@@ -193,7 +211,6 @@ public class WeChatNotifyController {
 //            System.out.println("token = " + jsonNode.get("access_token").asText());
 
             accessTokenCache.addToCache("token", jsonNode.get("access_token").asText());
-
         }
 
         if (user == null) {
@@ -209,12 +226,16 @@ public class WeChatNotifyController {
             u.setCity(nodeUser.get("city").asText());
             u.setSex(User.Sex.values()[(nodeUser.get("sex").asInt())]);
             user = userRepository.save(u);
-        }
+        }*/
         try {
             String url = null;
-            if (StringUtils.equals(state, "list")) {
-                url = "http://zao.reindeerjob.com/main.html?userId=" + user.getId();
-            } /*else if (StringUtils.equals(state, "user")) {
+            if (StringUtils.equals(state, "joinClub")) {
+                url = "http://101.231.124.8:45698/qdd/joinMember.html";
+            } else if (StringUtils.equals(state, "needCoach")) {
+                url = "http://101.231.124.8:45698/qdd/datingCoach.html";
+            }
+
+            /*else if (StringUtils.equals(state, "user")) {
                 url = "http://101.231.124.8:45698/qdd/individualInfo.html?userId=" + user.getId();
             } else if (StringUtils.equals(state, "friend")) {
                 url = "http://101.231.124.8:45698/qdd/datingRequest.html?userId=" + user.getId();

@@ -96,14 +96,14 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         }
         Sport sport = sportRepository.findOne(sportId);
 
-        // TODO: 暂时设定每天一条
+       /* // TODO: 暂时设定每天一条
         SportOrder existOrder = sportOrderRepository.findTopByUserIdOrderByCreatedDateDesc(userId);
         if (existOrder != null && DateUtils.isSameDay(new Date(), existOrder.getCreatedDate())) {
             return new ControllerResult<>()
                     .setRet_code(-1)
                     .setRet_values("亲，你今天已经躁动过咯～")
                     .setMessage("失败");
-        }
+        }*/
 
         SportOrder sportOrder = sportOrderDto.toNewOrder();
 
@@ -111,12 +111,13 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         sportOrder.setSport(sport);
         if (sportOrderDto.getOfficial()) {
             sportOrder.setOfficial(true);
-            sportOrder.setPeopleCount(sportOrderDto.getPeopleCount());
+//            sportOrder.setPeopleCount(sportOrderDto.getPeopleCount());
             sportOrder.setHtmlInfo(sportOrderDto.getHtmlInfo());
         } else {
             sportOrder.setOfficial(false);
-            sportOrder.setPeopleCount(1);
+//            sportOrder.setPeopleCount(1);
         }
+        sportOrder.setPeopleCount(sportOrderDto.getPeopleCount());
 
         if (sportOrderDto.getAreaCodeId() != null) {
             sportOrder.setAreaCode(areaCoderRepository.findOne(sportOrderDto.getAreaCodeId()));

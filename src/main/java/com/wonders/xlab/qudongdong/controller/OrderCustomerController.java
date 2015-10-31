@@ -16,10 +16,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -261,8 +258,75 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
                     .setRet_values("骚年，你简直了～")
                     .setMessage("成功");
         }
-
-
     }
 
+
+    /**
+     * 参加活动
+     * @param orderId
+     * @param cId
+     * @return
+     */
+    @RequestMapping(value = "joinActivity", method = RequestMethod.POST)
+    public Object joinActivity(@RequestParam long orderId,
+                               @RequestParam long cId) {
+
+        SportOrder sportOrder = sportOrderRepository.findOne(orderId);
+
+        if (sportOrder.getUser().getId() == cId) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("约自己？你又傲娇了！")
+                    .setMessage("失败");
+        }
+        OrderCustomer existOrder = orderCustomerRepository.findBySportOrderIdAndCustomerId(orderId, cId);
+
+        if (existOrder != null) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("骚年，你已经对TA下约咯～")
+                    .setMessage("失败");
+        }
+
+        User customer = userRepository.findOne(cId);
+        if (StringUtils.isEmpty(customer.getTel()) || StringUtils.isEmpty(customer.getWeChat())) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("骚年，请先去完善个人信息")
+                    .setMessage("失败");
+        }
+        OrderCustomer orderCustomer = new OrderCustomer();
+        orderCustomer.setSportOrder(sportOrder);
+        orderCustomer.setCustomer(customer);
+
+        if (sportOrder.getCurrentCount() == sportOrder.getPeopleCount()) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("预约人数已满")
+                    .setMessage("失败");
+        }
+        sportOrder.setCurrentCount(sportOrder.getCurrentCount() + 1);
+
+         /*if (sportOrder.getUser().getTel() == null) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("对方手机还未填写哦")
+                    .setMessage("失败");
+        }
+
+        if (sportOrder.isOfficial()) {
+            orderCustomer.setUserAgree(true);
+            sportOrder.setCurrentCount(sportOrder.getCurrentCount() + 1);
+        }
+        if (!sportOrder.isOfficial()) {
+            SmsUtils.sendInviteMessage(sportOrder.getUser().getTel(), customer.getNickName(), DateFormatUtils.format(sportOrder.getStartTime(), "yyyy.MM.dd HH:mm"), sportOrder.getLocation());
+        }*/
+
+        orderCustomerRepository.save(orderCustomer);
+        sportOrderRepository.save(sportOrder);
+        return new ControllerResult<>()
+                .setRet_code(0)
+                .setRet_values("骚等，请求已发出咯～")
+                .setMessage("成功");
+    }
 }

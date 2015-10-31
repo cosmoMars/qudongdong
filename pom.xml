@@ -117,4 +117,8 @@
 
   </dependencies>
 
+  <build>
+    <finalName>qdd</finalName>
+  </build>
+
 </project>
