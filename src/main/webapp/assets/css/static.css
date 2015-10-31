@@ -1,0 +1,31 @@
+.jm-content {
+    padding: 0 15px;
+    font-size: 14px;
+}
+
+.jm-title {
+    margin: 0;
+    font-size: 16px;
+    color: deepskyblue;
+}
+
+.jm-content > span {
+    display: block;
+    text-indent: 2em;
+}
+
+.jm-span {
+    color: white;
+    background: limegreen;
+    border: 1px solid forestgreen;
+    font-size: 11px;
+    padding: 2px;
+}
+
+.jm-btn {
+    width: 100%;
+}
+
+.jm-btn > button {
+    width: 100%;
+}

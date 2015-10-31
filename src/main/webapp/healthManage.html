@@ -1,0 +1,126 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>健康管理</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="assets/i/logo.png">
+
+    <link rel="apple-touch-icon-precomposed" href="assets/i/logo.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/i/logo.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/i/logo.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/i/logo.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/static.css">
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/amazeui.min.js"></script>
+</head>
+<body>
+<header data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{"directionNav":false}'>
+    <ul class="am-slides">
+        <li>
+            <img src="http://s.amazeui.org/media/i/demos/bing-1.jpg">
+
+        </li>
+        <li>
+            <img src="http://s.amazeui.org/media/i/demos/bing-2.jpg">
+
+        </li>
+        <li>
+            <img src="http://s.amazeui.org/media/i/demos/bing-3.jpg">
+
+        </li>
+        <li>
+            <img src="http://s.amazeui.org/media/i/demos/bing-4.jpg">
+
+        </li>
+    </ul>
+</header>
+<section class="am-container jm-content">
+    <h2 class="jm-title" style="padding-top: 15px">[入会须知]</h2>
+    <hr data-am-widget="divider" style="margin: 0.5rem auto" class="am-divider am-divider-dotted"/>
+    <span>
+    月费会员299元，活动地点卢湾体育馆、静安体育馆中午12:00-13:00，晚上6:00-7:00，含免费人体成分、骨密度检测。季度会费899元，免费更换拍线，含免费人体成分、骨密度、运动有氧能力检测及一年复测。年度会员3599元，含入门级球拍、运动毛巾，全年免费更换拍线，含免费人体成分、骨密度检测及免费运动处方开具一次。
+    </span>
+</section>
+<hr data-am-widget="divider" style="margin: 1rem auto" class="am-divider am-divider-default"/>
+<section class="am-container jm-content">
+    <h2 class="jm-title" style="padding-bottom: 10px">[收费标准]</h2>
+
+    <div>收费标准：299元／月
+        <a class="am-icon-square-o" id="check-box1"></a>
+        899元／季
+        <a class="am-icon-check-square-o" id="check-box2"></a>
+        599元／年
+        <a class="am-icon-square-o" id="check-box3"></a>
+    </div>
+    <hr data-am-widget="divider" style="margin: 0.5rem auto" class="am-divider am-divider-dotted"/>
+    <div><i class="am-icon-calendar" style="padding-right: 5px"></i> <span
+            style="color: #006600">2015-09-10至2015-12-10</span></div>
+    <div><i class="am-icon-cny" style="padding-right: 13px;padding-left: 2px"></i> 600元／季 <span
+            class="jm-span">在线预付</span></div>
+</section>
+<hr data-am-widget="divider" style="margin: 1.5rem auto 0" class="am-divider am-divider-default"/>
+<div class="jm-btn">
+    <button class="am-btn am-btn-secondary" data-am-modal="{target: '#my-alert'}">我要入会</button>
+</div>
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">奇羽记</div>
+        <div class="am-modal-bd">
+            很抱歉，该功能还在开发中，敬请期待！
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var box1 = $('#check-box1');
+        var box2 = $('#check-box2');
+        var box3 = $('#check-box3');
+        box1.click(function () {
+            box1.alterClass("am-icon-square-o", "am-icon-check-square-o");
+            box2.alterClass("am-icon-check-square-o", "am-icon-square-o");
+            box3.alterClass("am-icon-check-square-o", "am-icon-square-o");
+        });
+        box2.click(function () {
+            box2.alterClass("am-icon-square-o", "am-icon-check-square-o");
+            box1.alterClass("am-icon-check-square-o", "am-icon-square-o");
+            box3.alterClass("am-icon-check-square-o", "am-icon-square-o");
+        });
+        box3.click(function () {
+            box3.alterClass("am-icon-square-o", "am-icon-check-square-o");
+            box2.alterClass("am-icon-check-square-o", "am-icon-square-o");
+            box1.alterClass("am-icon-check-square-o", "am-icon-square-o");
+        });
+    });
+</script>
+</body>
+</html>

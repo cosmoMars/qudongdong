@@ -81,31 +81,51 @@
             text-align: center;
             width: 65px;
         }
+
+        .sc-list {
+            margin: 0;
+            background: white;
+            text-align: left;
+        }
+
+        .sc-list > li {
+            border-top: 1px solid #EBEBEB;
+            border-bottom: 1px solid #EBEBEB;
+            background: white;
+        }
+
+        .select {
+            color: darkgrey;
+        }
+
     </style>
 
 </head>
 <body class="main-body">
 
 <!-- 按钮触发器， 需要指定 target -->
-<button class="am-btn am-btn-success" data-am-offcanvas="{target: '#screen'}">右侧显示边栏</button>
+<span class="am-btn" data-am-offcanvas="{target: '#screen'}">筛选</span>
 
 <!-- 侧边栏内容 -->
 <div id="screen" class="am-offcanvas">
     <div class="am-offcanvas-bar am-offcanvas-bar-flip sc-main">
         <div class="am-g" style="padding-top: 5px;height: 30px;">
-            <div class="am-u-sm-3"><span style="color: #4EC296;">取消</span></div>
+            <div class="am-u-sm-3"><span style="color: #4EC296;" onclick="cancelScreen()">取消</span></div>
             <div class="am-u-sm-6">
                 <div id="sc-city">
-                    <span data-am-offcanvas="{target: '#province'}">
+                    <!--<span data-am-offcanvas="{target: '#province'}">-->
+                    <span data-am-offcanvas="{target: '#'}">
                         上海
                         <i class="am-icon-angle-down"></i></span>
                 </div>
             </div>
-            <div class="am-u-sm-3"><span style="color: #ff6152;">确定</span></div>
+            <div class="am-u-sm-3"><span style="color: #ff6152;" onclick="screenChange()">确定</span></div>
         </div>
         <div class="sc-area">
             <div class="am-g" style="border-radius: 11px;border: grey solid 1px;">
-                <div class="am-u-sm-5"><span id="text-city" style="color: darkgrey">黄浦区</span></div>
+                <input type="hidden" id="cityId" value="0">
+
+                <div class="am-u-sm-5"><span id="text-city" style="color: darkgrey">所有地区</span></div>
                 <div class="am-u-sm-7">
                     <span data-am-offcanvas="{target: '#city'}" style="font-size: 12.5px;">
                         点击获取更多地区<i class="am-icon-angle-right"></i>
@@ -120,7 +140,7 @@
         </div>
         <div class="sc-gender">
             <div style="text-align: left;margin-bottom: 20px;">性别筛选</div>
-            <input type="hidden" id="select-gender">
+            <input type="hidden" id="select-gender" value="0">
 
             <div class="am-g">
                 <div class="am-u-sm-6" onclick="selectGender(0)">
@@ -139,9 +159,9 @@
         </div>
         <div class="sc-age">
             <div style="text-align: left;margin-bottom: 20px;">年龄筛选</div>
-            <input type="hidden" id="text-age">
+            <input type="hidden" id="text-age" value="2">
 
-            <div class="am-g"  id="boy">
+            <div class="am-g" id="boy">
                 <div class="am-u-sm-4" onclick="selectAge(0)">
                     <img src="i/nanhui.png" class="sc-avatar" id="age0-1">
                     <img src="i/nan.png" class="sc-avatar" id="age0-2" style="display: none;">
@@ -186,14 +206,20 @@
 </div>
 
 <div id="province" class="am-offcanvas">
-    <div class="am-offcanvas-bar am-offcanvas-bar-flip sc-main">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip sc-main" id="all-province">
         province
     </div>
 </div>
 
 <div id="city" class="am-offcanvas">
     <div class="am-offcanvas-bar am-offcanvas-bar-flip sc-main">
-        city
+        <!--<div class="am-g" style="padding-top: 5px;height: 30px;">-->
+        <!--<div class="am-u-sm-3"><span style="color: #4EC296;">取消</span></div>-->
+        <!--<div class="am-u-sm-6">-->
+        <!--</div>-->
+        <!--<div class="am-u-sm-3"><span style="color: #ff6152;">确定</span></div>-->
+        <!--</div>-->
+        <ul class="am-list am-list-static am-list-border sc-list" id="all-city"></ul>
     </div>
 </div>
 
@@ -214,5 +240,15 @@
     {{#list this}}
     {{/list}}
 </script>
+<script type="text/x-handlebars-template" id="allCity">
+    {{#each this}}
+    <li style="padding: 5px 5px 5px 20px;"><span onclick="selectCity('{{id}}','{{name}}')">{{name}}</span></li>
+    {{/each}}
+</script>
+<!--<script type="text/x-handlebars-template" id="allProvince">-->
+<!--{{#each this}}-->
+<!--<li>{{name}}</li>-->
+<!--{{/each}}-->
+<!--</script>-->
 </body>
 </html>
