@@ -37,25 +37,42 @@
     <link rel="stylesheet" href="assets/css/static.css">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/amazeui.min.js"></script>
+    <style>
+        .am-tabs-d2 .am-tabs-nav > .am-active:after {
+            border-bottom-color: white;
+        }
+
+        .am-tabs-d2 .am-tabs-nav {
+            /*background-color: white;*/
+        }
+        .am-tabs-d2 .am-tabs-nav>.am-active {
+            position: relative;
+            /*background-color: white;*/
+            border-bottom: 0px solid #0e90d2;
+        }
+    </style>
 </head>
-<body>
+<body style="font-size: 15px;">
 <div data-am-widget="tabs" class="am-tabs am-tabs-d2" style="margin: 0;">
     <ul class="am-tabs-nav am-cf">
         <li class="am-active"><a href="[data-tab-panel-0]">健康测试</a></li>
         <li class=""><a href="[data-tab-panel-1]">线上问诊</a></li>
         <li class=""><a href="[data-tab-panel-2]">健康定制</a></li>
     </ul>
+    <!--<hr data-am-widget="divider" style="margin: 0rem auto 0" class="am-divider am-divider-default"/>-->
     <div class="am-tabs-bd">
         <div data-tab-panel-0 class="am-g am-tab-panel am-active">
-            <div class="am-u-sm-8">
+            <div class="am-u-sm-8" style="padding-top: 3px">
                 订单号：PO51031001
-                <span style="display: block;font-size: 11px;">预约时间：2015-09-28 09:45</span>
+                <span style="display: block;font-size: 12px;">预约时间：2015/09/28 09:45</span>
             </div>
-            <div class="am-u-sm-4">
+            <div class="am-u-sm-4" style="color: grey">
+                <div style="float: right;">
                 <button class="am-icon-download"
                         style="border: none;background-color: white;margin: 0 auto;display: block;font-size: 18px"
                         data-am-modal="{target: '#my-alert'}"></button>
-                <span style="display: block;font-size: 11px">下载健康报告</span>
+                <span style="display: block;font-size: 12px;width: 100%;text-align: center">下载健康报告</span>
+                </div>
             </div>
         </div>
         <div data-tab-panel-1 class="am-tab-panel " style="text-align: center">

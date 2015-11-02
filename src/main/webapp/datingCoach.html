@@ -37,6 +37,14 @@
     <link rel="stylesheet" href="assets/css/static.css">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/amazeui.min.js"></script>
+    <style>
+        .am-form-group {
+            margin-bottom: 10px;
+        }
+        .am-u-sm-9{
+            padding-left: 0;
+        }
+    </style>
 </head>
 <body>
 <header data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{"directionNav":false}'>
@@ -57,47 +65,51 @@
 </header>
 <section class="am-container jm-content">
     <h2 class="jm-title" style="padding-top: 15px">[预约须知]</h2>
-    <hr data-am-widget="divider" style="margin: 0.5rem auto" class="am-divider am-divider-dotted"/>
+    <!--<hr data-am-widget="divider" style="margin: 0.5rem auto" class="am-divider am-divider-dotted"/>-->
     <span>
         1-3小班式教学迅速提高你的球技和战斗力。填写你所需的时间地点，奇羽记提供国家级羽毛球运动员为你开小灶。
     </span>
+    <hr data-am-widget="divider" style="margin: 1rem auto" class="am-divider am-divider-dotted"/>
 </section>
-<hr data-am-widget="divider" style="margin: 1rem auto" class="am-divider am-divider-default"/>
 <section class="am-container jm-content">
     <h2 class="jm-title" style="padding-bottom: 10px">[约教信息]</h2>
 
     <div class="am-form am-form-horizontal">
         <div class="am-form-group am-form-group-sm">
-            <label for="dc-name" class="am-u-sm-3 am-form-label" style="padding-left: 0">真实姓名</label>
+            <label for="dc-name" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 15px">真实姓名</label>
 
             <div class="am-u-sm-9">
                 <input type="text" id="dc-name" class="am-form-field  am-radius" placeholder="">
             </div>
         </div>
         <div class="am-form-group am-form-group-sm">
-            <label for="dc-tel" class="am-u-sm-3 am-form-label" style="padding-left: 0">联系电话</label>
+            <label for="dc-tel" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 15px">联系电话</label>
 
             <div class="am-u-sm-9">
                 <input type="tel" id="dc-tel" class="am-form-field  am-radius" placeholder="">
             </div>
         </div>
         <div class="am-form-group am-form-group-sm">
-            <label for="dc-time" class="am-u-sm-3 am-form-label" style="padding-left: 0">预约地点</label>
+            <label for="dc-time" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 15px">预约地点</label>
 
             <div class="am-u-sm-9">
                 <input type="text" id="dc-time" class="am-form-field  am-radius" placeholder="">
             </div>
         </div>
         <div class="am-form-group am-form-group-sm">
-            <label for="dc-date" class="am-u-sm-3 am-form-label" style="padding-left: 0">预约时间</label>
+            <label for="dc-date" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 15px">预约时间</label>
 
             <div class="am-u-sm-9">
-                <input type="date" id="dc-date" class="am-form-field  am-radius" placeholder="">
+                <input type="text" id="dc-date" class="am-form-field  am-radius" placeholder="">
             </div>
         </div>
     </div>
 </section>
-<hr data-am-widget="divider" style="margin: 1.5rem auto 0" class="am-divider am-divider-default"/>
+<!--<hr data-am-widget="divider" style="margin: 1.5rem auto 0" class="am-divider am-divider-default"/>-->
 <div class="jm-btn">
     <button class="am-btn am-btn-secondary" data-am-modal="{target: '#my-alert'}">我要私教</button>
 </div>

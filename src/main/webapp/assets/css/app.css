@@ -613,7 +613,7 @@ indivadualInfo
 
 .ii-container {
     margin: 50px 11px 10px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .ii-info {
@@ -656,6 +656,7 @@ indivadualInfo
     position: absolute;
     right: 32px;
     padding-top: 6px;
+    font-size: 14px;
 }
 
 .ii-tel {
@@ -673,6 +674,7 @@ indivadualInfo
     position: absolute;
     right: 32px;
     padding-top: 6px;
+    font-size: 14px;
 }
 
 .ii-weChat {
@@ -690,6 +692,7 @@ indivadualInfo
     position: absolute;
     right: 32px;
     padding-top: 6px;
+    font-size: 14px;
 }
 
 .ii-timeLine {
@@ -723,6 +726,7 @@ indivadualInfo
     position: absolute;
     right: 32px;
     padding-top: 6px;
+    font-size: 14px;
 }
 
 .ii-age {
@@ -740,6 +744,7 @@ indivadualInfo
     position: absolute;
     right: 32px;
     padding-top: 6px;
+    font-size: 14px;
 }
 
 .ii-height {
@@ -779,15 +784,16 @@ indivadualInfo
 .ii-arrows {
     position: relative;
     top: -30px;
-    right: 0px;
+    right: 5px;
     color: #66727d;
     font-weight: normal;
     display: block;
     text-align: right;
     padding-right: 5px;
-    padding-top: 10px;
+    padding-top: 5px;
     font-size: 13px;
     height: 41px;
+    font-size: 18px;
 }
 
 .ii-sports {
@@ -826,7 +832,7 @@ addDating
 
 .ad-container {
     margin: 50px 11px 10px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .ad-info {
@@ -941,15 +947,16 @@ addDating
 .ad-arrows {
     position: relative;
     top: -31px;
-    right: 0px;
+    right: 5px;
     color: #66727d;
     font-weight: normal;
     display: block;
     text-align: right;
     padding-right: 5px;
-    padding-top: 10px;
-    font-size: 13px;
+    padding-top: 5px;
+    /*font-size: 13px;*/
     height: 41px;
+    font-size: 18px;
 }
 
 .ad-sports {
@@ -993,7 +1000,7 @@ addDating
     position: absolute;
     right: 10px;
     top: 38px;
-    font-size: 11px;
+    font-size: 12px;
     color: grey;
 }
 

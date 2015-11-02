@@ -1,6 +1,6 @@
 .jm-content {
     padding: 0 15px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .jm-title {
@@ -16,16 +16,39 @@
 
 .jm-span {
     color: white;
-    background: limegreen;
-    border: 1px solid forestgreen;
+    background: #48c395;
+    border: 1px solid #37b27e;
     font-size: 11px;
-    padding: 2px;
+    padding: 1px;
+    border-radius: 3px;
 }
 
 .jm-btn {
     width: 100%;
+    padding: 15px;
 }
 
 .jm-btn > button {
+    display: block;
+    width: 250px;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+.am-modal-dialog {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.ad-content:focus {
+    outline: none;
+}
+
+.ad-content {
+    height: 60px;
     width: 100%;
+    border: solid 1px #acacac;
+    border-radius: 3px;
+    resize: none;
 }
