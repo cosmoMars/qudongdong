@@ -82,8 +82,8 @@
     <ul class="am-list am-list-static am-list-border main-margin">
         <li style="padding-left: 0px;padding-right: 0px;">
             <div class="main-container" style="height: 126px;">
-                <div class="main-g">
-                    <div class="main-left">
+                <div class="am-g main-g">
+                    <div class="am-u-sm-4 main-left">
                         <div class="main-center ">
                             <div class="main-avatar" style="border-radius: 3px;">
                                 <a href="timeLine.html?userId={{userId}}">
@@ -109,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="main-right" style="font-size: 15px;">
+                    <div class="am-u-sm-8 main-right" style="font-size: 15px;">
                         <div class="main-yue">
                             <!--<span class="main-people">{{currentPeople}}|{{peopleCount}}</span>-->
                             <span class="main-item">{{sportName}}</span>
@@ -140,11 +140,13 @@
                     <div class="main-button" style="top: 132px;">
                         {{#if enabled}}
                         <button onclick="generateOrderCustomer('{{orderId}}')" type="button"
-                                class="am-btn am-btn-success am-radius am-btn-xs main-green" id="main-confirm">
+                                class="am-btn am-btn-success am-radius am-btn-xs main-green"
+                                style="font-size: 14px;" id="main-confirm">
                             我要预约
                         </button>
                         {{else}}
                         <button type="button" class="am-btn am-btn-default am-radius am-btn-xs"
+                                style="font-size: 14px;"
                                 disabled="disabled">来晚了
                         </button>
                         {{/if}}

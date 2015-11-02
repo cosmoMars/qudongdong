@@ -78,8 +78,8 @@ main
     padding-right: 0;
     display: table-cell;
     vertical-align: middle;
-    width: 126px;
     height: 100%;
+    overflow: hidden;
 }
 
 .main-center {
@@ -162,13 +162,9 @@ main
 }
 
 .main-right {
-    position: absolute;
-    top: 0px;
-    left: 128px;
     padding-top: 13px;
     padding-left: 0;
-    padding-right: 0;
-    width: 60%;
+    padding-right: 15px;
     color: white;
     font-size: 13px;
 }
@@ -192,6 +188,7 @@ main
     -moz-border-radius: 2px;
     border-radius: 2px;
     padding: 1px 5px 2px;
+    margin-right: 8px;
 }
 
 .main-start-time {
@@ -224,7 +221,7 @@ main
 .main-text-bottom {
     background-color: white;
     border-top: solid 1px #EBEBEB;
-    height: 40px;
+    height: 44px;
     width: 100%;
 }
 
@@ -233,7 +230,7 @@ main
     padding-top: 8px;
     padding-left: 13px;
     padding-right: 13px;
-    font-size: 14px;
+    font-size: 15px;
     height: 100%;
     margin-right: 85px;
 }
@@ -1045,14 +1042,14 @@ addDating
 }
 
 @media only screen and (max-width: 320px) {
+    .main-left{
+        width: 40%;
+    }
     .main-right {
-        position: absolute;
-        top: 0px;
-        left: 118px;
         padding-top: 13px;
         padding-left: 0;
-        padding-right: 0;
-        width: 62%;
+        padding-right: 15px;
+        width: 60%;
         color: white;
         font-size: 13px;
     }
