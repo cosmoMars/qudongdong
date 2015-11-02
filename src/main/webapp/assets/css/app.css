@@ -432,7 +432,7 @@ timeLine
     top: 36px;
     left: 38%;
     color: white;
-    font-size: 14px;
+    font-size: 16px;
     width: 62%;
 }
 
@@ -452,7 +452,7 @@ timeLine
 .tl-age {
     position: relative;
     top: 15px;
-    font-size: 13px;
+    font-size: 15px;
     color: #57626c;
 }
 
@@ -514,7 +514,7 @@ timeLine
 .cbp_tmtimeline > li .cbp_tmlabel {
     margin: 0 0 5% 30%;
     padding: 5px;
-    font-size: 13px;
+    font-size: 16px;
     color: grey;
     position: absolute;
     top: 18px;
@@ -548,7 +548,7 @@ timeLine
     padding-right: 3px;
     padding-left: 3px;
     width: 20px;
-    font-size: 12px;
+    font-size: 14px;
     color: white;
     background: #4EC296;
     -webkit-border-radius: 3px;
@@ -559,7 +559,7 @@ timeLine
 .tl-start-time {
     margin-left: 5%;
     width: auto;
-    font-size: 12px;
+    font-size: 14px;
     padding-left: 2%;
     padding-right: 3%;
     color: white;
@@ -581,7 +581,7 @@ timeLine
     position: absolute;
     top: 6px;
     right: 0;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .tl-gray {
@@ -613,7 +613,7 @@ indivadualInfo
 
 .ii-container {
     margin: 50px 11px 10px;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .ii-info {
@@ -656,7 +656,7 @@ indivadualInfo
     position: absolute;
     right: 32px;
     padding-top: 6px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .ii-tel {
@@ -674,7 +674,7 @@ indivadualInfo
     position: absolute;
     right: 32px;
     padding-top: 6px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .ii-weChat {
@@ -692,7 +692,7 @@ indivadualInfo
     position: absolute;
     right: 32px;
     padding-top: 6px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .ii-timeLine {
@@ -726,7 +726,7 @@ indivadualInfo
     position: absolute;
     right: 32px;
     padding-top: 6px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .ii-age {
@@ -744,7 +744,7 @@ indivadualInfo
     position: absolute;
     right: 32px;
     padding-top: 6px;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 .ii-height {
@@ -791,7 +791,6 @@ indivadualInfo
     text-align: right;
     padding-right: 5px;
     padding-top: 5px;
-    font-size: 13px;
     height: 41px;
     font-size: 18px;
 }
@@ -832,7 +831,7 @@ addDating
 
 .ad-container {
     margin: 50px 11px 10px;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .ad-info {
@@ -1039,6 +1038,10 @@ addDating
     height: 50px;
     position: relative;
     top: -77px;
+}
+
+.am-btn.am-radius {
+    border-radius: 5px;
 }
 
 @media only screen and (max-width: 320px) {

@@ -1,11 +1,11 @@
 .jm-content {
     padding: 0 15px;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .jm-title {
     margin: 0;
-    font-size: 16px;
+    font-size: 18px;
     color: #4EC296;
 }
 
@@ -18,23 +18,41 @@
     color: white;
     background: #48c395;
     border: 1px solid #37b27e;
-    font-size: 11px;
+    font-size: 12px;
     padding: 1px;
     border-radius: 3px;
 }
 
 .jm-btn {
     width: 100%;
-    padding: 15px;
+    padding: 15px 30px;
 }
 
 .jm-btn > button {
     display: block;
-    width: 250px;
-    margin: 0 auto;
+    width: 100%;
     border-radius: 5px;
     background-color: #4EC296;
     border-color: #4EC296;
+    font-size: 16px;
+}
+
+.radio-box {
+    font-size: 24px;
+    display: block;
+    position: relative;
+    left: 110px;
+    top: -32px;
+    width: 20px;
+}
+
+.radio-box1 {
+    font-size: 24px;
+    display: block;
+    position: relative;
+    left: 78px;
+    top: -32px;
+    width: 20px;
 }
 
 .am-modal-dialog {
