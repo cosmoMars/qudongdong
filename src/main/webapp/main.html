@@ -35,6 +35,15 @@
 
     <link rel="stylesheet" href="assets/css/amazeui.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <style>
+        .icon {
+            display: inline-block;
+            width: 16px;
+            height: 12px;
+            background-image: url("./assets/i/people_gray.png");
+            background-size: 16px 12px;
+        }
+    </style>
 
 </head>
 <body class="main-body">
@@ -72,11 +81,11 @@
     {{#each sportOrder}}
     <ul class="am-list am-list-static am-list-border main-margin">
         <li style="padding-left: 0px;padding-right: 0px;">
-            <div class="main-container">
+            <div class="main-container" style="height: 126px;">
                 <div class="main-g">
                     <div class="main-left">
                         <div class="main-center ">
-                            <div class="main-avatar">
+                            <div class="main-avatar" style="border-radius: 3px;">
                                 <a href="timeLine.html?userId={{userId}}">
                                     <img src="{{avatarUrl}}" style="height: 100px;width: 100px"/>
                                 </a>
@@ -93,7 +102,8 @@
                                 {{/judge}}
                                 {{/compare}}
                             </div>
-                            <div class="main-info">
+                            <div class="main-info" style="position: relative;top: -24px;
+                            background:-webkit-gradient(linear, 0 0, 0 100%, from(rgba(51, 51, 51, 0.1)), to(rgba(51, 51, 51, 1)));">
                                 <div class="main-name am-text-truncate">{{nickName}}</div>
                                 <div class="main-age">{{age}}岁</div>
                             </div>
@@ -101,15 +111,19 @@
                     </div>
                     <div class="main-right">
                         <div class="main-yue">
-                            <span class="main-people">{{currentPeople}}|{{peopleCount}}</span>
+                            <!--<span class="main-people">{{currentPeople}}|{{peopleCount}}</span>-->
                             <span class="main-item">{{sportName}}</span>
                             <span class="main-start-time">{{startTime}}-{{endTime}}</span>
                             <!--<div class="main-people"><span>单独约</span></div>-->
                             <!--<div class="main-item"><span>{{sportName}}</span></div>-->
                             <!--<div class="main-start-time"><span>{{startTime}}-{{endTime}}</span></div>-->
                         </div>
-                        <div class="main-location">地点：{{location}}</div>
-                        <div class="main-time">{{diffTime}}前 发布</div>
+                        <div class="main-location" style="margin-bottom: 10px;">地点：{{location}}</div>
+                        <div>
+                            <i class="icon"></i><span class="main-time" style="padding-left: 10px;">{{currentPeople}}/{{peopleCount}}</span>
+
+                            <div class="main-time" style="display: inline-block;float: right;">{{diffTime}}前 发布</div>
+                        </div>
                         <div>
                             {{#each sports}}
                             <img src="{{iconUrl}}" class="main-sports"/>
@@ -123,7 +137,7 @@
                     <div class="main-content">
                         <span>{{content}}</span>
                     </div>
-                    <div class="main-button">
+                    <div class="main-button" style="top: 132px;">
                         {{#if enabled}}
                         <button onclick="generateOrderCustomer('{{orderId}}')" type="button"
                                 class="am-btn am-btn-success am-radius am-btn-xs main-green" id="main-confirm">
