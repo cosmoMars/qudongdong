@@ -96,3 +96,9 @@ a:focus, a:hover {
 .am-slider-a1 .am-control-nav li a.am-active {
     background-color: #4EC296;
 }
+
+@media only screen and (max-width: 340px) {
+    .radio-box1 {
+        left: 70px;
+    }
+}
