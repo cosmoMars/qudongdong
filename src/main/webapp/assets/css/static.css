@@ -6,7 +6,7 @@
 .jm-title {
     margin: 0;
     font-size: 16px;
-    color: deepskyblue;
+    color: #4EC296;
 }
 
 .jm-content > span {
@@ -33,6 +33,8 @@
     width: 250px;
     margin: 0 auto;
     border-radius: 5px;
+    background-color: #4EC296;
+    border-color: #4EC296;
 }
 
 .am-modal-dialog {
@@ -51,4 +53,24 @@
     border: solid 1px #acacac;
     border-radius: 3px;
     resize: none;
+}
+
+.am-modal-btn {
+    color: #4EC296;
+}
+
+a {
+    color: #4EC296;
+}
+
+a:focus, a:hover {
+    color: #4EC296;
+}
+
+.am-form input[type=number]:focus, .am-form input[type=search]:focus, .am-form input[type=text]:focus, .am-form input[type=password]:focus, .am-form input[type=datetime]:focus, .am-form input[type=datetime-local]:focus, .am-form input[type=date]:focus, .am-form input[type=month]:focus, .am-form input[type=time]:focus, .am-form input[type=week]:focus, .am-form input[type=email]:focus, .am-form input[type=url]:focus, .am-form input[type=tel]:focus, .am-form input[type=color]:focus, .am-form select:focus, .am-form textarea:focus, .am-form-field:focus {
+    background-color: #fefffe;
+    border-color: #ccc;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
