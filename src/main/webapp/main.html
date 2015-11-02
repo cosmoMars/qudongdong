@@ -122,7 +122,9 @@
                         <div>
                             <i class="icon"></i><span class="main-time" style="padding-left: 10px;font-size: 14px">{{currentPeople}}/{{peopleCount}}</span>
 
-                            <div class="main-time" style="display: inline-block;float: right;font-size: 14px">{{diffTime}}前 发布</div>
+                            <div class="main-time" style="display: inline-block;float: right;font-size: 14px">
+                                {{diffTime}}前 发布
+                            </div>
                         </div>
                         <div>
                             {{#each sports}}
@@ -141,7 +143,7 @@
                         {{#if enabled}}
                         <button onclick="generateOrderCustomer('{{orderId}}')" type="button"
                                 class="am-btn am-btn-success am-radius am-btn-xs main-green"
-                                style="font-size: 14px;" id="main-confirm">
+                                style="font-size: 14px;padding-left:0;padding-right:0;" id="main-confirm">
                             我要预约
                         </button>
                         {{else}}
