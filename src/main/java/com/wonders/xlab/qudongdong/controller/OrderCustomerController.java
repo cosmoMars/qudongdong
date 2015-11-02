@@ -267,9 +267,9 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
      * @param cId
      * @return
      */
-    @RequestMapping(value = "joinActivity", method = RequestMethod.POST)
-    public Object joinActivity(@RequestParam long orderId,
-                               @RequestParam long cId) {
+    @RequestMapping(value = "joinActivity/{orderId}/{cId}", method = RequestMethod.GET)
+    public Object joinActivity(@PathVariable long orderId,
+                               @PathVariable long cId) {
 
         SportOrder sportOrder = sportOrderRepository.findOne(orderId);
 
@@ -306,21 +306,6 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
                     .setMessage("失败");
         }
         sportOrder.setCurrentCount(sportOrder.getCurrentCount() + 1);
-
-         /*if (sportOrder.getUser().getTel() == null) {
-            return new ControllerResult<>()
-                    .setRet_code(-1)
-                    .setRet_values("对方手机还未填写哦")
-                    .setMessage("失败");
-        }
-
-        if (sportOrder.isOfficial()) {
-            orderCustomer.setUserAgree(true);
-            sportOrder.setCurrentCount(sportOrder.getCurrentCount() + 1);
-        }
-        if (!sportOrder.isOfficial()) {
-            SmsUtils.sendInviteMessage(sportOrder.getUser().getTel(), customer.getNickName(), DateFormatUtils.format(sportOrder.getStartTime(), "yyyy.MM.dd HH:mm"), sportOrder.getLocation());
-        }*/
 
         orderCustomerRepository.save(orderCustomer);
         sportOrderRepository.save(sportOrder);

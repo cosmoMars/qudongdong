@@ -233,6 +233,14 @@ public class WeChatNotifyController {
                 url = "http://101.231.124.8:45698/qdd/joinMember.html";
             } else if (StringUtils.equals(state, "needCoach")) {
                 url = "http://101.231.124.8:45698/qdd/datingCoach.html";
+            } else if (StringUtils.equals(state, "main")) {
+                url = "http://101.231.124.8:45698/qdd/main.html?userId=" + user.getId();
+            } else if (StringUtils.equals(state, "addDating")) {
+                url = "http://101.231.124.8:45698/qdd/addDatings.html?userId=" + user.getId();
+            } else if (StringUtils.equals(state, "individualInfo")) {
+                url = "http://101.231.124.8:45698/qdd/individualInfo.html?userId=" + user.getId();
+            } else if (StringUtils.equals(state, "timeLine")) {
+                url = "http://101.231.124.8:45698/qdd/timeLine.html?userId=" + user.getId();
             }
 
             /*else if (StringUtils.equals(state, "user")) {

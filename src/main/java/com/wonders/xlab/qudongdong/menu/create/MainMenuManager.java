@@ -31,13 +31,14 @@ public class MainMenuManager {
 
         CommonButton activity = new CommonButton();
         activity.setName("活动发起");
-        activity.setType("click");
-        activity.setKey("activity");
+        activity.setType("view");
+        activity.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxab1f6505deb6588c&redirect_uri=http://101.231.124.8:45698/qdd/weChatNotify/recall&response_type=code&scope=snsapi_base&state=addDating#wechat_redirect");
 
         CommonButton booking = new CommonButton();
         booking.setName("一站式预约");
-        booking.setType("click");
-        booking.setKey("booking");
+        booking.setType("view");
+//        booking.setKey("");
+        booking.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxab1f6505deb6588c&redirect_uri=http://101.231.124.8:45698/qdd/weChatNotify/recall&response_type=code&scope=snsapi_base&state=main#wechat_redirect");
 
         ComplexButton meet = new ComplexButton();
         meet.setName("我的奇遇");
@@ -46,13 +47,15 @@ public class MainMenuManager {
         //      菜单2----------------------------------------------------------------
         CommonButton healthCustomize = new CommonButton();
         healthCustomize.setName("健康定制");
-        healthCustomize.setType("click");
-        healthCustomize.setKey("healthCustomize");
+        healthCustomize.setType("view");
+//        healthCustomize.setKey("healthCustomize");
+        healthCustomize.setUrl("http://101.231.124.8:45698/qdd/healthManage.html");
 
         CommonButton inquiry = new CommonButton();
         inquiry.setName("线上问诊");
-        inquiry.setType("click");
-        inquiry.setKey("inquiry");
+        inquiry.setType("view");
+//        inquiry.setKey("inquiry");
+        inquiry.setUrl("http://101.231.124.8:45698/qdd/onlineInquiry.html");
 
         ComplexButton healthManager = new ComplexButton();
         healthManager.setName("健康管理");
@@ -62,24 +65,27 @@ public class MainMenuManager {
 
         CommonButton personalInfo = new CommonButton();
         personalInfo.setName("个人信息");
-        personalInfo.setType("click");
-        personalInfo.setKey("personalInfo");
+        personalInfo.setType("view");
+//        personalInfo.setKey("personalInfo");
+        personalInfo.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxab1f6505deb6588c&redirect_uri=http://101.231.124.8:45698/qdd/weChatNotify/recall&response_type=code&scope=snsapi_base&state=individualInfo#wechat_redirect");
 
         CommonButton sportRecipe = new CommonButton();
         sportRecipe.setName("运动处方");
-        sportRecipe.setType("click");
-        sportRecipe.setKey("sportRecipe");
+        sportRecipe.setType("view");
+//        sportRecipe.setKey("sportRecipe");
+        sportRecipe.setUrl("http://101.231.124.8:45698/qdd/sportRecipe.html");
 
         CommonButton healthReport = new CommonButton();
         healthReport.setName("健康报告");
-        healthReport.setType("click");
-        healthReport.setKey("healthReport");
+        healthReport.setType("view");
+//        healthReport.setKey("healthReport");
+        healthReport.setUrl("http://101.231.124.8:45698/qdd/myHealth.html");
 
         CommonButton mySport = new CommonButton();
         mySport.setName("我的约战");
-        mySport.setType("click");
-        mySport.setKey("mySport");
-
+        mySport.setType("view");
+//        mySport.setKey("mySport");
+        mySport.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxab1f6505deb6588c&redirect_uri=http://101.231.124.8:45698/qdd/weChatNotify/recall&response_type=code&scope=snsapi_base&state=timeLine#wechat_redirect");
 
         ComplexButton myManager = new ComplexButton();
         myManager.setName("我的管家");
