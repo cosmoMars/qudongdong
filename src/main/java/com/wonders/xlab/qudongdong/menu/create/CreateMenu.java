@@ -11,12 +11,13 @@ public class CreateMenu {
     private static Logger log = LoggerFactory.getLogger(CreateMenu.class);
 
     public static void main(String[] args) {
-//		//MyHealth 订阅号
-        //String appId = "wx5800fb2e1b46d9ad";
-        //String appSecret = "0ae88ff25cb86828649ae0fae78bd310";
-//		//MyHealth 服务号  用于测试
-        String appId = "wxab1f6505deb6588c";
-        String appSecret = "8df47114c4ea09f7c29a6abf5678ab83";
+//		//我的 服务号  用于测试
+//        String appId = "wxab1f6505deb6588c";
+//        String appSecret = "8df47114c4ea09f7c29a6abf5678ab83";
+
+        // 奇羽记
+        String appId = "wx6ed51189d6932881";
+        String appSecret = "1a3105cb73cb6e17864c49dac1fee785";
 //	    String access_token="1qXNVOJirXmgvRnIBSFm5ovfg4gAvbTDaC1Vkvlz_PnPz9LWUcxy1ER4yobQBq5RxQ-6l-1g8zPrjAzOJlsgJyvd0WTcu7GmbbsosOvWqPeIFje9ZsE6QkVAXbIWQ0s5V9VZyvN14msvyoZSrbMNsg";
 //	    String str = access_token;
 //	             调用接口获取access_token  

@@ -15,30 +15,30 @@ public class MainMenuManager {
     }
 
     public String getMenuJosn() {
-
+        //奇羽记 wx6ed51189d6932881 我的测试号wxab1f6505deb6588c
         //      菜单1----------------------------------------------------------------
         CommonButton joinClub = new CommonButton();
         joinClub.setName("我要入会");
         joinClub.setType("view");
 //        joinClub.setKey("joinClub");
-        joinClub.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxab1f6505deb6588c&redirect_uri=http://101.231.124.8:45698/qdd/weChatNotify/recall&response_type=code&scope=snsapi_base&state=joinClub#wechat_redirect");
+        joinClub.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6ed51189d6932881&redirect_uri=http://zao.reindeerjob.com/recall&response_type=code&scope=snsapi_base&state=joinClub#wechat_redirect");
 
         CommonButton needCoach = new CommonButton();
         needCoach.setName("我要私教");
         needCoach.setType("view");
 //        needCoach.setKey("needCoach");
-        needCoach.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxab1f6505deb6588c&redirect_uri=http://101.231.124.8:45698/qdd/weChatNotify/recall&response_type=code&scope=snsapi_base&state=needCoach#wechat_redirect");
+        needCoach.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6ed51189d6932881&redirect_uri=http://zao.reindeerjob.com/recall&response_type=code&scope=snsapi_base&state=needCoach#wechat_redirect");
 
         CommonButton activity = new CommonButton();
         activity.setName("活动发起");
         activity.setType("view");
-        activity.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxab1f6505deb6588c&redirect_uri=http://101.231.124.8:45698/qdd/weChatNotify/recall&response_type=code&scope=snsapi_base&state=addDating#wechat_redirect");
+        activity.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6ed51189d6932881&redirect_uri=http://zao.reindeerjob.com/recall&response_type=code&scope=snsapi_base&state=addDating#wechat_redirect");
 
         CommonButton booking = new CommonButton();
         booking.setName("一站式预约");
         booking.setType("view");
 //        booking.setKey("");
-        booking.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxab1f6505deb6588c&redirect_uri=http://101.231.124.8:45698/qdd/weChatNotify/recall&response_type=code&scope=snsapi_base&state=main#wechat_redirect");
+        booking.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6ed51189d6932881&redirect_uri=http://zao.reindeerjob.com/recall&response_type=code&scope=snsapi_base&state=main#wechat_redirect");
 
         ComplexButton meet = new ComplexButton();
         meet.setName("我的奇遇");
@@ -67,7 +67,7 @@ public class MainMenuManager {
         personalInfo.setName("个人信息");
         personalInfo.setType("view");
 //        personalInfo.setKey("personalInfo");
-        personalInfo.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxab1f6505deb6588c&redirect_uri=http://101.231.124.8:45698/qdd/weChatNotify/recall&response_type=code&scope=snsapi_base&state=individualInfo#wechat_redirect");
+        personalInfo.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6ed51189d6932881&redirect_uri=http://zao.reindeerjob.com/recall&response_type=code&scope=snsapi_base&state=individualInfo#wechat_redirect");
 
         CommonButton sportRecipe = new CommonButton();
         sportRecipe.setName("运动处方");
@@ -85,7 +85,7 @@ public class MainMenuManager {
         mySport.setName("我的约战");
         mySport.setType("view");
 //        mySport.setKey("mySport");
-        mySport.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxab1f6505deb6588c&redirect_uri=http://101.231.124.8:45698/qdd/weChatNotify/recall&response_type=code&scope=snsapi_base&state=timeLine#wechat_redirect");
+        mySport.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx6ed51189d6932881&redirect_uri=http://zao.reindeerjob.com/recall&response_type=code&scope=snsapi_base&state=timeLine#wechat_redirect");
 
         ComplexButton myManager = new ComplexButton();
         myManager.setName("我的管家");
