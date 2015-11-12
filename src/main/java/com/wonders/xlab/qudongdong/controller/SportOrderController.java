@@ -11,6 +11,7 @@ import com.wonders.xlab.qudongdong.dto.result.ControllerResult;
 import com.wonders.xlab.qudongdong.entity.Sport;
 import com.wonders.xlab.qudongdong.entity.SportOrder;
 import com.wonders.xlab.qudongdong.entity.User;
+import com.wonders.xlab.qudongdong.entity.Venue;
 import com.wonders.xlab.qudongdong.repository.AreaCoderRepository;
 import com.wonders.xlab.qudongdong.repository.SportOrderRepository;
 import com.wonders.xlab.qudongdong.repository.SportRepository;
@@ -88,7 +89,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             e.printStackTrace();
         }
         User user = userRepository.findOne(userId);
-        if (StringUtils.isEmpty(user.getTel())) {
+        if (StringUtils.isEmpty(user.getTel()) || StringUtils.isEmpty(user.getWeChat())) {
             return new ControllerResult<>()
                     .setRet_code(-1)
                     .setRet_values("请完善你的信息")
@@ -109,10 +110,14 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
         sportOrder.setUser(user);
         sportOrder.setSport(sport);
-        if (sportOrderDto.getOfficial()) {
+        if (user.isOfficial()) {
             sportOrder.setOfficial(true);
 //            sportOrder.setPeopleCount(sportOrderDto.getPeopleCount());
             sportOrder.setHtmlInfo(sportOrderDto.getHtmlInfo());
+            //添加场地信息
+            Venue venue = new Venue();
+            venue.setId(sportOrderDto.getVenueId());
+            sportOrder.setVenue(venue);
         } else {
             sportOrder.setOfficial(false);
 //            sportOrder.setPeopleCount(1);
@@ -168,6 +173,8 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             Map<String, Object> map = new HashMap<>();
             map.put("orderId", soo.getId());
             map.put("content", soo.getContent());
+            //添加场馆信息
+            map.put("venue", soo.getVenue());
             officialList.add(map);
         }
 

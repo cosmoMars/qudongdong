@@ -2,6 +2,7 @@ package com.wonders.xlab.qudongdong.dto;
 
 import com.wonders.xlab.qudongdong.entity.SportOrder;
 import com.wonders.xlab.qudongdong.entity.User;
+import com.wonders.xlab.qudongdong.entity.Venue;
 import org.apache.commons.lang3.time.DateUtils;
 
 import javax.validation.constraints.NotNull;
@@ -83,6 +84,9 @@ public class SportOrderDto {
      * 地区id
      */
     private Long areaCodeId;
+
+    //场地id
+    private long venueId;
 
     public SportOrder toNewOrder() {
         SportOrder order = new SportOrder();
@@ -205,5 +209,13 @@ public class SportOrderDto {
 
     public void setAreaCodeId(Long areaCodeId) {
         this.areaCodeId = areaCodeId;
+    }
+
+    public long getVenueId() {
+        return venueId;
+    }
+
+    public void setVenueId(long venueId) {
+        this.venueId = venueId;
     }
 }
