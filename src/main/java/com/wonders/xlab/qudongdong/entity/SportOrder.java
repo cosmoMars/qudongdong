@@ -39,7 +39,7 @@ public class SportOrder extends AbstractBaseEntity<Long> {
     private AreaCode areaCode;
 
     //场馆
-    @ManyToOne(fetch = FetchType.EAGER,optional = false)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     private Venue venue;
 
     /**
