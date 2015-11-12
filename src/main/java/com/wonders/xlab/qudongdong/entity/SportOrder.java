@@ -38,9 +38,6 @@ public class SportOrder extends AbstractBaseEntity<Long> {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private AreaCode areaCode;
 
-    //场馆
-    @ManyToOne(fetch = FetchType.LAZY,optional = false)
-    private Venue venue;
 
     /**
      * 地点
@@ -276,11 +273,5 @@ public class SportOrder extends AbstractBaseEntity<Long> {
         this.areaCode = areaCode;
     }
 
-    public Venue getVenue() {
-        return venue;
-    }
 
-    public void setVenue(Venue venue) {
-        this.venue = venue;
-    }
 }

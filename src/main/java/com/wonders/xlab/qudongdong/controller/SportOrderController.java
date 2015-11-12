@@ -8,14 +8,8 @@ import com.wonders.xlab.framework.repository.MyRepository;
 import com.wonders.xlab.qudongdong.dto.OrderDto;
 import com.wonders.xlab.qudongdong.dto.SportOrderDto;
 import com.wonders.xlab.qudongdong.dto.result.ControllerResult;
-import com.wonders.xlab.qudongdong.entity.Sport;
-import com.wonders.xlab.qudongdong.entity.SportOrder;
-import com.wonders.xlab.qudongdong.entity.User;
-import com.wonders.xlab.qudongdong.entity.Venue;
-import com.wonders.xlab.qudongdong.repository.AreaCoderRepository;
-import com.wonders.xlab.qudongdong.repository.SportOrderRepository;
-import com.wonders.xlab.qudongdong.repository.SportRepository;
-import com.wonders.xlab.qudongdong.repository.UserRepository;
+import com.wonders.xlab.qudongdong.entity.*;
+import com.wonders.xlab.qudongdong.repository.*;
 import com.wonders.xlab.qudongdong.utils.WdDateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -44,6 +38,9 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
     @Autowired
     private SportOrderRepository sportOrderRepository;
+
+    @Autowired
+    private SportOrderOfficialRepository sportOrderOfficialRepository;
 
     @Autowired
     private AreaCoderRepository areaCoderRepository;
@@ -106,28 +103,33 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
                     .setMessage("失败");
         }*/
 
-        SportOrder sportOrder = sportOrderDto.toNewOrder();
 
-        sportOrder.setUser(user);
-        sportOrder.setSport(sport);
-        if (user.isOfficial()) {
-            sportOrder.setOfficial(true);
+        if (user.isOfficial()) {//官方发布
+            SportOrderOfficial sportOrderOfficial = sportOrderDto.toNewOrderOfficial();
+            sportOrderOfficial.setOfficial(true);
 //            sportOrder.setPeopleCount(sportOrderDto.getPeopleCount());
-            sportOrder.setHtmlInfo(sportOrderDto.getHtmlInfo());
+            sportOrderOfficial.setHtmlInfo(sportOrderDto.getHtmlInfo());
             //添加场地信息
             Venue venue = new Venue();
             venue.setId(sportOrderDto.getVenueId());
-            sportOrder.setVenue(venue);
+            sportOrderOfficial.setPeopleCount(sportOrderDto.getPeopleCount());
+            if (sportOrderDto.getAreaCodeId() != null) {
+                sportOrderOfficial.setAreaCode(areaCoderRepository.findOne(sportOrderDto.getAreaCodeId()));
+            }
+            sportOrderOfficialRepository.save(sportOrderOfficial);
         } else {
+            SportOrder sportOrder = sportOrderDto.toNewOrder();
+            sportOrder.setUser(user);
+            sportOrder.setSport(sport);
             sportOrder.setOfficial(false);
+            sportOrder.setPeopleCount(sportOrderDto.getPeopleCount());
+
+            if (sportOrderDto.getAreaCodeId() != null) {
+                sportOrder.setAreaCode(areaCoderRepository.findOne(sportOrderDto.getAreaCodeId()));
+            }
+            sportOrderRepository.save(sportOrder);
 //            sportOrder.setPeopleCount(1);
         }
-        sportOrder.setPeopleCount(sportOrderDto.getPeopleCount());
-
-        if (sportOrderDto.getAreaCodeId() != null) {
-            sportOrder.setAreaCode(areaCoderRepository.findOne(sportOrderDto.getAreaCodeId()));
-        }
-        sportOrderRepository.save(sportOrder);
 
         return new ControllerResult<>()
                 .setRet_code(0)
@@ -153,8 +155,8 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         // 查询官方的订单
         Map<String, Object> filters = new HashMap<>();
         Date now = new Date();
-        filters.put("startTime_lessThanOrEqualTo", now);
-        filters.put("endTime_greaterThanOrEqualTo", now);
+        filters.put("startTime_greaterThanOrEqualTo", now);
+        filters.put("endTime_lessThanOrEqualTo", now);
         filters.put("official_equal", true);
 
         if (areaId != null) {
@@ -167,9 +169,9 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             filters.put("age_equal", SportOrder.AgeRange.values()[ageIdx]);
         }
 
-        List<SportOrder> officialOrders = sportOrderRepository.findAll(filters);
+        List<SportOrderOfficial> officialOrders = sportOrderOfficialRepository.findAll(filters);
         List<Map<String, Object>> officialList = new ArrayList<>();
-        for (SportOrder soo : officialOrders) {
+        for (SportOrderOfficial soo : officialOrders) {
             Map<String, Object> map = new HashMap<>();
             map.put("orderId", soo.getId());
             map.put("content", soo.getContent());

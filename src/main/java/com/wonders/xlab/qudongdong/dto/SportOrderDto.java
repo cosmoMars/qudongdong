@@ -1,6 +1,7 @@
 package com.wonders.xlab.qudongdong.dto;
 
 import com.wonders.xlab.qudongdong.entity.SportOrder;
+import com.wonders.xlab.qudongdong.entity.SportOrderOfficial;
 import com.wonders.xlab.qudongdong.entity.User;
 import com.wonders.xlab.qudongdong.entity.Venue;
 import org.apache.commons.lang3.time.DateUtils;
@@ -98,6 +99,25 @@ public class SportOrderDto {
         order.setCarryOne(carryOne);
         order.setContent(content);
         order.setStatus(SportOrder.Status.Todo);
+        try {
+            order.setStartTime(DateUtils.parseDate(startTime, "yyyy-MM-dd HH:mm"));
+            order.setEndTime(DateUtils.parseDate(endTime, "yyyy-MM-dd HH:mm"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return order;
+    }
+
+    public SportOrderOfficial toNewOrderOfficial() {
+        SportOrderOfficial order = new SportOrderOfficial();
+        order.setLocation(location);
+        order.setSex(User.Sex.values()[sex]);
+        order.setAgeRange(SportOrderOfficial.AgeRange.values()[ageRange]);
+        order.setPayMethod(SportOrderOfficial.PayMethod.values()[payMethod]);
+        order.setTransfer(transfer);
+        order.setCarryOne(carryOne);
+        order.setContent(content);
+        order.setStatus(SportOrderOfficial.Status.Todo);
         try {
             order.setStartTime(DateUtils.parseDate(startTime, "yyyy-MM-dd HH:mm"));
             order.setEndTime(DateUtils.parseDate(endTime, "yyyy-MM-dd HH:mm"));
