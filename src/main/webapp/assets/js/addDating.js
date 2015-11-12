@@ -70,6 +70,7 @@ function generateOrder() {
     else {
 
         var jsonData = {
+            "venueId":0,
             "location": location,
             "sex": 0,
             "ageRange": 0,

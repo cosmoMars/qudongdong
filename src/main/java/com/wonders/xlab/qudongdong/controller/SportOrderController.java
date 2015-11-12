@@ -106,12 +106,15 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
 
         if (user.isOfficial()) {//官方发布
             SportOrderOfficial sportOrderOfficial = sportOrderDto.toNewOrderOfficial();
+            sportOrderOfficial.setUser(user);
+            sportOrderOfficial.setSport(sport);
             sportOrderOfficial.setOfficial(true);
 //            sportOrder.setPeopleCount(sportOrderDto.getPeopleCount());
             sportOrderOfficial.setHtmlInfo(sportOrderDto.getHtmlInfo());
             //添加场地信息
             Venue venue = new Venue();
             venue.setId(sportOrderDto.getVenueId());
+            sportOrderOfficial.setVenue(venue);
             sportOrderOfficial.setPeopleCount(sportOrderDto.getPeopleCount());
             if (sportOrderDto.getAreaCodeId() != null) {
                 sportOrderOfficial.setAreaCode(areaCoderRepository.findOne(sportOrderDto.getAreaCodeId()));
@@ -155,9 +158,9 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         // 查询官方的订单
         Map<String, Object> filters = new HashMap<>();
         Date now = new Date();
-        filters.put("startTime_greaterThanOrEqualTo", now);
-        filters.put("endTime_lessThanOrEqualTo", now);
-        filters.put("official_equal", true);
+//        filters.put("startTime_greaterThanOrEqualTo", now);
+        filters.put("endTime_greaterThanOrEqualTo", now);
+//        filters.put("official_equal", true);
 
         if (areaId != null) {
             filters.put("location_equal", areaId);

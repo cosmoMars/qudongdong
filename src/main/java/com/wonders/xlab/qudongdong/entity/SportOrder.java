@@ -35,7 +35,7 @@ public class SportOrder extends AbstractBaseEntity<Long> {
     /**
      * 地点
      */
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     private AreaCode areaCode;
 
 
