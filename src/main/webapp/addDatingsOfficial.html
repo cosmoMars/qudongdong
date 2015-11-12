@@ -40,6 +40,7 @@
         #sw-wrapper {
             border-top: 2px solid #6dcfaa;
         }
+
         #sw-cancel, #sw-done {
             color: #6dcfaa;
         }
@@ -52,8 +53,14 @@
             主题
             <span class="am-badge ad-badge am-badge-danger" id="title-text">羽毛球</span>
         </div>
+        <div class="ad-partner">
+            场馆
+            <span class="am-badge ad-badge am-badge-danger" id="partner-text"></span>
+            <input type="hidden" id="venue">
+            <a id="partner-btn"><i class="am-icon-angle-right ad-arrows"></i></a>
+        </div>
         <div class="ad-location">
-            地点
+            地址
             <span class="am-badge ad-badge am-badge-danger" id="location-text"></span>
             <a id="location-btn"><i class="am-icon-angle-right ad-arrows"></i></a>
         </div>
@@ -92,11 +99,19 @@
         </div>
     </div>
 </div>
-
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-partner">
+    <div class="am-modal-dialog">
+        <div class="am-modal-bd" style="text-align: left;padding-left: 30px;" id="list"></div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+            <span class="am-modal-btn" data-am-modal-confirm>提交</span>
+        </div>
+    </div>
+</div>
 <div class="am-modal am-modal-prompt" tabindex="-1" id="ad-location">
     <div class="am-modal-dialog">
         <div class="am-modal-bd">
-            请输入运动地点(仅限15个字)
+            请输入具体地址
             <input type="text" class="am-modal-prompt-input">
         </div>
         <div class="am-modal-footer">
@@ -151,6 +166,15 @@
 <script src="assets/js/spinningwheel.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="assets/js/common.js"></script>
-<script src="assets/js/addDating.js"></script>
+<script src="assets/js/handlebars.min.js"></script>
+<script src="assets/js/addDatingsOfficial.js"></script>
+<script type="text/x-handlebars-template" id="listBox">
+    <div style="text-align: center;padding-right: 20px;">请选择场馆</div>
+    {{#each this}}
+    <label class="am-radio-inline">
+        <input type="radio" value="{{id}}" name="partner">{{venueName}}
+    </label><br/>
+    {{/each}}
+</script>
 </body>
 </html>

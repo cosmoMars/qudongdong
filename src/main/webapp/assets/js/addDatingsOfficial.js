@@ -2,6 +2,12 @@
  * Created by 倩钰 on 2015/8/24.
  */
 
+$.get(commonUrl + 'venue/findAll', function (data) {
+    var listTemple = Handlebars.compile($('#listBox').html());
+    console.log(data);
+    $('#list').html(listTemple(data));
+});
+
 $(function () {
     $('#location-btn').on('click', function () {
         $('#ad-location').modal({
@@ -30,6 +36,27 @@ $(function () {
     $('#endTime-btn').on('click', function () {
         openOneSlot('end');
     });
+
+    $('#partner-btn').on('click', function () {
+        var partner;
+        var venue;
+        $('#ad-partner').modal({
+            relatedTarget: this,
+            onConfirm: function () {
+                var temp = document.getElementsByName("partner");
+                for (var i = 0; i < temp.length; i++) {
+                    if (temp[i].checked) {
+                        partner = temp[i].nextSibling.nodeValue;
+                        venue = temp[i].value;
+                    }
+                }
+                $('#partner-text').html(partner);
+                $('#venue').val(venue);
+            },
+            onCancel: function () {
+            }
+        });
+    });
 });
 
 function GetQueryString(name) {
@@ -46,6 +73,7 @@ if (userId != null) {
 
 function generateOrder() {
     var location = $('#location-text').html();
+    var partner = $('#venue').val();
     var numOfP = $('#numOfP-text').html();
     var startTime = $('#startTime-text').attr('data-time') || '';
     var endTime = $('#endTime-text').attr('data-time') || '';
@@ -55,7 +83,7 @@ function generateOrder() {
         return false;
     }
     var content = $('#content-text').val();
-    if (location.length == 0 || startTime.length == 0 || endTime.length == 0 || content.length == 0 || numOfP.length == 0) {
+    if (location.length == 0 || startTime.length == 0 || endTime.length == 0 || content.length == 0 || numOfP.length == 0 || partner.length == 0) {
         $('#status').html("您还有字段未填写哦！");
         $('#my-alert').modal({relatedTarget: this,});
     }
@@ -70,6 +98,7 @@ function generateOrder() {
     else {
 
         var jsonData = {
+            "venueId": partner,
             "location": location,
             "sex": 0,
             "ageRange": 0,
@@ -80,7 +109,7 @@ function generateOrder() {
             "content": content,
             "startTime": startTime,
             "endTime": endTime,
-            "official": 0
+            "official": 1
         };
 
         var data = JSON.stringify(jsonData);
