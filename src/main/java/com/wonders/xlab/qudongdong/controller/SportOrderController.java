@@ -176,14 +176,55 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         }
 
         List<SportOrderOfficial> officialOrders = sportOrderOfficialRepository.findAll(filters);
-        List<Map<String, Object>> officialList = new ArrayList<>();
-        for (SportOrderOfficial soo : officialOrders) {
+        List<OrderDto> officialList = new ArrayList<>();
+        for (SportOrderOfficial order : officialOrders) {
+            OrderDto dto = new OrderDto();
+            dto.setOrderId(order.getId());
+            dto.setUserId(order.getUser().getId());
+            dto.setLocation(order.getLocation());
+
+            dto.setPeopleCount(order.getPeopleCount());
+            dto.setCurrentPeople(order.getCurrentCount());
+
+            dto.setAvatarUrl(order.getUser().getAvatarUrl());
+            dto.setSex(order.getUser().getSex().ordinal());
+            dto.setNickName(order.getUser().getNickName());
+            dto.setSportName(order.getSport().getName());
+            dto.setSports(new ArrayList<>(order.getUser().getSports()));
+            dto.setContent(order.getContent());
+
+            int diffTime = WdDateUtils.calculatePeiorMiniutesOfTwoDate(order.getCreatedDate(), now);
+            if (diffTime < 60) {
+                dto.setDiffTime(diffTime + "分钟");
+            } else {
+                dto.setDiffTime((diffTime / 60) + "小时");
+            }
+            dto.setStartTime(DateFormatUtils.format(order.getStartTime(), "HH:mm"));
+            dto.setEndTime(DateFormatUtils.format(order.getEndTime(), "HH:mm"));
+
+            dto.setPercent(dto.getCurrentPeople() / dto.getPeopleCount());
+
+            if (now.getTime() < order.getStartTime().getTime() && dto.getCurrentPeople() < dto.getPeopleCount()) {
+                dto.setEnabled(true);
+            } else {
+                dto.setEnabled(false);
+            }
+            dto.setAge(order.getUser().getAge());
+
+            dto.setVenue(order.getVenue());
+
+            //加入的用户头像
             Map<String, Object> map = new HashMap<>();
-            map.put("orderId", soo.getId());
-            map.put("content", soo.getContent());
-            //添加场馆信息
-            map.put("venue", soo.getVenue());
-            officialList.add(map);
+            map.put("sportOrderOfficial.id_equal",order.getId() );
+            map.put("official_equal",true );
+            List<OrderCustomer> orderCustomers = orderCustomerRepository.findAll(map);
+            List<String> list = new ArrayList<String>();
+            for (OrderCustomer oc : orderCustomers) {
+                list.add(oc.getCustomer().getAvatarUrl());
+            }
+            dto.setPicUrls(list);
+
+            officialList.add(dto);
         }
 
         resultNode.putPOJO("officialOrder", officialList);
@@ -227,7 +268,10 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             dto.setAge(order.getUser().getAge());
 
             //加入的用户头像
-            List<OrderCustomer> orderCustomers = orderCustomerRepository.findAll(Collections.singletonMap("sportOrder.id_equal",order.getId()));
+            Map<String, Object> map = new HashMap<>();
+            map.put("sportOrder.id_equal",order.getId() );
+            map.put("official_equal",false );
+            List<OrderCustomer> orderCustomers = orderCustomerRepository.findAll(map);
             List<String> list = new ArrayList<String>();
             for (OrderCustomer oc : orderCustomers) {
                 list.add(oc.getCustomer().getAvatarUrl());
