@@ -46,6 +46,9 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
     private AreaCoderRepository areaCoderRepository;
 
     @Autowired
+    private OrderCustomerRepository orderCustomerRepository;
+
+    @Autowired
     private ObjectMapper objectMapper;
 
     @Override
@@ -222,6 +225,15 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
                 dto.setEnabled(false);
             }
             dto.setAge(order.getUser().getAge());
+
+            //加入的用户头像
+            List<OrderCustomer> orderCustomers = orderCustomerRepository.findAll(Collections.singletonMap("sportOrder.id_equal",order.getId()));
+            List<String> list = new ArrayList<String>();
+            for (OrderCustomer oc : orderCustomers) {
+                list.add(oc.getCustomer().getAvatarUrl());
+            }
+            dto.setPicUrls(list);
+
             orderDtos.add(dto);
         }
         resultNode.putPOJO("sportOrder", orderDtos);

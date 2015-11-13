@@ -17,7 +17,7 @@ public class OrderCustomer extends AbstractBaseEntity<Long> {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private SportOrder sportOrder;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     private User customer;
 
     private Boolean userAgree;

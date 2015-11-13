@@ -95,6 +95,9 @@ public class OrderDto {
      */
     private int age;
 
+    //加入的用户头像list
+    private List picUrls;
+
 
     public long getOrderId() {
         return orderId;
@@ -230,5 +233,13 @@ public class OrderDto {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public List getPicUrls() {
+        return picUrls;
+    }
+
+    public void setPicUrls(List picUrls) {
+        this.picUrls = picUrls;
     }
 }
