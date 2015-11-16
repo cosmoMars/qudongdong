@@ -317,13 +317,14 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
             sportOrderRepository.save(sportOrder);
         } else { //官方
             SportOrderOfficial sportOrderOfficial = sportOrderOfficialRepository.findOne(orderId);
+
             if (sportOrderOfficial.getUser().getId() == cId) {
                 return new ControllerResult<>()
                         .setRet_code(-1)
                         .setRet_values("约自己？你又傲娇了！")
                         .setMessage("失败");
             }
-            OrderCustomer existOrder = orderCustomerRepository.findBySportOrderIdAndCustomerIdAndOfficial(orderId, cId,false);
+            OrderCustomer existOrder = orderCustomerRepository.findBySportOrderIdAndCustomerIdAndOfficial(orderId, cId, true);
 
             if (existOrder != null) {
                 return new ControllerResult<>()
