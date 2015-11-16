@@ -1,6 +1,7 @@
 package com.wonders.xlab.qudongdong.dto;
 
 import com.wonders.xlab.qudongdong.entity.Sport;
+import com.wonders.xlab.qudongdong.entity.Venue;
 
 import java.util.List;
 
@@ -97,6 +98,8 @@ public class OrderDto {
 
     //加入的用户头像list
     private List picUrls;
+
+    private Venue venue;
 
 
     public long getOrderId() {
@@ -241,5 +244,13 @@ public class OrderDto {
 
     public void setPicUrls(List picUrls) {
         this.picUrls = picUrls;
+    }
+
+    public Venue getVenue() {
+        return venue;
+    }
+
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 }

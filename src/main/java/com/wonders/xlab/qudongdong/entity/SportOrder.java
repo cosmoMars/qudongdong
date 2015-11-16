@@ -129,6 +129,11 @@ public class SportOrder extends AbstractBaseEntity<Long> {
     @Lob
     private String htmlInfo;
 
+    @Override
+    public void setId(Long id) {
+        super.setId(id);
+    }
+
     public User getUser() {
         return user;
     }
