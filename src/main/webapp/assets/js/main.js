@@ -70,6 +70,20 @@ function generateOrderCustomer(orderId) {
     });
 }
 
+function generateOrderOfficial(orderId) {
+    var generateOrderCustomerUrl = commonUrl + 'orderCustomer/joinActivity/' + orderId + '/' + userId_ + '/' + 1;
+    $.get(generateOrderCustomerUrl, function (data) {
+        if (data.ret_code == 0) {
+            $('#status').html(data.ret_values);
+            $('#my-alert').modal({relatedTarget: this,})
+        }
+        else {
+            $('#status').html(data.ret_values);
+            $('#my-alert').modal({relatedTarget: this,})
+        }
+    });
+}
+
 function toReload() {
     location.href = 'main.html?userId=' + userId_;
 }
