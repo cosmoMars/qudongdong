@@ -3,6 +3,16 @@
  */
 
 $(function () {
+    $('#venue-btn').on('click', function () {
+        $('#ad-venue').modal({
+            relatedTarget: this,
+            onConfirm: function (e) {
+                $('#venue-text').html(e.data);
+            },
+            onCancel: function (e) {
+            }
+        });
+    });
     $('#location-btn').on('click', function () {
         $('#ad-location').modal({
             relatedTarget: this,
@@ -45,6 +55,7 @@ if (userId != null) {
 }
 
 function generateOrder() {
+    var venue = $('#venue-text').html();
     var location = $('#location-text').html();
     var numOfP = $('#numOfP-text').html();
     var startTime = $('#startTime-text').attr('data-time') || '';
@@ -55,8 +66,12 @@ function generateOrder() {
         return false;
     }
     var content = $('#content-text').val();
-    if (location.length == 0 || startTime.length == 0 || endTime.length == 0 || content.length == 0 || numOfP.length == 0) {
+    if (venue.length == 0 || location.length == 0 || startTime.length == 0 || endTime.length == 0 || content.length == 0 || numOfP.length == 0) {
         $('#status').html("您还有字段未填写哦！");
+        $('#my-alert').modal({relatedTarget: this,});
+    }
+    else if (venue.length >= 12) {
+        $('#status').html("场馆仅限11个字哦！");
         $('#my-alert').modal({relatedTarget: this,});
     }
     else if (content.length >= 13) {
@@ -70,7 +85,8 @@ function generateOrder() {
     else {
 
         var jsonData = {
-            "venueId":0,
+            "venueName": venue,
+            "venueId": 0,
             "location": location,
             "sex": 0,
             "ageRange": 0,

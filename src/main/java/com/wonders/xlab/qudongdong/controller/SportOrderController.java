@@ -161,7 +161,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         // 查询官方的订单
         Map<String, Object> filters = new HashMap<>();
         Date now = new Date();
-        filters.put("startTime_lessThanOrEqualTo", now);
+//        filters.put("startTime_lessThanOrEqualTo", now);
         filters.put("endTime_greaterThanOrEqualTo", now);
 //        filters.put("official_equal", true);
 

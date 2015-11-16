@@ -134,13 +134,13 @@
                   </execution>
               </executions>
 
-              <dependencies>
-                  <dependency>
-                      <groupId>org.springframework</groupId>
-                      <artifactId>springloaded</artifactId>
-                      <version>1.2.0.RELEASE</version>
-                  </dependency>
-              </dependencies>
+              <!--<dependencies>-->
+                  <!--<dependency>-->
+                      <!--<groupId>org.springframework</groupId>-->
+                      <!--<artifactId>springloaded</artifactId>-->
+                      <!--<version>1.2.0.RELEASE</version>-->
+                  <!--</dependency>-->
+              <!--</dependencies>-->
           </plugin>
 
       </plugins>

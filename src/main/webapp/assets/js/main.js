@@ -57,7 +57,7 @@ $.get(commonUrl + 'order/listSportOrder/' + userId_, function (data) {
 })
 
 function generateOrderCustomer(orderId) {
-    var generateOrderCustomerUrl = commonUrl + 'orderCustomer/joinActivity/' + orderId + '/' + userId_;
+    var generateOrderCustomerUrl = commonUrl + 'orderCustomer/joinActivity/' + orderId + '/' + userId_ + '/' + 0;
     $.get(generateOrderCustomerUrl, function (data) {
         if (data.ret_code == 0) {
             $('#status').html(data.ret_values);
