@@ -324,7 +324,7 @@ public class OrderCustomerController extends AbstractBaseController<OrderCustome
                         .setRet_values("约自己？你又傲娇了！")
                         .setMessage("失败");
             }
-            OrderCustomer existOrder = orderCustomerRepository.findBySportOrderIdAndCustomerIdAndOfficial(orderId, cId, true);
+            OrderCustomer existOrder = orderCustomerRepository.findBySportOrderOfficialIdAndCustomerIdAndOfficial(orderId, cId, true);
 
             if (existOrder != null) {
                 return new ControllerResult<>()

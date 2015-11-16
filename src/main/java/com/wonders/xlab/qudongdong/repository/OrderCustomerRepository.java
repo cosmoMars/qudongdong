@@ -16,6 +16,9 @@ public interface OrderCustomerRepository extends MyRepository<OrderCustomer, Lon
 
     OrderCustomer findBySportOrderIdAndCustomerIdAndOfficial(long sportOrderId, long customerId,boolean official);
 
+    OrderCustomer findBySportOrderOfficialIdAndCustomerIdAndOfficial(long sportOrderId, long customerId,boolean official);
+
+
     List<OrderCustomer> findBySportOrderIdAndCustomerIdNot(long sportOrderId, long customerId);
 
     Page<OrderCustomer> findBySportOrderIdAndUserAgreeIsNull(long sportOrderId, Pageable pageable);
