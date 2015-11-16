@@ -89,6 +89,9 @@ public class SportOrderDto {
     //场地id
     private long venueId;
 
+    //非官方的场地名称
+    private String venueName;
+
     public SportOrder toNewOrder() {
         SportOrder order = new SportOrder();
         order.setLocation(location);
@@ -237,5 +240,13 @@ public class SportOrderDto {
 
     public void setVenueId(long venueId) {
         this.venueId = venueId;
+    }
+
+    public String getVenueName() {
+        return venueName;
+    }
+
+    public void setVenueName(String venueName) {
+        this.venueName = venueName;
     }
 }
