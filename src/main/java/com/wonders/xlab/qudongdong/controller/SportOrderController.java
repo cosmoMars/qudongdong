@@ -129,6 +129,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             sportOrder.setSport(sport);
             sportOrder.setOfficial(false);
             sportOrder.setPeopleCount(sportOrderDto.getPeopleCount());
+            sportOrder.setVenueName(sportOrderDto.getVenueName());
 
             if (sportOrderDto.getAreaCodeId() != null) {
                 sportOrder.setAreaCode(areaCoderRepository.findOne(sportOrderDto.getAreaCodeId()));
