@@ -248,6 +248,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             dto.setSportName(order.getSport().getName());
             dto.setSports(new ArrayList<>(order.getUser().getSports()));
             dto.setContent(order.getContent());
+            dto.setVenueName(order.getVenueName());
 
             int diffTime = WdDateUtils.calculatePeiorMiniutesOfTwoDate(order.getCreatedDate(), now);
             if (diffTime < 60) {

@@ -2,6 +2,7 @@ package com.wonders.xlab.qudongdong.dto;
 
 import com.wonders.xlab.qudongdong.entity.Sport;
 import com.wonders.xlab.qudongdong.entity.Venue;
+import org.hibernate.envers.Audited;
 
 import java.util.List;
 
@@ -100,6 +101,9 @@ public class OrderDto {
     private List picUrls;
 
     private Venue venue;
+
+    //非官方场馆名
+    private String venueName;
 
 
     public long getOrderId() {
@@ -252,5 +256,13 @@ public class OrderDto {
 
     public void setVenue(Venue venue) {
         this.venue = venue;
+    }
+
+    public String getVenueName() {
+        return venueName;
+    }
+
+    public void setVenueName(String venueName) {
+        this.venueName = venueName;
     }
 }
