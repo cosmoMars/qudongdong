@@ -1,8 +1,26 @@
 /**
  * Created by 倩钰 on 2015/8/24.
  */
+function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return (r[2]);
+    return null;
+}
+
+var userId = GetQueryString("userId");
+if (userId != null) {
+    var userId_ = decodeURIComponent(userId);
+}
 
 $(function () {
+    $.get(commonUrl + 'order/validatePersonalInfo/' + userId_, function (data) {
+        console.log(data);
+        if (data.ret_code === -1) {
+            $('#error-message').html(data.ret_values);
+            $('#error-alert').modal({relatedTarget: this,})
+        }
+    });
     $('#venue-btn').on('click', function () {
         $('#ad-venue').modal({
             relatedTarget: this,
@@ -41,18 +59,6 @@ $(function () {
         openOneSlot('end');
     });
 });
-
-function GetQueryString(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    var r = window.location.search.substr(1).match(reg);
-    if (r != null) return (r[2]);
-    return null;
-}
-
-var userId = GetQueryString("userId");
-if (userId != null) {
-    var userId_ = decodeURIComponent(userId);
-}
 
 function generateOrder() {
     var venue = $('#venue-text').html();
@@ -133,6 +139,9 @@ function generateOrder() {
 
 function toMain() {
     location.href = 'main.html?userId=' + userId_;
+}
+function toMine() {
+    location.href = 'individualInfo.html?userId=' + userId_;
 }
 
 function startDone() {
