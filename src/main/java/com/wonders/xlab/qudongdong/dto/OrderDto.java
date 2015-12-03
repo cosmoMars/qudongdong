@@ -2,7 +2,6 @@ package com.wonders.xlab.qudongdong.dto;
 
 import com.wonders.xlab.qudongdong.entity.Sport;
 import com.wonders.xlab.qudongdong.entity.Venue;
-import org.hibernate.envers.Audited;
 
 import java.util.List;
 
@@ -75,6 +74,11 @@ public class OrderDto {
      * 完成人数百分比
      */
     private int percent;
+
+    /**
+     * 日期
+     */
+    private String day;
 
     /**
      * 开始时间
@@ -264,5 +268,13 @@ public class OrderDto {
 
     public void setVenueName(String venueName) {
         this.venueName = venueName;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 }

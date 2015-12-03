@@ -117,11 +117,12 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             //添加场地信息
             Venue venue = new Venue();
             venue.setId(sportOrderDto.getVenueId());
-            sportOrderOfficial.setVenue(venue);
+//            sportOrderOfficial.setVenue(venue);
             sportOrderOfficial.setPeopleCount(sportOrderDto.getPeopleCount());
             if (sportOrderDto.getAreaCodeId() != null) {
                 sportOrderOfficial.setAreaCode(areaCoderRepository.findOne(sportOrderDto.getAreaCodeId()));
             }
+            sportOrderOfficial.setVenueName(sportOrderDto.getVenueName());
             sportOrderOfficialRepository.save(sportOrderOfficial);
         } else {
             SportOrder sportOrder = sportOrderDto.toNewOrder();
@@ -187,7 +188,9 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             dto.setPeopleCount(order.getPeopleCount());
             dto.setCurrentPeople(order.getCurrentCount());
 
-            dto.setAvatarUrl(order.getUser().getAvatarUrl());
+            //dto.setAvatarUrl(order.getUser().getAvatarUrl());
+            dto.setAvatarUrl("http://7xlgo8.com2.z0.glb.qiniucdn.com/黄浦区卢湾青少年业余体校.JPG");
+
             dto.setSex(order.getUser().getSex().ordinal());
             dto.setNickName(order.getUser().getNickName());
             dto.setSportName(order.getSport().getName());
@@ -200,6 +203,8 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             } else {
                 dto.setDiffTime((diffTime / 60) + "小时");
             }
+
+            dto.setDay(DateFormatUtils.format(order.getStartTime(), "yyyy-MM-dd"));
             dto.setStartTime(DateFormatUtils.format(order.getStartTime(), "HH:mm"));
             dto.setEndTime(DateFormatUtils.format(order.getEndTime(), "HH:mm"));
 
@@ -212,7 +217,8 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             }
             dto.setAge(order.getUser().getAge());
 
-            dto.setVenue(order.getVenue());
+//            dto.setVenue(order.getVenuena());
+            dto.setVenueName(order.getVenueName());
 
             //加入的用户头像
             Map<String, Object> map = new HashMap<>();
@@ -228,10 +234,11 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             officialList.add(dto);
         }
 
-        resultNode.putPOJO("officialOrder", officialList);
+            resultNode.putPOJO("officialOrder", officialList);
 
         // 查询用户发出的订单
-        List<SportOrder> orderPages = sportOrderRepository.findTopByTodayWithOutOfficial(now, pageable);
+//        List<SportOrder> orderPages = sportOrderRepository.findTopByTodayWithOutOfficial(now, pageable);
+        List<SportOrder> orderPages = sportOrderRepository.findAll(filters);
         List<OrderDto> orderDtos = new ArrayList<>();
 
         for (SportOrder order : orderPages) {
@@ -257,6 +264,8 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             } else {
                 dto.setDiffTime((diffTime / 60) + "小时");
             }
+
+            dto.setDay(DateFormatUtils.format(order.getStartTime(), "yyyy-MM-dd"));
             dto.setStartTime(DateFormatUtils.format(order.getStartTime(), "HH:mm"));
             dto.setEndTime(DateFormatUtils.format(order.getEndTime(), "HH:mm"));
 
