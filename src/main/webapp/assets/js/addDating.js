@@ -60,13 +60,14 @@ function generateOrder() {
     var numOfP = $('#numOfP-text').html();
     var startTime = $('#startTime-text').attr('data-time') || '';
     var endTime = $('#endTime-text').attr('data-time') || '';
+    var date = $('#date-text').val();
     if (new Date(startTime) >= new Date(endTime)) {
         $('#status').html("开始时间必须小于结束时间哦！");
         $('#my-alert').modal({relatedTarget: this});
         return false;
     }
     var content = $('#content-text').val();
-    if (venue.length == 0 || location.length == 0 || startTime.length == 0 || endTime.length == 0 || content.length == 0 || numOfP.length == 0) {
+    if (date.length == 0 || venue.length == 0 || location.length == 0 || startTime.length == 0 || endTime.length == 0 || content.length == 0 || numOfP.length == 0) {
         $('#status').html("您还有字段未填写哦！");
         $('#my-alert').modal({relatedTarget: this,});
     }
@@ -95,8 +96,8 @@ function generateOrder() {
             "carryOne": true,
             "peopleCount": numOfP,
             "content": content,
-            "startTime": startTime,
-            "endTime": endTime,
+            "startTime": date + ' ' + startTime,
+            "endTime": date + ' ' + endTime,
             "official": 0
         };
 
@@ -136,21 +137,21 @@ function toMain() {
 
 function startDone() {
     var results = SpinningWheel.getSelectedValues();
-    var startDate = new Date(), month = startDate.getMonth() + 1,
-        startDateString = startDate.getFullYear() + '-' + month + '-' + startDate.getDate() + ' ' + results.keys.join(':');
+    //var startDate = new Date(), month = startDate.getMonth() + 1,
+    //    startDateString = startDate.getFullYear() + '-' + month + '-' + startDate.getDate() + ' ' + results.keys.join(':');
     var $startTime = $('#startTime-text');
     $startTime.html(results.values.join(''));
-    $startTime.attr('data-time', startDateString);
+    $startTime.attr('data-time', results.keys.join(':'));
 //        document.getElementById('result').innerHTML = 'values: ' + results.values.join(' ') + '<br />keys: ' + results.keys.join(', ');
 }
 function endDone() {
     var results = SpinningWheel.getSelectedValues();
-    var endDate = new Date(), month = endDate.getMonth() + 1,
-        endDateString = endDate.getFullYear() + '-' + month + '-' + endDate.getDate() + ' ' + results.keys.join(':');
+    //var endDate = new Date(), month = endDate.getMonth() + 1,
+    //    endDateString = endDate.getFullYear() + '-' + month + '-' + endDate.getDate() + ' ' + results.keys.join(':');
     //console.log(endDateString);
     var $endTime = $('#endTime-text');
     $endTime.html(results.values.join(''));
-    $endTime.attr('data-time', endDateString);
+    $endTime.attr('data-time', results.keys.join(':'));
 //        document.getElementById('result').innerHTML = 'values: ' + results.values.join(' ') + '<br />keys: ' + results.keys.join(', ');
 }
 
@@ -206,6 +207,7 @@ function openOneSlot(type) {
         50: '50分',
         55: '55分',
     };
+
     SpinningWheel.addSlot(hours, 'center', 11);
     SpinningWheel.addSlot(mins, 'center', 30);
     SpinningWheel.setCancelAction(cancel);

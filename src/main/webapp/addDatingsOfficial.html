@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/spinningwheel.css"/>
+    <script src="laydate/laydate.js"></script>
     <style>
         #sw-wrapper {
             border-top: 2px solid #6dcfaa;
@@ -53,16 +54,27 @@
             主题
             <span class="am-badge ad-badge am-badge-danger" id="title-text">羽毛球</span>
         </div>
-        <div class="ad-partner">
+        <!--<div class="ad-partner">-->
+            <!--场馆-->
+            <!--<span class="am-badge ad-badge am-badge-danger" id="partner-text"></span>-->
+            <!--<input type="hidden" id="venue">-->
+            <!--<a id="partner-btn"><i class="am-icon-angle-right ad-arrows"></i></a>-->
+        <!--</div>-->
+        <div class="ad-location">
             场馆
-            <span class="am-badge ad-badge am-badge-danger" id="partner-text"></span>
-            <input type="hidden" id="venue">
-            <a id="partner-btn"><i class="am-icon-angle-right ad-arrows"></i></a>
+            <span class="am-badge ad-badge am-badge-danger" id="venue-text"></span>
+            <a id="venue-btn"><i class="am-icon-angle-right ad-arrows"></i></a>
         </div>
         <div class="ad-location">
             地址
             <span class="am-badge ad-badge am-badge-danger" id="location-text"></span>
             <a id="location-btn"><i class="am-icon-angle-right ad-arrows"></i></a>
+        </div>
+        <div class="ad-title">
+            日期
+            <div style="display: inline-block;float:right;padding-right: 30px;">
+                <input placeholder="请输入日期" class="laydate-icon" onclick="laydate()" id="date-text">
+            </div>
         </div>
         <div class="ad-start">
             开始时间
@@ -99,9 +111,21 @@
         </div>
     </div>
 </div>
-<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-partner">
+<!--<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-partner">-->
+    <!--<div class="am-modal-dialog">-->
+        <!--<div class="am-modal-bd" style="text-align: left;padding-left: 30px;" id="list"></div>-->
+        <!--<div class="am-modal-footer">-->
+            <!--<span class="am-modal-btn" data-am-modal-cancel>取消</span>-->
+            <!--<span class="am-modal-btn" data-am-modal-confirm>提交</span>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div class="am-modal am-modal-prompt" tabindex="-1" id="ad-venue">
     <div class="am-modal-dialog">
-        <div class="am-modal-bd" style="text-align: left;padding-left: 30px;" id="list"></div>
+        <div class="am-modal-bd">
+            请输入运动场馆(仅限11个字)
+            <input type="text" class="am-modal-prompt-input">
+        </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn" data-am-modal-cancel>取消</span>
             <span class="am-modal-btn" data-am-modal-confirm>提交</span>
@@ -166,15 +190,22 @@
 <script src="assets/js/spinningwheel.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="assets/js/common.js"></script>
-<script src="assets/js/handlebars.min.js"></script>
+<!--<script src="assets/js/handlebars.min.js"></script>-->
 <script src="assets/js/addDatingsOfficial.js"></script>
-<script type="text/x-handlebars-template" id="listBox">
-    <div style="text-align: center;padding-right: 20px;">请选择场馆</div>
-    {{#each this}}
-    <label class="am-radio-inline">
-        <input type="radio" value="{{id}}" name="partner">{{venueName}}
-    </label><br/>
-    {{/each}}
+<!--<script type="text/x-handlebars-template" id="listBox">-->
+    <!--<div style="text-align: center;padding-right: 20px;">请选择场馆</div>-->
+    <!--{{#each this}}-->
+    <!--<label class="am-radio-inline">-->
+        <!--<input type="radio" value="{{id}}" name="partner">{{venueName}}-->
+    <!--</label><br/>-->
+    <!--{{/each}}-->
+<!--</script>-->
+<script>
+    ;!function () {
+        laydate({
+            elem: '#date-text'
+        })
+    }();
 </script>
 </body>
 </html>

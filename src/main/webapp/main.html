@@ -96,7 +96,7 @@
                             <!--</div>-->
                             <div class="main-avatar">
                                 <a href="javasript:void(0)">
-                                    <img src="{{venue.picUrl}}" style="height: 100px;width: 100px"/>
+                                    <img src="{{avatarUrl}}" style="height: 100px;width: 100px"/>
                                 </a>
                             </div>
                             <div class="main-info">
@@ -107,14 +107,14 @@
                     <div class="am-u-sm-8 main-right" style="font-size: 15px;">
                         <div class="main-yue">
                             <!--<span class="main-people">{{currentPeople}}|{{peopleCount}}</span>-->
-                            <span class="main-item">羽毛球</span>
+                            <span class="main-item">{{day}}</span>
                             <span class="main-start-time">{{startTime}}-{{endTime}}</span>
                             <!--<div class="main-people"><span>单独约</span></div>-->
                             <!--<div class="main-item"><span>{{sportName}}</span></div>-->
                             <!--<div class="main-start-time"><span>{{startTime}}-{{endTime}}</span></div>-->
                         </div>
                         <div class="main-location" style="height:76px;margin-bottom: 10px;font-size: 16px;">
-                            {{venue.venueName}}<br/>地点：{{location}}
+                            {{venueName}}<br/>地点：{{location}}
                         </div>
                         <div>
                             <i class="icon"></i><span class="main-time" style="padding-left: 10px;font-size: 14px">{{currentPeople}}/{{peopleCount}}</span>
@@ -213,7 +213,7 @@
                     <div class="am-u-sm-8 main-right" style="font-size: 15px;">
                         <div class="main-yue">
                             <!--<span class="main-people">{{currentPeople}}|{{peopleCount}}</span>-->
-                            <span class="main-item">{{sportName}}</span>
+                            <span class="main-item">{{day}} </span>
                             <span class="main-start-time">{{startTime}}-{{endTime}}</span>
                             <!--<div class="main-people"><span>单独约</span></div>-->
                             <!--<div class="main-item"><span>{{sportName}}</span></div>-->
