@@ -9,6 +9,13 @@
 //});
 
 $(function () {
+    $.get(commonUrl + 'order/validatePersonalInfo/' + userId_, function (data) {
+        console.log(data);
+        if (data.ret_code === -1) {
+            $('#error-message').html(data.ret_values);
+            $('#error-alert').modal({relatedTarget: this,})
+        }
+    });
     $('#venue-btn').on('click', function () {
         $('#ad-venue').modal({
             relatedTarget: this,
@@ -159,7 +166,9 @@ function generateOrder() {
 function toMain() {
     location.href = 'main.html?userId=' + userId_;
 }
-
+function toMine() {
+    location.href = 'individualInfo.html?userId=' + userId_;
+}
 function startDone() {
     var results = SpinningWheel.getSelectedValues();
     //var startDate = new Date(), month = startDate.getMonth() + 1,
