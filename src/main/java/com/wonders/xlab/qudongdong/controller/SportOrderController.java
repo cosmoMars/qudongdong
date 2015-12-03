@@ -56,6 +56,28 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
         return sportOrderRepository;
     }
 
+
+    /**
+     * 检验个人信息
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "validatePersonalInfo/{userId}", method = RequestMethod.GET)
+    public Object validatePersonalInfo(@PathVariable long userId) {
+
+        User user = userRepository.findOne(userId);
+        if (StringUtils.isEmpty(user.getTel())) {
+            return new ControllerResult<>()
+                    .setRet_code(-1)
+                    .setRet_values("请完善你的信息")
+                    .setMessage("失败");
+        }
+        return new ControllerResult<>()
+                .setRet_code(0)
+                .setRet_values("已完善信息")
+                .setMessage("成功");
+    }
+
     /**
      * 添加订单
      *
@@ -89,7 +111,7 @@ public class SportOrderController extends AbstractBaseController<SportOrder, Lon
             e.printStackTrace();
         }
         User user = userRepository.findOne(userId);
-        if (StringUtils.isEmpty(user.getTel()) || StringUtils.isEmpty(user.getWeChat())) {
+        if (StringUtils.isEmpty(user.getTel())) {
             return new ControllerResult<>()
                     .setRet_code(-1)
                     .setRet_values("请完善你的信息")

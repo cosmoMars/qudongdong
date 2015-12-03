@@ -156,7 +156,7 @@ public class UserController extends AbstractBaseController<User, Long> {
     public Object validateUser(@PathVariable long userId) {
         User user = userRepository.findOne(userId);
 
-        if (StringUtils.isEmpty(user.getTel()) || StringUtils.isEmpty(user.getWeChat())) {
+        if (StringUtils.isEmpty(user.getTel())) {
             return new ControllerResult<>()
                     .setRet_code(-1)
                     .setRet_values("骚年，请先去完善个人信息～")
