@@ -1,6 +1,7 @@
 .jm-content {
     padding: 0 15px;
     font-size: 16px;
+    height: auto;
 }
 
 .jm-title {
@@ -101,4 +102,42 @@ a:focus, a:hover {
     .radio-box1 {
         left: 70px;
     }
+}
+.jm-serproject{
+    margin-top: 10px;
+    width: 100%;
+    height: 30px;
+}
+.jm-projname{
+    font-size: 18px;
+    color: #333;
+    float: left;
+    width: 32%;
+}
+.jm-projright{
+    float: left;
+    width: 68%;
+}
+.jm-prorights{
+    display: block;
+    height: 15px;
+    width: 100%;
+}
+.jm-top{
+    border-bottom: 1px solid #eee;
+}
+.jm-projinfo{
+    margin-bottom: 10px;
+}
+.jm-pronum{
+    color: white;
+    background-color: #ed8a2f;
+    padding: 0 4px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.jm-proinfos{
+    font-size: 14px;
+    color: #666;
+    margin-left: 10px;
 }
