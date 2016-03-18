@@ -1,5 +1,6 @@
 package com.wonders.xlab.qudongdong.entity.v1;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wonders.xlab.qudongdong.AbstractBaseEntity;
 
 import javax.persistence.Entity;
@@ -11,10 +12,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "qdd_v1_service_project")
+@JsonIgnoreProperties("new")
 public class ServiceProject extends AbstractBaseEntity<Long>{
-
+    /**
+     * 服务类型
+     * 记次卡 记月卡 记年卡
+     */
     private String serviceType;
-
+    /**
+     * 服务内容
+     */
     private String service;
 
     public String getServiceType() {

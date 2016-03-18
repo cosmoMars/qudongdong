@@ -1,5 +1,6 @@
 package com.wonders.xlab.qudongdong.entity.v1;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wonders.xlab.qudongdong.AbstractBaseEntity;
 
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "qdd_v1_wtj")
+@JsonIgnoreProperties("new")
 public class WantToJoin extends AbstractBaseEntity<Long> {
 
     /**
