@@ -1,5 +1,6 @@
 package com.wonders.xlab.qudongdong;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -13,6 +14,7 @@ import java.util.Date;
  * Created by mars on 15/7/2.
  */
 @MappedSuperclass
+@JsonIgnoreProperties("new")
 public abstract class AbstractBaseEntity<ID extends Serializable> extends AbstractPersistable<ID> {
 
     static final long serialVersionUID = 2834452590374861385L;

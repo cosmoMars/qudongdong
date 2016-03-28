@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface ServiceProjectRepository extends MyRepository<ServiceProject, Long> {
 
-    List<ServiceProject> findByServiceType(String serviceType);
+    List<ServiceProject> findByEnableTrueOrderByIdAsc();
 }

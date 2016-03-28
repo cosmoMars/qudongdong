@@ -1,9 +1,10 @@
 package com.wonders.xlab.qudongdong.entity.v1;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wonders.xlab.qudongdong.AbstractBaseEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -12,23 +13,25 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "qdd_v1_service_project")
-@JsonIgnoreProperties("new")
 public class ServiceProject extends AbstractBaseEntity<Long>{
     /**
      * 服务类型
      * 记次卡 记月卡 记年卡
      */
-    private String serviceType;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private ServiceType serviceType;
     /**
      * 服务内容
      */
     private String service;
 
-    public String getServiceType() {
+    private boolean enable;
+
+    public ServiceType getServiceType() {
         return serviceType;
     }
 
-    public void setServiceType(String serviceType) {
+    public void setServiceType(ServiceType serviceType) {
         this.serviceType = serviceType;
     }
 
@@ -38,5 +41,13 @@ public class ServiceProject extends AbstractBaseEntity<Long>{
 
     public void setService(String service) {
         this.service = service;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 }

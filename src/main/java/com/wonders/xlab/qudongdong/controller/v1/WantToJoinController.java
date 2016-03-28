@@ -1,10 +1,13 @@
 package com.wonders.xlab.qudongdong.controller.v1;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.wonders.xlab.qudongdong.dto.v1.WantToJoinDto;
+import com.wonders.xlab.qudongdong.dto.result.ControllerResult;
+import com.wonders.xlab.qudongdong.dto.v1.ProjectDto;
+import com.wonders.xlab.qudongdong.dto.v1.ProjectResultDto;
+import com.wonders.xlab.qudongdong.entity.v1.BannerPic;
 import com.wonders.xlab.qudongdong.entity.v1.ServiceProject;
+import com.wonders.xlab.qudongdong.entity.v1.util.StaticContent;
+import com.wonders.xlab.qudongdong.repository.v1.BannerPicRepository;
 import com.wonders.xlab.qudongdong.repository.v1.ServiceProjectRepository;
-import com.wonders.xlab.qudongdong.repository.v1.WantToJoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,47 +22,61 @@ import java.util.Map;
  * Created by 01054155 on 2016/3/18.
  */
 @RestController
-@RequestMapping("wantToJoin")
+@RequestMapping("v1/wantToJoin")
 public class WantToJoinController {
+
+    @Autowired
+    private BannerPicRepository bannerPicRepository;
 
     @Autowired
     private ServiceProjectRepository serviceProjectRepository;
 
-    @Autowired
-    private WantToJoinRepository wantToJoinRepository;
+    @RequestMapping(value = "getClubInfo", method = RequestMethod.GET)
+    public Object getClubInfo() {
 
-    @RequestMapping(value = "getWantToJoin", method = RequestMethod.GET)
-    public Object getWantToJoin() {
+        List<BannerPic> picList = bannerPicRepository.findByEnableTrueOrderByIdAsc();
 
-        WantToJoinDto wantToJoinDto=new WantToJoinDto();
+        String content = StaticContent.content;
 
-        wantToJoinDto.setWantToJoin(wantToJoinRepository.findAll());
-        Map<String,List<ServiceProject>> stringListMap=new HashMap<>();
-//        String second="次卡";
-//        String month="月卡";
-//        String year="年卡";
-//        stringListMap.put(second,serviceProjectRepository.findByServiceType(second));
-//        stringListMap.put(month,serviceProjectRepository.findByServiceType(month));
-//        stringListMap.put(year,serviceProjectRepository.findByServiceType(year));
-//        wantToJoinDto.setServiceProject(stringListMap);
-        List<ServiceProject> secondList = new ArrayList<>();
-        List<ServiceProject> monthList = new ArrayList<>();
-        List<ServiceProject> yearList = new ArrayList<>();
-        List<ServiceProject> serviceProjectList = serviceProjectRepository.findAll();
-        for (ServiceProject project : serviceProjectList) {
-            if("次卡".equals(project.getServiceType())){
-                secondList.add(project);
-            }else if("月卡".equals(project.getServiceType())){
-                monthList.add(project);
-            }else {
-                yearList.add(project);
+        List<ServiceProject> projects = serviceProjectRepository.findByEnableTrueOrderByIdAsc();
+
+        Map<String, List<ProjectDto>> map = new HashMap<>();
+
+        for (ServiceProject project : projects) {
+            List<ProjectDto> serviceProjects = map.get(project.getServiceType().getName());
+            if (serviceProjects != null) {
+                ProjectDto dto = new ProjectDto();
+                dto.setId(project.getId());
+                dto.setServiceInfo(project.getService());
+
+                serviceProjects.add(dto);
+            } else {
+                List<ProjectDto> projectList = new ArrayList<>();
+                ProjectDto dto = new ProjectDto();
+                dto.setId(project.getId());
+                dto.setServiceInfo(project.getService());
+
+                projectList.add(dto);
+                map.put(project.getServiceType().getName(), projectList);
             }
         }
-        stringListMap.put("次卡",secondList);
-        stringListMap.put("月卡",monthList);
-        stringListMap.put("年卡",yearList);
-        wantToJoinDto.setServiceProject(stringListMap);
-        return wantToJoinDto;
+
+        List<ProjectResultDto> resultDtos = new ArrayList<>();
+        for (String s : map.keySet()) {
+            ProjectResultDto dto = new ProjectResultDto();
+            dto.setName(s);
+            dto.setProjects(map.get(s));
+            resultDtos.add(dto);
+        }
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("picList", picList);
+        result.put("content", content);
+        result.put("result", resultDtos);
+
+        return new ControllerResult<>()
+                .setRet_code(0)
+                .setRet_values(result);
     }
 
 }
