@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by wanda2 on 16/3/18.
@@ -20,12 +21,22 @@ public class ServiceProject extends AbstractBaseEntity<Long>{
      */
     @ManyToOne(fetch = FetchType.LAZY)
     private ServiceType serviceType;
+
     /**
      * 服务内容
      */
     private String service;
 
+    /**
+     * 启用
+     */
     private boolean enable;
+
+    /**
+     * 序号
+     */
+    @NotNull
+    private String number;
 
     public ServiceType getServiceType() {
         return serviceType;
@@ -49,5 +60,13 @@ public class ServiceProject extends AbstractBaseEntity<Long>{
 
     public void setEnable(boolean enable) {
         this.enable = enable;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }

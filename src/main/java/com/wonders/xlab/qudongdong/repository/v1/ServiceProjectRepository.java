@@ -13,5 +13,5 @@ public interface ServiceProjectRepository extends MyRepository<ServiceProject, L
 
     List<ServiceProject> findByEnableTrueOrderByIdAsc();
 
-    List<ServiceProject> findByServiceTypeAndEnableTrueOrderByIdAsc(ServiceType type);
+    List<ServiceProject> findByServiceTypeAndEnableTrueOrderByNumberAsc(ServiceType type);
 }

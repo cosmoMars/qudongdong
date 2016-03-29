@@ -98,7 +98,7 @@ public class WantToJoinController {
         List<ProjectResultDto> resultDtos = new ArrayList<>();
         for (ServiceType serviceType : serviceTypes) {
 
-            List<ServiceProject> serviceProjectList = serviceProjectRepository.findByServiceTypeAndEnableTrueOrderByIdAsc(serviceType);
+            List<ServiceProject> serviceProjectList = serviceProjectRepository.findByServiceTypeAndEnableTrueOrderByNumberAsc(serviceType);
             List<ProjectDto> projectDtos = new ArrayList<>();
             if (!serviceProjectList.isEmpty()) {
                 for (ServiceProject serviceProject : serviceProjectList) {
