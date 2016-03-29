@@ -1,6 +1,6 @@
 <!doctype html>
-<html class="zh-cmn-Hans">
-<head>
+<html>
+<head lang="zh-cmn-Hans">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
@@ -35,81 +35,40 @@
 
     <link rel="stylesheet" href="assets/css/amazeui.min.css">
     <link rel="stylesheet" href="assets/css/static.css">
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/amazeui.min.js"></script>
 </head>
 <body>
-<header data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{"directionNav":false}'>
-    <ul class="am-slides">
-        <li>
-            <img src="./i/banner1.png">
-
-        </li>
-        <li>
-            <img src="./i/banner2.png">
-
-        </li>
-        <li>
-            <img src="./i/banner3.png">
-
-        </li>
-    </ul>
-</header>
-<section class="am-container jm-content">
-    <h2 class="jm-title" style="padding-top: 15px">[入会须知]</h2>
-    <!--<hr data-am-widget="divider" style="margin: 0.5rem auto" class="am-divider am-divider-dotted"/>-->
-    <span>
-    月费会员299元，活动地点卢湾体育馆、静安体育馆中午12:00-13:00，晚上6:00-7:00，含免费人体成分、骨密度检测。季度会费899元，免费更换拍线，含免费人体成分、骨密度、运动有氧能力检测及一年复测。年度会员3599元，含入门级球拍、运动毛巾，全年免费更换拍线，含免费人体成分、骨密度检测及免费运动处方开具一次。
-    </span>
-    <hr data-am-widget="divider" style="margin: 1rem auto;" class="am-divider am-divider-dotted"/>
-</section>
-<section class="am-container jm-content">
-    <h2 class="jm-title">[服务项目]</h2>
-    <div class="jm-serproject">
-        <div class="jm-projname">奇羽记次卡</div>
-        <div class="jm-projright">
-            <div class="jm-prorights jm-top"></div>
-            <div class="jm-prorights "></div>
+<script type="text/x-handlebars-template" id="banner">
+    {{>slider slider}}
+</script>
+<div id="body"></div>
+<script type="text/x-handlebars-template" id="main">
+    <section class="am-container jm-content">
+        <h2 class="jm-title" style="padding-top: 15px">[入会须知]</h2>
+<span>
+{{content}}
+</span>
+        <hr data-am-widget="divider" style="margin: 1rem auto;" class="am-divider am-divider-dotted"/>
+    </section>
+    <section class="am-container jm-content">
+        <h2 class="jm-title">[服务项目]</h2>
+        {{#each result}}
+        <div class="jm-serproject">
+            <div class="jm-projname">{{name}}</div>
+            <div class="jm-projright">
+                <div class="jm-prorights jm-top"></div>
+                <div class="jm-prorights "></div>
+            </div>
         </div>
+        {{#each projects}}
+        <div class="jm-projinfo"><span class="jm-pronum">{{number}}</span><span
+                class="jm-proinfos">{{serviceInfo}}</span></div>
+        {{/each}}
+        {{/each}}
+    </section>
+    <div class="jm-btn">
+        <button class="am-btn am-btn-secondary" data-am-modal="{target: '#my-alert'}">我要入会</button>
     </div>
-    <div class="jm-projinfo"><span class="jm-pronum">1</span><span class="jm-proinfos">羽毛球健身1次/2小时</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">2</span><span class="jm-proinfos">免费教练指导1次</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">3</span><span class="jm-proinfos">免费骨密度/人体成分检测</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">4</span><span class="jm-proinfos">不定期线下活动</span></div>
-    <div class="jm-serproject">
-        <div class="jm-projname">奇羽记月卡</div>
-        <div class="jm-projright">
-            <div class="jm-prorights jm-top"></div>
-            <div class="jm-prorights "></div>
-        </div>
-    </div>
-    <div class="jm-projinfo"><span class="jm-pronum">1</span><span class="jm-proinfos">羽毛球健身4次/月/2小时</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">2</span><span class="jm-proinfos">免费教练指导</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">3</span><span class="jm-proinfos">免费骨密度测试</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">4</span><span class="jm-proinfos">免费人体成分测定及评估</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">5</span><span class="jm-proinfos">免费建立健康档案</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">6</span><span class="jm-proinfos">免费线上轻问诊</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">7</span><span class="jm-proinfos">甲状腺结节筛选/女性乳房结节筛选</span></div>
-    <div class="jm-serproject">
-        <div class="jm-projname">奇羽记年卡</div>
-        <div class="jm-projright">
-            <div class="jm-prorights jm-top"></div>
-            <div class="jm-prorights "></div>
-        </div>
-    </div>
-    <div class="jm-projinfo"><span class="jm-pronum">1</span><span class="jm-proinfos">羽毛球健身4次/月/2小时</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">2</span><span class="jm-proinfos">免费教练指导</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">3</span><span class="jm-proinfos">免费骨密度测试</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">4</span><span class="jm-proinfos">免费人体成分测定及评估</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">5</span><span class="jm-proinfos">免费建立健康档案</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">6</span><span class="jm-proinfos">免费线上轻问诊</span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">7</span><span class="jm-proinfos">免费基因检测/口腔保健/中医理疗<span style="color: #999;font-size: 12px">(任选其一)</span></span></div>
-    <div class="jm-projinfo"><span class="jm-pronum">8</span><span class="jm-proinfos">免费队服1套</span></div>
-</section>
-<!--<hr data-am-widget="divider" style="margin: 1.5rem auto 0" class="am-divider am-divider-default"/>-->
-<div class="jm-btn">
-    <button class="am-btn am-btn-secondary" data-am-modal="{target: '#my-alert'}">我要入会</button>
-</div>
+</script>
 
 <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
     <div class="am-modal-dialog">
@@ -122,28 +81,11 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        var box1 = $('#check-box1');
-        var box2 = $('#check-box2');
-        var box3 = $('#check-box3');
-        box1.click(function () {
-            box1.alterClass("am-icon-square-o", "am-icon-check-square-o");
-            box2.alterClass("am-icon-check-square-o", "am-icon-square-o");
-            box3.alterClass("am-icon-check-square-o", "am-icon-square-o");
-        });
-        box2.click(function () {
-            box2.alterClass("am-icon-square-o", "am-icon-check-square-o");
-            box1.alterClass("am-icon-check-square-o", "am-icon-square-o");
-            box3.alterClass("am-icon-check-square-o", "am-icon-square-o");
-        });
-        box3.click(function () {
-            box3.alterClass("am-icon-square-o", "am-icon-check-square-o");
-            box2.alterClass("am-icon-check-square-o", "am-icon-square-o");
-            box1.alterClass("am-icon-check-square-o", "am-icon-square-o");
-        });
-    });
-</script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.js"></script>
+<script src="assets/js/handlebars.min.js"></script>
+<script src="assets/js/amazeui.widgets.helper.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/main/joinMember.js"></script>
 </body>
 </html>

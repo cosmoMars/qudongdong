@@ -1,3 +1,9 @@
+html,
+body {
+    max-width: 425px;
+    margin: 0 auto;
+}
+
 .jm-content {
     padding: 0 15px;
     font-size: 16px;
@@ -103,40 +109,48 @@ a:focus, a:hover {
         left: 70px;
     }
 }
-.jm-serproject{
+
+.jm-serproject {
     margin-top: 10px;
     width: 100%;
     height: 30px;
 }
-.jm-projname{
+
+.jm-projname {
     font-size: 18px;
     color: #333;
     float: left;
     width: 32%;
 }
-.jm-projright{
+
+.jm-projright {
     float: left;
     width: 68%;
 }
-.jm-prorights{
+
+.jm-prorights {
     display: block;
     height: 15px;
     width: 100%;
 }
-.jm-top{
+
+.jm-top {
     border-bottom: 1px solid #eee;
 }
-.jm-projinfo{
+
+.jm-projinfo {
     margin-bottom: 10px;
 }
-.jm-pronum{
+
+.jm-pronum {
     color: white;
     background-color: #ed8a2f;
     padding: 0 4px;
     border-radius: 4px;
     font-size: 14px;
 }
-.jm-proinfos{
+
+.jm-proinfos {
     font-size: 14px;
     color: #666;
     margin-left: 10px;

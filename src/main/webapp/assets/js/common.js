@@ -1,10 +1,9 @@
 /**
  * Created by wade on 15/8/24.
  */
-//var commonUrl = 'http://http://101.231.124.8:45675/qdd/';
-//var commonUrl = 'http://172.16.76.185:8080/';
-//var commonUrl = 'http://101.231.124.8:45698/qdd/';
-var commonUrl = 'http://localhost:8080/';
+
+var commonUrl = 'http://172.16.74.6:8080/qdd/';
+
 function getSex(type) {
     if (type == "Male") {
         return "男";
@@ -14,7 +13,7 @@ function getSex(type) {
     }
     else
         return "不限"
-};
+}
 
 /*!
  * http://xxxxx.com/ 谢俊个人博客
@@ -26,21 +25,20 @@ function getSex(type) {
 //$.get(commonUrl + 'weChat/getJsConfig/'+location.href, function(data) {
 //    wxconfig(data);
 //});
+
 var datas = {
     url: location.href
 };
 $.ajax({
     url: commonUrl + 'weChat/getJsConfig/',
     type: "POST",
-    data:datas,
+    data: datas,
     success: function (response) {
         wxconfig(response);
     },
     error: function () {
     }
 });
-
-
 
 function wxconfig(data) {
     wx.config({
