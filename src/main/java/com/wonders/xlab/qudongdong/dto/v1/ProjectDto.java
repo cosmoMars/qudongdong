@@ -9,6 +9,8 @@ public class ProjectDto {
 
     private String serviceInfo;
 
+    private String number;
+
     public long getId() {
         return id;
     }
@@ -23,5 +25,13 @@ public class ProjectDto {
 
     public void setServiceInfo(String serviceInfo) {
         this.serviceInfo = serviceInfo;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 }

@@ -105,6 +105,7 @@ public class WantToJoinController {
                     ProjectDto dto = new ProjectDto();
                     dto.setId(serviceProject.getId());
                     dto.setServiceInfo(serviceProject.getService());
+                    dto.setNumber(serviceProject.getNumber());
                     projectDtos.add(dto);
                 }
             }
