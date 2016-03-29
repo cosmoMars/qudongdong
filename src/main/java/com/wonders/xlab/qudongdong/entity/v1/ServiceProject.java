@@ -12,7 +12,7 @@ import javax.persistence.Table;
  * 服务项目
  */
 @Entity
-@Table(name = "qdd_v1_service_project")
+@Table(name = "qdd_service_project")
 public class ServiceProject extends AbstractBaseEntity<Long>{
     /**
      * 服务类型
