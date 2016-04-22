@@ -37,12 +37,54 @@
     <link rel="stylesheet" href="assets/css/static.css">
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/amazeui.min.js"></script>
+    <link rel="stylesheet" href="assets/css/spinningwheel.css"/>
+    <script src="laydate/laydate.js"></script>
     <style>
         .am-form-group {
             margin-bottom: 10px;
         }
         .am-u-sm-9{
             padding-left: 0;
+        }
+        .am-radio-inline{
+            color: gray;
+        }
+        #sw-wrapper{
+            border-top: 2px solid #4EC296;
+        }
+        #sw-cancel, #sw-done{
+            color: #4EC296;
+        }
+        .am-badge-danger{
+            background-color:  white;
+            font-size: 14px;
+            color: #666;
+        }
+        .am-modal{
+            border-radius: 4px;
+        }
+        .am-modal-bd{
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 5px;
+            height: 40px;
+            background-color: #4EC296;
+            color: white;
+            text-align: left;
+            border-radius: 4px;
+            padding-top: 10px;
+        }
+        .dc-modal-num{
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 10px;
+            text-align: center;
+            height: 40px;
+            font-size: 18px;
+            color: #666;
+        }
+        .dc-modal-c{
+            color: #34a3f4;
         }
     </style>
 </head>
@@ -77,7 +119,7 @@
     <div class="am-form am-form-horizontal">
         <div class="am-form-group am-form-group-sm">
             <label for="dc-name" class="am-u-sm-3"
-                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">真实姓名</label>
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">真实姓名<span style="color: red">*</span></label>
 
             <div class="am-u-sm-9">
                 <input type="text" id="dc-name" class="am-form-field  am-radius" placeholder="">
@@ -85,26 +127,57 @@
         </div>
         <div class="am-form-group am-form-group-sm">
             <label for="dc-tel" class="am-u-sm-3"
-                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">联系电话</label>
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">联系电话<span style="color: red">*</span></label>
 
             <div class="am-u-sm-9">
                 <input type="tel" id="dc-tel" class="am-form-field  am-radius" placeholder="">
             </div>
         </div>
         <div class="am-form-group am-form-group-sm">
-            <label for="dc-time" class="am-u-sm-3"
-                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">预约地点</label>
+            <label for="dc-tel" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">教练资质<span style="color: red">*</span></label>
 
-            <div class="am-u-sm-9">
-                <input type="text" id="dc-time" class="am-form-field  am-radius" placeholder="">
+            <div class="am-u-sm-3">
+                <label class="am-radio-inline" style="padding-top: 0">
+                    <input type="radio" class="dc-radio" name="radio" value="primary" data-am-ucheck> 初级
+                </label>
+            </div>
+            <div class="am-u-sm-3">
+                <label class="am-radio-inline" style="padding-top: 0">
+                    <input type="radio" class="dc-radio" name="radio" value="intermediate" data-am-ucheck> 中级
+                </label>
+            </div>
+            <div class="am-u-sm-3">
+                <label class="am-radio-inline" style="padding-top: 0">
+                    <input type="radio" class="dc-radio" name="radio" value="senior" data-am-ucheck> 高级
+                </label>
             </div>
         </div>
         <div class="am-form-group am-form-group-sm">
-            <label for="dc-date" class="am-u-sm-3"
-                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">预约时间</label>
+            <label for="dc-address" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">预约地点</label>
 
             <div class="am-u-sm-9">
-                <input type="text" id="dc-date" class="am-form-field  am-radius" placeholder="">
+                <input type="text" id="dc-address" class="am-form-field  am-radius" placeholder="">
+            </div>
+        </div>
+        <div class="am-form-group am-form-group-sm">
+            <label  class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">预约日期</label>
+
+            <div class="am-u-sm-9">
+                <!--<input type="text" id="dc-date" class="am-form-field  am-radius" placeholder="">-->
+                <div style="display: inline-block;width: 100%">
+                    <input style="float:left;width: 100%;height: 33px" placeholder="请选择日期" class="laydate-icon" onclick="laydate()" id="date-text">
+                </div>
+            </div>
+        </div>
+        <div class="am-form-group am-form-group-sm">
+            <label for="dc-time" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">预约时间</label>
+            <div class="am-u-sm-9">
+                <span class="am-badge ad-badge am-badge-danger ad-color" id="dc-time" style="color: #999;"></span>
+                <a id="startTime-btn" style="width: auto;float: right"><i class="am-icon-angle-right ad-arrows" style="color: #999;position: relative;float: right"></i></a>
             </div>
         </div>
     </div>
@@ -113,16 +186,102 @@
 <div class="jm-btn">
     <button class="am-btn am-btn-success" data-am-modal="{target: '#my-alert'}">我要私教</button>
 </div>
-<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="my-alert" style="text-align: center">
     <div class="am-modal-dialog">
-        <div class="am-modal-hd">奇羽记</div>
+        <div class="am-modal-hd">
+            <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+        </div>
+        <div class="am-modal-bd" style="padding-top: 10px;">
+            联系客服
+        </div>
+        <div class="dc-modal-num" style="border-bottom: 1px dotted #666">帅哥<span class="dc-modal-c">13701834892</span></div>
+        <div class="dc-modal-num">美女<span class="dc-modal-c">18621348832</span></div>
         <div class="am-modal-bd">
-            很抱歉，该功能还在开发中，敬请期待！
+            等待通知
         </div>
-        <div class="am-modal-footer">
-            <span class="am-modal-btn">确定</span>
-        </div>
+        <div class="dc-modal-c" style="height: 40px;font-size: 18px;margin-top: 10px">坐等客服通知</div>
     </div>
 </div>
+
+<script src="assets/js/spinningwheel.js"></script>
+
+<script>
+
+    !function () {
+        laydate({
+            elem: '#date-text'
+        })
+    }();
+    $('#startTime-btn').on('click', function () {
+        openOneSlot('start');
+    });
+
+    function cancel() {
+//        document.getElementById('result').innerHTML = 'cancelled!';
+    }
+
+    function startDone() {
+        var results = SpinningWheel.getSelectedValues();
+        //var startDate = new Date(), month = startDate.getMonth() + 1,
+        //    startDateString = startDate.getFullYear() + '-' + month + '-' + startDate.getDate() + ' ' + results.keys.join(':');
+        var $startTime = $('#dc-time');
+        $startTime.html(results.values.join(''));
+        $startTime.attr('data-time', results.keys.join(':'));
+//        document.getElementById('result').innerHTML = 'values: ' + results.values.join(' ') + '<br />keys: ' + results.keys.join(', ');
+    }
+
+    function openOneSlot(type) {
+        var hours = {
+            0: '00点',
+            1: '01点',
+            2: '02点',
+            3: '03点',
+            4: '04点',
+            5: '05点',
+            6: '06点',
+            7: '07点',
+            8: '08点',
+            9: '09点',
+            10: '10点',
+            11: '11点',
+            12: '12点',
+            13: '13点',
+            14: '14点',
+            15: '15点',
+            16: '16点',
+            17: '17点',
+            18: '18点',
+            19: '19点',
+            20: '20点',
+            21: '21点',
+            22: '22点',
+            23: '23点'
+        };
+        var mins = {
+            0: '00分',
+            5: '05分',
+            10: '10分',
+            15: '15分',
+            20: '20分',
+            25: '25分',
+            30: '30分',
+            35: '35分',
+            40: '40分',
+            45: '45分',
+            50: '50分',
+            55: '55分',
+        };
+
+        SpinningWheel.addSlot(hours, 'center', 11);
+        SpinningWheel.addSlot(mins, 'center', 30);
+        SpinningWheel.setCancelAction(cancel);
+        if (type === 'start')
+            SpinningWheel.setDoneAction(startDone);
+        else
+            SpinningWheel.setDoneAction(endDone);
+        SpinningWheel.open();
+    }
+</script>
 </body>
 </html>

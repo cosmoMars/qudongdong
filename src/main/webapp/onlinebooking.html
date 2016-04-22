@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>在线预约</title>
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="assets/i/logo.png">
+
+    <link rel="apple-touch-icon-precomposed" href="assets/i/logo.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/i/logo.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/i/logo.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/i/logo.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/static.css">
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/amazeui.min.js"></script>
+</head>
+<style>
+    .ob-button{
+        margin-top: 200px;
+    }
+    .ob-btn{
+        width: 100%;
+        height: 40px;
+        background-color: #6dcfaa;
+        border: none;
+        color: white;
+        font-size: 18px;
+
+    }
+</style>
+<body style="padding-top: 20px;padding-left: 10px;padding-right: 10px;background-color: #ebebeb;">
+<section class="am-container jm-content" style="padding: 0">
+    <div class="am-form am-form-horizontal">
+        <div class="am-form-group am-form-group-sm">
+            <label for="dc-name" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名<span style="color: red">*</span></label>
+
+            <div class="am-u-sm-9" style="padding: 0">
+                <input type="text" id="dc-name" class="am-form-field  am-radius" placeholder="" style="background-color: #ebebeb">
+            </div>
+        </div>
+        <div class="am-form-group am-form-group-sm">
+            <label for="dc-tel" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别<span style="color: red">*</span></label>
+
+            <div class="am-u-sm-2" style="padding: 0">
+                <label class="am-radio-inline" style="padding-top: 0">
+                    <input type="radio" class="dc-radio" name="radio" value="primary" data-am-ucheck> 男
+                </label>
+            </div>
+            <div class="am-u-sm-7" style="padding: 0">
+                <label class="am-radio-inline" style="padding-top: 0">
+                    <input type="radio" class="dc-radio" name="radio" value="intermediate" data-am-ucheck> 女
+                </label>
+            </div>
+        </div>
+        <div class="am-form-group am-form-group-sm">
+            <label for="dc-tel" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话<span style="color: red">*</span></label>
+
+            <div class="am-u-sm-9" style="padding: 0">
+                <input type="tel" id="dc-tel" class="am-form-field  am-radius" placeholder="" style="background-color: #ebebeb">
+            </div>
+        </div>
+
+        <div class="am-form-group am-form-group-sm">
+            <label for="dc-time" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">身份证号码</label>
+
+            <div class="am-u-sm-9" style="padding: 0">
+                <input type="text" id="dc-time" class="am-form-field  am-radius" placeholder="" style="background-color: #ebebeb">
+            </div>
+        </div>
+        <div class="am-form-group am-form-group-sm">
+            <label for="dc-date" class="am-u-sm-3"
+                   style="padding: 0;height: 33px;line-height: 33px;font-weight: normal;font-size: 16px">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</label>
+
+            <div class="am-u-sm-9" style="padding: 0">
+                <input type="textarea" id="dc-date" class="am-form-field  am-radius" placeholder="" style="background-color: #ebebeb;height: 120px">
+            </div>
+        </div>
+    </div>
+</section>
+<div class="ob-button">
+    <button class="ob-btn">确 定 预 约</button>
+</div>
+</body>
+</html>

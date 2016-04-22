@@ -47,14 +47,45 @@
     </style>
 </head>
 <body class="ii-body">
-<!--<div class="main-side-bar main-top-bar">-->
-<!--<div class="am-g main-top">-->
-<!--<div class="am-u-sm-3" style="color: grey"><a id="main" style="color:grey;display: block">一起躁</a></div>-->
-<!--<div class="am-u-sm-6" style="color: grey"><a id="datingRequest" style="color:grey;display: block">躁友信息</a>-->
-<!--</div>-->
-<!--<div class="am-u-sm-3"><span class="main-top-text">我的信息</span></div>-->
-<!--</div>-->
-<!--</div>-->
+<div class="ad-container" style="margin-top: 12px">
+    <div class="ad-info">
+        <div class="ad-title">
+            头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="name-text" style="color: #999;position: relative;left: 0">请您上传您的头像</span>
+            <a id="name-btn"><i class="am-icon-angle-right ad-arrows"></i></a>
+        </div>
+        <div class="ad-title">
+            姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="name-text" style="color: #999;position: relative;left: 0">请输入您的姓名</span>
+            <!--<a id="name-btn"><i class="am-icon-angle-right ad-arrows"></i></a>-->
+        </div>
+        <div class="ad-title">
+            性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别
+                <label class="am-radio-inline" style="padding-top: 0;margin-left: 10px">
+                        <input type="radio" class="dc-radio" name="radio" value="primary" data-am-ucheck> 男
+                </label>
+                <label class="am-radio-inline" style="padding-top: 0">
+                        <input type="radio" class="dc-radio" name="radio" value="intermediate" data-am-ucheck> 女
+                </label>
+        </div>
+        <div class="ad-title">
+        年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄
+            <div style="display: inline-block;float:right;padding-right: 60px;">
+            <input placeholder="出生年月选择控件" style="border: none" class="laydate-icon" onclick="laydate()" id="date-text">
+            </div>
+        </div>
+        <div class="ad-title">
+            工作单位
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="name-text" style="color: #999;position: relative;left: 0">请输入您的工作单位</span>
+            <!--<a id="name-btn"><i class="am-icon-angle-right ad-arrows"></i></a>-->
+        </div>
+        <div class="ad-title">
+            球&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="name-text" style="color: #999;position: relative;left: 0">请输入您的球龄</span>
+            <!--<a id="name-btn"><i class="am-icon-angle-right ad-arrows"></i></a>-->
+        </div>
+    </div>
+</div>
 <div class="ii-container" id="ii-main" style="margin-top: 10px;">
 </div>
 <!--[if (gte IE 9)|!(IE)]><!-->
@@ -122,33 +153,6 @@
             <span class="am-badge ii-badge am-badge-danger" id="text-age">{{age}}岁</span>
             <a id="age-btn"><i class="am-icon-angle-right ii-arrows"></i></a>
         </div>
-        <!--<div class="ii-height">-->
-        <!--身高-->
-        <!--<span class="am-badge ii-badge am-badge-danger" id="text-height">{{height}}cm</span>-->
-        <!--<a id="height-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>-->
-        <!--</div>-->
-        <!--<div class="ii-weight">-->
-        <!--体重-->
-        <!--<span class="am-badge ii-badge am-badge-danger" id="text-weight">{{weight}}kg</span>-->
-        <!--<a id="weight-btn"><i class="am-icon-chevron-right ii-arrows"></i></a>-->
-        <!--</div>-->
-        <!--<div class="ii-sports">-->
-        <!--喜欢的运动-->
-        <!--<div class="am-badge ii-icon" style="bottom: 4px;">-->
-        <!--{{#each sports}}-->
-        <!--<img src="{{iconUrl}}" class="ii-sports-icon"/>-->
-        <!--{{/each}}-->
-        <!--<a href="selectSports.html?userId={{id}}">-->
-        <!--<i class="am-icon-plus-circle am-icon-lg" style="color: darkgrey"></i>-->
-        <!--</a>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--<div class="ii-clause">-->
-        <!--隐私条款-->
-        <!--<a href="clause.html">-->
-        <!--<i class="am-icon-chevron-right ii-arrows"></i>-->
-        <!--</a>-->
-        <!--</div>-->
     </div>
     <div class="am-modal am-modal-prompt" tabindex="-1" id="ii-tel">
         <div class="am-modal-dialog">

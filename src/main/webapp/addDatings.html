@@ -7,7 +7,7 @@
     <meta name="keywords" content="">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>活动发起</title>
+    <title>企业俱乐部</title>
 
     <!-- Set render engine for 360 browser -->
     <meta name="renderer" content="webkit">
@@ -45,54 +45,119 @@
         #sw-cancel, #sw-done {
             color: #6dcfaa;
         }
+        .am-dropdown{
+            width: 98%;
+        }
+        .am-btn-primary{
+            background-color: white;
+            border-color: white;
+            color: #333;
+            width: 100%;
+        }
+        .am-btn{
+            padding: 0;
+            line-height:1.5
+        }
+        .am-active .am-btn-primary.am-dropdown-toggle, .am-btn-primary.am-active, .am-btn-primary:active{
+            background-color: white;
+        }
+        .am-active .am-btn-primary.am-dropdown-toggle, .am-btn-primary.am-active, .am-btn-primary:active, .am-btn-primary:focus, .am-btn-primary:hover {
+            border-color: white;
+            color: #333;
+        }
+        .am-active .am-btn-primary.am-dropdown-toggle{
+            outline-style: none;
+        }
+        .am-btn-primary:focus, .am-btn-primary:hover{
+            background-color: white;
+        }
+        ul.am-dropdown-content>.am-active>a, ul.am-dropdown-content>.am-active>a:focus, ul.am-dropdown-content>.am-active>a:hover{
+            background-color: #6dcfaa;
+        }
     </style>
 </head>
 <body class="ad-body">
+
 <div class="ad-container" style="margin-top: 12px">
+    <span><span style="color: red">友情提醒</span>:活动发起由每个俱乐部负责人发起,请各位球友  点击“一站式预约”后,再点击“我要参与”参与活动。</span>
     <div class="ad-info">
         <div class="ad-title">
-            主题
-            <span class="am-badge ad-badge am-badge-danger" id="title-text">羽毛球</span>
-        </div>
-        <div class="ad-location">
-            场馆
-            <span class="am-badge ad-badge am-badge-danger" id="venue-text"></span>
-            <a id="venue-btn"><i class="am-icon-angle-right ad-arrows"></i></a>
-        </div>
-        <div class="ad-location">
-            地点
-            <span class="am-badge ad-badge am-badge-danger" id="location-text"></span>
-            <a id="location-btn"><i class="am-icon-angle-right ad-arrows"></i></a>
+            <div class="am-dropdown" data-am-dropdown>
+                <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>俱乐部名称<span class="am-icon-caret-down"></span></button>
+                <ul class="am-dropdown-content">
+                    <li><a href="#">快乐的方式不只一种</a></li>
+                    <li class="am-active"><a href="#">最荣幸是</a></li>
+                    <li><a href="#">谁都是造物者的光荣</a></li>
+                    <li class="am-disabled"><a href="#">就站在光明的角落</a></li>
+                    <li class="am-divider"></li>
+                    <li><a href="#">天空海阔 要做最坚强的泡沫</a></li>
+                </ul>
+            </div>
         </div>
         <div class="ad-title">
-            日期
+            俱乐部口号
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="slogan-text" style="color: #999;position: relative;left: 0"></span>
+            <!--<a id="name-btn"><i class="am-icon-angle-right ad-arrows"></i></a>-->
+        </div>
+        <div class="ad-title">
+            俱乐部管理人
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="manager-text" style="color: #999;position: relative;left: 0"></span>
+            <!--<a id="name-btn"><i class="am-icon-angle-right ad-arrows"></i></a>-->
+        </div>
+        <div class="ad-title">
+            俱乐部积分
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="integral-text" style="color: #999;position: relative;left: 0"></span>
+            <!--<a id="name-btn"><i class="am-icon-angle-right ad-arrows"></i></a>-->
+        </div>
+        <div class="ad-title">
+            俱乐部LOGO
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="logo-text" style="color: #999;position: relative;left: 0">请您上传俱乐部LOGO</span>
+            <a id="logo-btn"><i class="am-icon-angle-right ad-arrows" style="color: #999"></i></a>
+        </div>
+        <div class="ad-title">
+            主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="title-text" style="color: #999;position: relative;left: 0">请选择主题</span>
+            <a id="theme-btn"><i class="am-icon-angle-right ad-arrows" style="color: #999"></i></a>
+        </div>
+        <div class="ad-location">
+            场馆名称
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="venue-text" style="color: #999;position: relative;left: 0">请您输入场馆名称</span>
+            <!--<a id="venue-btn"><i class="am-icon-angle-right ad-arrows"></i></a>-->
+        </div>
+        <div class="ad-location">
+            场馆地点
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="location-text" style="color: #999;position: relative;left: 0">请您输入场馆详细地址</span>
+            <!--<a id="location-btn"><i class="am-icon-angle-right ad-arrows"></i></a>-->
+        </div>
+        <div class="ad-title">
+            日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期
             <div style="display: inline-block;float:right;padding-right: 30px;">
-                <input placeholder="请输入日期" class="laydate-icon" onclick="laydate()" id="date-text">
+                <input placeholder="请选择日期" class="laydate-icon" onclick="laydate()" id="date-text">
             </div>
         </div>
         <div class="ad-start">
             开始时间
-            <span class="am-badge ad-badge am-badge-danger" id="startTime-text"></span>
-            <a id="startTime-btn"><i class="am-icon-angle-right ad-arrows"></i></a>
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="startTime-text" style="color: #999"></span>
+            <a id="startTime-btn"><i class="am-icon-angle-right ad-arrows" style="color: #999;position: relative;left: 0"></i></a>
         </div>
         <div class="ad-end">
             结束时间
-            <span class="am-badge ad-badge am-badge-danger" id="endTime-text"></span>
-            <a id="endTime-btn"><i class="am-icon-angle-right ad-arrows"></i></a>
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="endTime-text" style="color: #999"></span>
+            <a id="endTime-btn"><i class="am-icon-angle-right ad-arrows" style="color: #999;position: relative;left: 0"></i></a>
         </div>
     </div>
     <div class="ad-info">
         <div class="ad-partner">
-            人数
-            <span class="am-badge ad-badge am-badge-danger" id="numOfP-text"></span>
-            <a id="numOfP-btn"><i class="am-icon-angle-right ad-arrows"></i></a>
+            人&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数
+            <span class="am-badge ad-badge am-badge-danger ad-color" id="numOfP-text" style="color: #999;position: relative;left: 0">请您输入人数</span>
+            <!--<a id="numOfP-btn"><i class="am-icon-angle-right ad-arrows"></i></a>-->
         </div>
     </div>
     <div class="ad-info">
         <ul class="am-list am-list-static am-list-border">
             <li>
-                <textarea class="ad-content" placeholder="空乏的说明是没有人会报名的..." id="content-text"></textarea>
-                <span class="ad-limit">仅限12个字</span>
+                <textarea class="ad-content" placeholder="请对活动做简单的说明(仅限30个字以内)" id="content-text"></textarea>
+                <!--<span class="ad-limit">仅限12个字</span>-->
             </li>
         </ul>
     </div>
@@ -100,7 +165,7 @@
         <div style="padding-left: 20px;padding-right: 20px;">
             <button onclick="generateOrder()" class="am-btn am-btn-success"
                     style="font-size:16px;display: block;width: 100%;border-radius: 5px;background-color: #4EC296;border-color: #4EC296;">
-                确定发布
+                加入训练
             </button>
         </div>
     </div>
