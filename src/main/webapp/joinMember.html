@@ -36,51 +36,187 @@
     <link rel="stylesheet" href="assets/css/amazeui.min.css">
     <link rel="stylesheet" href="assets/css/static.css">
 </head>
-<body>
-<script type="text/x-handlebars-template" id="banner">
-    {{>slider slider}}
-</script>
-<div id="body"></div>
-<script type="text/x-handlebars-template" id="main">
-    <section class="am-container jm-content">
-        <h2 class="jm-title" style="padding-top: 15px">[入会须知]</h2>
-<span>
-{{content}}
-</span>
-        <hr data-am-widget="divider" style="margin: 1rem auto;" class="am-divider am-divider-dotted"/>
-    </section>
-    <section class="am-container jm-content">
-        <h2 class="jm-title">[服务项目]</h2>
-        {{#each result}}
-        <div class="jm-serproject">
-            <div class="jm-projname">{{name}}</div>
-            <div class="jm-projright">
-                <div class="jm-prorights jm-top"></div>
-                <div class="jm-prorights "></div>
-            </div>
-        </div>
-        {{#each projects}}
-        <div class="jm-projinfo"><span class="jm-pronum">{{number}}</span><span
-                class="jm-proinfos">{{serviceInfo}}</span></div>
-        {{/each}}
-        {{/each}}
-    </section>
-    <div class="jm-btn">
-        <button class="am-btn am-btn-secondary" data-am-modal="{target: '#my-alert'}">我要入会</button>
-    </div>
-</script>
+<style>
+    .jm-title{
+        font-weight: bold;
+    }
+    .jm-list{
+        width: 100%;
+        height: 80px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .jm-listl{
+        float: left;
+        width: 20%;
+        height: 80px;
+    }
+    .jm-listlimg{
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+    }
+    .jm-listr{
+        float: right;
+        width: 80%;
 
-<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
-    <div class="am-modal-dialog">
-        <div class="am-modal-hd">奇羽记</div>
-        <div class="am-modal-bd">
-            很抱歉，该功能还在开发中，敬请期待！
+    }
+    .jm-listrt{
+        font-size: 16px;
+        display: block;
+    }
+    .jm-listrc{
+        font-size: 14px;
+        color: #666;
+    }
+    .jm-mintitle{
+        margin-top: 10px;
+        width: 100%;
+        height: 26px;
+        font-size: 16px;
+
+    }
+    .jm-mintitlel{
+        width: 20%;
+        height: 100%;
+        color: white;
+        background-color: #4EC296;
+        border-radius: 2px;
+        border-bottom-right-radius: 0;
+        float: left;
+        text-align: center;
+    }
+    .jm-mintitler{
+        width: 80%;
+        height: 100%;
+        border-bottom: 1px solid #4EC296;
+        float: left;
+    }
+</style>
+<body>
+<header data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{"directionNav":false}'>
+    <ul class="am-slides">
+        <li>
+            <img src="./i/banner1.png">
+        </li>
+        <li>
+            <img src="./i/banner2.png">
+        </li>
+        <li>
+            <img src="./i/banner3.png">
+        </li>
+    </ul>
+</header>
+<div style="padding:15px">
+    <p class="jm-title" style="">[服务概览]</p>
+    <div class="jm-list">
+        <div class="jm-listl">
+            <img class="jm-listlimg" src="i/icon/01.png">
         </div>
-        <div class="am-modal-footer">
-            <span class="am-modal-btn">确定</span>
+        <div class="jm-listr">
+            <span class="jm-listrt">一站式预约</span>
+            <span class="jm-listrc">中心城区黄金时段场馆,国家级认证教练,生态圈球友</span>
+            <hr data-am-widget="divider" style="margin: 1rem auto;" class="am-divider am-divider-sold"/>
+        </div>
+    </div>
+    <div class="jm-list">
+        <div class="jm-listl">
+            <img class="jm-listlimg"  src="i/icon/02.png">
+        </div>
+        <div class="jm-listr" style="height: 60px">
+            <span class="jm-listrt">青少年培训</span>
+            <span class="jm-listrc">市区级少体校,市级比赛获奖升学优势</span>
+            <hr data-am-widget="divider" style="margin: 1rem auto;" class="am-divider am-divider-sold"/>
+        </div>
+    </div>
+    <div class="jm-list">
+        <div class="jm-listl">
+            <img class="jm-listlimg" src="i/icon/03.png">
+        </div>
+        <div class="jm-listr" style="height: 60px">
+            <span class="jm-listrt">合作伙伴</span>
+            <span class="jm-listrc">万达全城健康服务有限公司</span>
+            <hr data-am-widget="divider" style="margin: 1rem auto;" class="am-divider am-divider-sold"/>
+        </div>
+    </div>
+    <div class="jm-list">
+        <div class="jm-listl">
+            <img class="jm-listlimg" src="i/icon/04.png">
+        </div>
+        <div class="jm-listr">
+            <span class="jm-listrt">免费健康检测</span>
+            <span class="jm-listrc">骨密度,人体成分分布,运动有氧能力,线上轻问诊</span>
+            <hr data-am-widget="divider" style="margin: 1rem auto;" class="am-divider am-divider-sold"/>
+        </div>
+    </div>
+    <div class="jm-list">
+        <div class="jm-listl">
+            <img class="jm-listlimg" src="i/icon/05.png">
+        </div>
+        <div class="jm-listr">
+            <span class="jm-listrt">健康衍生服务</span>
+            <span class="jm-listrc">成人基因检测,少儿基因检测,中医理疗,音乐/催眠理疗</span>
+            <hr data-am-widget="divider" style="margin: 1rem auto;" class="am-divider am-divider-sold"/>
         </div>
     </div>
 </div>
+<div style="padding: 15px">
+    <p class="jm-title" style="line-height: 1;margin-bottom: 10px" >[关于我们]</p>
+    <span class="jm-listrc">奇羽记体育科技发展有限公司旨在为中高端人群提供一揽子健康管理服务与一站式体育锻炼（运动+大健康）的服务型企业。由上海科技创业投资有限公司、万达信息股份有限公司、体育局等单位共同合作。</span>
+    <div class="jm-mintitle">
+        <div class="jm-mintitlel">健康端</div>
+        <div class="jm-mintitler"></div>
+    </div>
+    <span class="jm-listrc">万达信息在全国范围内的区域卫生信息化市场占有率约50%，为超过4 亿人建立了电子健康档案，并整合了上海市全部38 家三甲医院以及大量的一、二级医院资源。公司通过与上海市卫计委独家合作拟推出慢性病健康管理云平台，该云平台是上海市首个关于慢性病互联网管理的“委——市合作”示范项目，目标是构建全市统一的健康管理云平台。此外，在医药电商运营方面，承建了上海市医药采购服务与监管信息系统项目，该平台是上海市唯一由政府主导的药品采购B2B 平台，其全面覆盖上海所有医保定点医疗机构和医保定点药房以及具有药品经销、配送业务资质的药品流通企业，实现了药品从采购招投标到交易再到配送及财务结算四位一体的功能。平台为会员提供免费检测项目，其中包括骨密度测试，运动有氧能力测试，人体成分分析，在线轻问诊等。全程健康门诊更为会员提供一站式健康管理及各项衍生服务，包括健康处方，心理咨询，中医理疗，口腔保健，线下陪诊，三甲医院挂号与转诊服务，成人基因检测，儿童健康基因检测等。团体会员可选择减压训练，催眠理疗，音乐舒缓等服务。</span>
+    <div class="jm-mintitle">
+        <div class="jm-mintitlel">运动端</div>
+        <div class="jm-mintitler"></div>
+    </div>
+    <span class="jm-listrc">1.B2B一站式运动管理。<br> 2.少儿羽毛球培训。运动一站式管理包括赛事策划、日常培训、企业运动方案定制等，旨在帮助各领域企业搭建员工强身健体的交流平台，增强企业文化。旗下的奇羽记羽毛球俱乐部提供企业托管式教练服务，并定期组织跨行精英圈积分比赛及海内外团体交流赛。教练由体育局在编教练组成，由国家羽毛球队教练做为总顾问。少儿羽毛球旨在通过培训和选拔市区、国家级后备人才，拔尖者可获得相应的入学优势。</span>
+</div>
+
+<!--<script type="text/x-handlebars-template" id="main">-->
+    <!--<section class="am-container jm-content">-->
+        <!--<h2 class="jm-title" style="padding-top: 15px">[服务概览]</h2>-->
+<!--<span>-->
+<!--{{content}}-->
+<!--</span>-->
+        <!--<hr data-am-widget="divider" style="margin: 1rem auto;" class="am-divider am-divider-dotted"/>-->
+    <!--</section>-->
+    <!--<section class="am-container jm-content">-->
+        <!--<h2 class="jm-title">[关于我们]</h2>-->
+        <!--{{#each result}}-->
+        <!--<div class="jm-serproject">-->
+            <!--<div class="jm-projname">{{name}}</div>-->
+            <!--<div class="jm-projright">-->
+                <!--<div class="jm-prorights jm-top"></div>-->
+                <!--<div class="jm-prorights "></div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--{{#each projects}}-->
+        <!--<div class="jm-projinfo"><span class="jm-pronum">{{number}}</span><span-->
+                <!--class="jm-proinfos">{{serviceInfo}}</span></div>-->
+        <!--{{/each}}-->
+        <!--{{/each}}-->
+    <!--</section>-->
+    <!--<div class="jm-btn">-->
+        <!--<button class="am-btn am-btn-secondary" data-am-modal="{target: '#my-alert'}">我要入会</button>-->
+    <!--</div>-->
+<!--</script>-->
+
+<!--<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">-->
+    <!--<div class="am-modal-dialog">-->
+        <!--<div class="am-modal-hd">奇羽记</div>-->
+        <!--<div class="am-modal-bd">-->
+            <!--很抱歉，该功能还在开发中，敬请期待！-->
+        <!--</div>-->
+        <!--<div class="am-modal-footer">-->
+            <!--<span class="am-modal-btn">确定</span>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.js"></script>
 <script src="assets/js/handlebars.min.js"></script>
