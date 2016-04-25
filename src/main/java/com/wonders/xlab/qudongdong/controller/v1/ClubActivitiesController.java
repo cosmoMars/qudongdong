@@ -24,7 +24,7 @@ public class ClubActivitiesController {
         return c != null ? new ControllerResult().setRet_code(0).setMessage("发布成功") : new ControllerResult().setRet_code(1).setMessage("发布失败");
     }
 
-    @RequestMapping(value = "findAllClubActivities", method = RequestMethod.GET)
+    @RequestMapping(value = "findAllClubActivities/{pageNum}", method = RequestMethod.GET)
     public ControllerResult findAllClubActivities(@PathVariable Long pageNum) {
         List<ClubActivities> clubActivities = clubActivitiesRepository.findAll();
         return new ControllerResult().setRet_code(0).setRet_values(clubActivities);
