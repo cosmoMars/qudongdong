@@ -22,10 +22,10 @@ public class PrivateCoachController {
     /**
      * 保存我要私教信息
      */
-    @RequestMapping(value = "save" , method = RequestMethod.POST)
-    public ControllerResult savePrivateCoachInfor(@RequestBody PrivateCoach privateCoach){
+    @RequestMapping(value = "save", method = RequestMethod.POST)
+    public ControllerResult savePrivateCoachInfor(@RequestBody PrivateCoach privateCoach) {
         PrivateCoach p = privateCoachRepository.save(privateCoach);
-        return p!=null ? new ControllerResult().setRet_code(0).setMessage("申请成功"):new ControllerResult().setRet_code(1).setMessage("申请失败");
+        return p != null ? new ControllerResult().setRet_code(0).setMessage("申请成功") : new ControllerResult().setRet_code(1).setMessage("申请失败");
     }
 
 
