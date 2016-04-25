@@ -1,6 +1,9 @@
 package com.wonders.xlab.qudongdong.entity.v1;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wonders.xlab.qudongdong.AbstractBaseEntity;
+import org.junit.Ignore;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,8 +13,9 @@ import java.util.Date;
  */
 //聚乐部活动表
 @Entity
+@JsonIgnoreProperties("new")
 @Table(name = "qdd_club_activities")
-public class ClubActivities extends AbstractBaseEntity<Long> {
+public class ClubActivities extends AbstractPersistable<Long> {
 
     //聚乐部名称
     @Column(unique = true, nullable = false, length = 50)

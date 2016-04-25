@@ -1,6 +1,8 @@
 package com.wonders.xlab.qudongdong.entity.v1;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wonders.xlab.qudongdong.AbstractBaseEntity;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,8 +12,9 @@ import java.util.Date;
  */
 //私教表实体类
 @Entity
+@JsonIgnoreProperties("new")
 @Table(name = "qdd_private_coach")
-public class PrivateCoach extends AbstractBaseEntity<Long> {
+public class PrivateCoach extends AbstractPersistable<Long> {
 
     //真实姓名
     @Column(nullable = false)
