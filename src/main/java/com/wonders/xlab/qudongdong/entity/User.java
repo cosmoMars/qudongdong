@@ -73,7 +73,6 @@ public class User extends AbstractBaseEntity<Long> {
     @OrderBy("id asc")
     private Set<Sport> sports;
 
-
     /**
      * 是否官方
      */
